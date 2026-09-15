@@ -6,12 +6,42 @@ import { Copy, Check, Heart, Shield, GraduationCap, Users, Lightbulb, CreditCard
 import SEO from '../components/SEO';
 import TopNavigation from '../components/TopNavigation';
 import Footer from '../sections/Footer';
+import api from '../services/api';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function DonationPage() {
   const [copied, setCopied] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState<'pix' | 'card'>('pix');
+  const [amount, setAmount] = useState<number>(50);
+  const [isRecurring, setIsRecurring] = useState<boolean>(true);
+  const [donorName, setDonorName] = useState('');
+  const [donorEmail, setDonorEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleStripeCheckout = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    try {
+      const response = await api.post('/stripe/create-checkout-session', {
+        amount,
+        isRecurring,
+        donorName,
+        donorEmail,
+      });
+      const data = response.data;
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        alert('Erro ao iniciar pagamento: ' + (data.error || 'Desconhecido'));
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Erro de conexão ao iniciar pagamento.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const pixKey = "58.473.428/0001-31";
 
@@ -189,20 +219,104 @@ export default function DonationPage() {
                   </div>
                 )}
 
-                {/* Card Flow (Future) */}
+                {/* Card Flow (Stripe Checkout) */}
                 {paymentMethod === 'card' && (
-                  <div className="animate-fade-in text-center py-8">
-                    <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-4">
-                      <CreditCard className="w-8 h-8 text-gray-400" />
+                  <form onSubmit={handleStripeCheckout} className="animate-fade-in space-y-6">
+                    {/* Recurring Toggle */}
+                    <div className="flex bg-gray-100 p-1 rounded-xl">
+                      <button
+                        type="button"
+                        onClick={() => setIsRecurring(true)}
+                        className={`flex-1 py-2 text-sm font-bold uppercase rounded-lg transition-all ${
+                          isRecurring ? 'bg-white text-brand-teal shadow' : 'text-gray-500 hover:text-[#1d1d1b]'
+                        }`}
+                      >
+                        Mensal
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setIsRecurring(false)}
+                        className={`flex-1 py-2 text-sm font-bold uppercase rounded-lg transition-all ${
+                          !isRecurring ? 'bg-white text-brand-teal shadow' : 'text-gray-500 hover:text-[#1d1d1b]'
+                        }`}
+                      >
+                        Única
+                      </button>
                     </div>
-                    <h4 className="text-lg font-bold text-[#1d1d1b] mb-2 uppercase tracking-wide">Doações via Cartão de Crédito</h4>
-                    <p className="text-gray-500 font-light mb-6">
-                      Estamos integrando nossa plataforma para aceitar doações recorrentes e pontuais via cartão de crédito e boleto.
+
+                    {/* Amount Selection */}
+                    <div>
+                      <p className="text-sm font-bold text-[#1d1d1b] uppercase tracking-wider mb-3">Valor da Doação</p>
+                      <div className="grid grid-cols-3 gap-3 mb-3">
+                        {[50, 100, 200].map((val) => (
+                          <button
+                            key={val}
+                            type="button"
+                            onClick={() => setAmount(val)}
+                            className={`py-3 rounded-xl border-2 font-bold transition-all ${
+                              amount === val
+                                ? 'border-brand-teal bg-brand-teal/5 text-brand-teal'
+                                : 'border-gray-200 text-gray-500 hover:border-brand-teal/50'
+                            }`}
+                          >
+                            R$ {val}
+                          </button>
+                        ))}
+                      </div>
+                      <div className="relative">
+                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 font-bold">R$</span>
+                        <input
+                          type="number"
+                          min="5"
+                          value={amount}
+                          onChange={(e) => setAmount(Number(e.target.value))}
+                          className="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-brand-teal focus:ring-0 transition-colors font-bold text-gray-700"
+                          placeholder="Outro valor..."
+                        />
+                      </div>
+                    </div>
+
+                    {/* Personal Info */}
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Nome Completo</label>
+                        <input
+                          type="text"
+                          required
+                          value={donorName}
+                          onChange={(e) => setDonorName(e.target.value)}
+                          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-teal focus:ring-0 transition-colors"
+                          placeholder="Seu nome"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">E-mail</label>
+                        <input
+                          type="email"
+                          required
+                          value={donorEmail}
+                          onChange={(e) => setDonorEmail(e.target.value)}
+                          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-teal focus:ring-0 transition-colors"
+                          placeholder="seu@email.com"
+                        />
+                      </div>
+                    </div>
+
+                    <button
+                      type="submit"
+                      disabled={isSubmitting || amount < 5}
+                      className="w-full py-4 rounded-xl bg-brand-orange text-white font-bold uppercase tracking-wider text-sm hover:bg-[#d88000] transition-colors disabled:opacity-50 flex justify-center items-center gap-2"
+                    >
+                      {isSubmitting ? (
+                        <span className="animate-pulse">Processando...</span>
+                      ) : (
+                        <>Continuar para Pagamento <CreditCard className="w-4 h-4" /></>
+                      )}
+                    </button>
+                    <p className="text-[10px] text-gray-400 text-center flex items-center justify-center gap-1">
+                      <Shield className="w-3 h-3" /> Pagamento seguro via Stripe
                     </p>
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-orange/10 text-brand-orange font-bold text-xs uppercase tracking-widest rounded-full">
-                      Em breve
-                    </div>
-                  </div>
+                  </form>
                 )}
 
               </div>
