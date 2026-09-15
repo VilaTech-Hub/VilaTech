@@ -23,13 +23,23 @@ export default function DonationPage() {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      const response = await api.post('/stripe/create-checkout-session', {
-        amount,
-        isRecurring,
-        donorName,
-        donorEmail,
-      });
-      const data = response.data;
+      const payload = { amount, isRecurring, donorName, donorEmail };
+      let data: any;
+
+      if (import.meta.env.DEV) {
+        // Em desenvolvimento, usa o backend Express local via axios
+        const response = await api.post('/stripe/create-checkout-session', payload);
+        data = response.data;
+      } else {
+        // Em produção (Vercel), usa a Serverless Function diretamente
+        const response = await fetch('/api/stripe/create-checkout-session', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        data = await response.json();
+      }
+
       if (data.url) {
         window.location.href = data.url;
       } else {
