@@ -157,9 +157,8 @@ export default function PlanoAbertoPage() {
               <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-[80px] font-black editorial-title text-white mb-2 leading-[0.9]">entra em cena.</h2>
             </div>
 
-            <div className="mt-8">
-
-              <p className="text-white/60 font-inter text-sm md:text-base font-light mt-4 max-w-md leading-relaxed">
+            <div className="mt-0">
+              <p className="text-white/60 font-inter text-base md:text-lg font-light max-w-md leading-relaxed">
                 Formação audiovisual para jovens:<br />
                 Um projeto de educação ágil para formação e capacitação em audiovisual e cinema.
               </p>
