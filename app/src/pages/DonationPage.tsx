@@ -278,9 +278,9 @@ export default function DonationPage() {
                         <input
                           type="number"
                           min="5"
-                          value={amount}
+                          value={amount || ''}
                           onChange={(e) => setAmount(Number(e.target.value))}
-                          className="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-brand-teal focus:ring-0 transition-colors font-bold text-gray-700"
+                          className="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-brand-teal focus:ring-0 transition-colors font-bold text-gray-700 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                           placeholder="Outro valor..."
                         />
                       </div>
@@ -295,7 +295,7 @@ export default function DonationPage() {
                           required
                           value={donorName}
                           onChange={(e) => setDonorName(e.target.value)}
-                          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-teal focus:ring-0 transition-colors"
+                          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-teal focus:ring-0 transition-colors text-[#1d1d1b]"
                           placeholder="Seu nome"
                         />
                       </div>
@@ -306,7 +306,7 @@ export default function DonationPage() {
                           required
                           value={donorEmail}
                           onChange={(e) => setDonorEmail(e.target.value)}
-                          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-teal focus:ring-0 transition-colors"
+                          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-teal focus:ring-0 transition-colors text-[#1d1d1b]"
                           placeholder="seu@email.com"
                         />
                       </div>
