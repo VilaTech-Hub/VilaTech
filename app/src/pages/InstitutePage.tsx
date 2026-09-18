@@ -1127,7 +1127,7 @@ export default function InstitutePage() {
 
       <Partners
         bgClass="bg-[#1d1d1b]"
-        title="Investidores e parceiros que acreditam no Instituto"
+        title="Parceiros que acreditam no Instituto"
         description="Nossos parceiros são essenciais para manter as bolsas, eventos e a infraestrutura que transformam vidas por meio da educação e inovação tecnológica."
         label="Parceiros do Instituto"
         ctaText="Quero Apoiar o Instituto"
