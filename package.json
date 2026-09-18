@@ -1,5 +1,9 @@
 {
   "dependencies": {
-    "@vercel/speed-insights": "^2.0.0"
+    "@vercel/speed-insights": "^2.0.0",
+    "stripe": "^22.6.2"
+  },
+  "devDependencies": {
+    "@vercel/node": "^13.0.0"
   }
 }

@@ -21,6 +21,8 @@ const MyBookingsPage = React.lazy(() => import('./pages/MyBookingsPage'));
 const PlanoAbertoPage = React.lazy(() => import('./pages/PlanoAbertoPage'));
 const FitiPage = React.lazy(() => import('./pages/FitiPage'));
 const DonationPage = React.lazy(() => import('./pages/DonationPage'));
+const DonationSuccessPage = React.lazy(() => import('./pages/DonationSuccessPage'));
+const DonationCancelPage = React.lazy(() => import('./pages/DonationCancelPage'));
 const PrivacyPolicyPage = React.lazy(() => import('./pages/PrivacyPolicyPage'));
 const TermsOfUsePage = React.lazy(() => import('./pages/TermsOfUsePage'));
 const AdminLayout = React.lazy(() => import('./layouts/AdminLayout'));
@@ -60,6 +62,8 @@ function App() {
             <Route path="/plano-aberto" element={<PlanoAbertoPage />} />
             <Route path="/fiti" element={<FitiPage />} />
             <Route path="/doar" element={<DonationPage />} />
+            <Route path="/doacao-sucesso" element={<DonationSuccessPage />} />
+            <Route path="/doacao-cancelada" element={<DonationCancelPage />} />
             <Route path="/politica-de-privacidade" element={<PrivacyPolicyPage />} />
             <Route path="/termos-de-uso" element={<TermsOfUsePage />} />
 
