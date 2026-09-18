@@ -9,15 +9,7 @@ import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 
 // Lazy loaded pages
-const LandingPage = React.lazy(() => import('./pages/LandingPage'));
 const InstitutePage = React.lazy(() => import('./pages/InstitutePage'));
-const InstituteOldPage = React.lazy(() => import('./pages/InstituteOldPage'));
-const CoworkingPage = React.lazy(() => import('./pages/CoworkingPage'));
-const AgendaPage = React.lazy(() => import('./pages/AgendaPage'));
-const CoursesLandingPage = React.lazy(() => import('./pages/CoursesLandingPage'));
-const CourseDetailPage = React.lazy(() => import('./pages/CourseDetailPage'));
-const BookingsPage = React.lazy(() => import('./pages/BookingsPage'));
-const MyBookingsPage = React.lazy(() => import('./pages/MyBookingsPage'));
 const PlanoAbertoPage = React.lazy(() => import('./pages/PlanoAbertoPage'));
 const FitiPage = React.lazy(() => import('./pages/FitiPage'));
 const DonationPage = React.lazy(() => import('./pages/DonationPage'));
@@ -48,20 +40,12 @@ function App() {
       <Router>
         <Suspense fallback={<PageLoader />}>
           <Routes>
-            {/* Public Website */}
+            {/* Public Website - Instituto como página principal */}
             <Route path="/" element={<InstitutePage />} />
-            <Route path="/vila-tech-hub" element={<LandingPage />} />
-            <Route path="/instituto" element={<InstitutePage />} />
-            <Route path="/instituto-old" element={<InstituteOldPage />} />
-            <Route path="/coworking" element={<CoworkingPage />} />
-            <Route path="/agenda" element={<AgendaPage />} />
-            <Route path="/cursos" element={<CoursesLandingPage />} />
-            <Route path="/cursos/:id" element={<CourseDetailPage />} />
-            <Route path="/reservas" element={<BookingsPage />} />
-            <Route path="/reservas/minhas" element={<MyBookingsPage />} />
             <Route path="/plano-aberto" element={<PlanoAbertoPage />} />
             <Route path="/fiti" element={<FitiPage />} />
             <Route path="/doar" element={<DonationPage />} />
+            <Route path="/instituto" element={<InstitutePage />} />
             <Route path="/doacao-sucesso" element={<DonationSuccessPage />} />
             <Route path="/doacao-cancelada" element={<DonationCancelPage />} />
             <Route path="/politica-de-privacidade" element={<PrivacyPolicyPage />} />
