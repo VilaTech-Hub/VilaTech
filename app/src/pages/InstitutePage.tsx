@@ -1010,7 +1010,7 @@ export default function InstitutePage() {
               </div>
             </div>
 
-            {/* Projeto 2: Plano Aberto */}
+            {/* Projeto 2: Plano Sequência */}
             <div className="flex flex-col lg:flex-row-reverse gap-12 items-center fade-up">
               <div className="lg:w-1/2 w-full">
                 <div className="aspect-[4/3] w-full rounded-[2rem] overflow-hidden shadow-2xl hover-3d transition-transform duration-500">

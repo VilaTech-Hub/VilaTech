@@ -51,33 +51,24 @@ export default function FitiPage() {
       <main id="conteudo">
         {/* 01 / Hero */}
         <section id="inicio" className="relative min-h-[100svh] grid items-end overflow-hidden bg-[#11110f] text-[#f3f0e8] pt-[82px]">
-          <div className="absolute inset-0 bg-[url('/images/fiti/bom-jesus-mapping.webp')] bg-[55%_center] bg-cover bg-no-repeat scale-[1.02]"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-[#11110f]/95 via-[#11110f]/70 to-[#11110f]/10"></div>
+          <div className="absolute inset-0 bg-[url('/images/fiti/bom-jesus-mapping.webp')] bg-[55%_center] bg-cover bg-no-repeat scale-[1.02] brightness-125"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#11110f]/50 via-[#11110f]/70 to-[#11110f]/10"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-[#11110f]/90 to-transparent h-1/2 bottom-0 top-auto"></div>
           <div className="absolute bottom-0 left-0 right-0 h-[10px] bg-gradient-to-r from-[#3fbdd8] via-[#c8d400] via-40% to-[#e83a79] via-60% to-[#f59d22]"></div>
 
           <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 lg:px-[4vw] pb-[118px] flex flex-col items-center text-center">
-            <img src="/images/fiti/marca_FITI.png" alt="FITI" className="w-[800px] max-w-full fade-up object-contain" />
-            <div className="w-full max-w-[800px] flex justify-between uppercase text-[0.6rem] sm:text-[0.8rem] md:text-[1.2rem] lg:text-[1.4rem] font-bold mt-4 mb-8 fade-up text-[#f3f0e8]">
-              <span>O</span>
-              <span>F</span><span>U</span><span>T</span><span>U</span><span>R</span><span>O</span>
-              <span>E</span><span>N</span><span>C</span><span>O</span><span>N</span><span>T</span><span>R</span><span>A</span>
-              <span>L</span><span>U</span><span>G</span><span>A</span><span>R</span>
-              <span>E</span><span>M</span>
-              <span>I</span><span>T</span><span>U</span>
-            </div>
+            <img src="/images/fiti/Fiti_Vazado_branco.png" alt="FITI" className="w-[800px] max-w-full fade-up object-contain opacity-90 hover:opacity-100 transition-opacity" />
+            <img src="/images/fiti/texto_O-futuro.png" alt="O futuro encontra lugar em Itu" className="w-[800px] max-w-full fade-up object-contain opacity-90 hover:opacity-100 transition-opacity mt-4 mb-8" />
+
             <p className="max-w-[670px] text-[clamp(1.05rem,2vw,1.45rem)] leading-snug fade-up">Quatro dias para criatividade, tecnologia e negócios ocuparem a cidade — e transformarem patrimônio em plataforma.</p>
           </div>
-          <div className="absolute z-10 bottom-[28px] left-1/2 -translate-x-1/2 flex flex-wrap justify-center gap-4 lg:gap-10 text-[0.68rem] uppercase tracking-[0.16em] font-bold w-[calc(100%-2rem)]">
-            <span>MVP · 3–4 dias</span>
-            <span>Quinta → domingo</span>
-            <span>Cidade-campus</span>
-          </div>
+
         </section>
 
         {/* 02 / Formato */}
-        <section id="visao" className="bg-[#f3f0e8] text-[#11110f] py-[clamp(6rem,11vw,11rem)]">
-          <div className="max-w-[1440px] mx-auto px-6 lg:px-[4vw] grid lg:grid-cols-[1fr_4fr] gap-8 lg:gap-[4vw]">
+        <section id="visao" className="relative bg-[#f3f0e8] text-[#11110f] py-[clamp(6rem,11vw,11rem)] overflow-hidden">
+          <div className="absolute inset-0 bg-[url('/images/fiti/Igreja2.jpg')] bg-center bg-cover bg-no-repeat opacity-50"></div>
+          <div className="relative z-10 max-w-[1440px] mx-auto px-6 lg:px-[4vw] grid lg:grid-cols-[1fr_4fr] gap-8 lg:gap-[4vw]">
             <p className="uppercase tracking-[0.18em] text-[0.73rem] font-extrabold m-0">02 / Formato</p>
             <div>
               <h2 className="font-black uppercase tracking-tighter leading-[0.84] text-[clamp(3rem,14vw,8rem)] fade-up">Itu não será cenário.<br /><span className="text-[#e83a79]">Será interface.</span></h2>
@@ -143,7 +134,7 @@ export default function FitiPage() {
                 <article className="grid lg:grid-cols-[1.5fr_1fr] gap-8 lg:gap-[8vw] py-12 lg:py-16">
                   <div>
                     <p className="uppercase tracking-[0.14em] text-[0.7rem] font-extrabold">Viver melhor é uma agenda de inovação.</p>
-                    <h3 className="font-black uppercase tracking-tighter leading-[0.9] text-[clamp(2.7rem,5.5vw,5.8rem)] max-w-[13ch] mt-5">Do bem-estar individual ao futuro das cidades.</h3>
+                    <h3 className="font-black uppercase tracking-tighter leading-[0.9] text-[clamp(2.7rem,5.5vw,5.8rem)] max-w-[13ch] mt-5">DO BEM-ESTAR INDIVIDUAL AO FUTURO COLETIVO.</h3>
                   </div>
                   <ul className="self-end lg:text-right w-full">
                     {['Educação', 'Saúde & wellness', 'Cidades inteligentes', 'Saúde no trabalho', 'Sustentabilidade & bioeconomia'].map((item, i) => (
@@ -189,19 +180,21 @@ export default function FitiPage() {
               <p className="uppercase tracking-[0.18em] text-[0.73rem] font-extrabold mb-6">05 / Itu como cidade-campus</p>
               <h2 className="font-black uppercase tracking-tighter leading-[0.84] text-[clamp(3rem,14vw,5.5rem)] max-w-[16ch]">Uma cidade em movimento: Vários endereços, uma programação integrada</h2>
             </div>
-            <p className="text-[1.1rem] max-w-[34rem] leading-relaxed">Cada espaço assume uma vocação. O público cruza a cidade seguindo interesses, encontros e descobertas.</p>
+            <p className="text-[1.1rem] max-w-[34rem] leading-relaxed">Cada espaço uma vocação.
+              O público cruza a cidade, formata sua agenda,
+              e segue atrás de encontros e descobertas.</p>
           </div>
 
           <div className="w-full lg:max-w-[1600px] mx-auto">
             {[
-              { img: 'bom-jesus-mapping.webp', label: 'Centro histórico · abertura', title: 'Itu em Luz', desc: 'Video mapping autoral transforma a memória arquitetônica em narrativa de futuro.' },
-              { img: 'varvito-orquestra.webp', label: 'Parque do Varvito · música', title: 'Sinfonia das Camadas', desc: 'Orquestra, eletrônica e paisagem geológica em um concerto criado para o lugar.' },
-              { img: 'fama-imersiva.webp', label: 'FAMA Museu · arte & cinema', title: 'FAMA Imersiva', desc: 'Instalações, arte generativa e uma mostra audiovisual expandida noite adentro.' },
+              { img: 'bom-jesus-mapping.webp', label: 'Centro histórico · abertura', title: 'Itu em Luz', desc: 'Video mapping transforma a memória arquitetônica em narrativa de futuro.' },
+              { img: 'varvito-orquestra.webp', label: 'Parque do Varvito · música', title: 'Sinfonia das Camadas', desc: 'Orquestra e paisagem geológica em um concerto que une música clássica e tecnologia.', className: 'brightness-[1.4]', objectPos: 'center 100%' },
+              { img: 'fama-imersiva.webp', label: 'FAMA Museu · arte & cinema', title: 'FAMA Imersiva', desc: 'Instalações, arte generativa e uma mostra audiovisual expandida noite adentro.', className: 'brightness-[1.3]' },
               { img: 'fabrica-design.webp', label: 'Fábrica São Luiz · design', title: 'Futuros que se Fabricam', desc: 'Arquitetura, design e economia criativa em diálogo com o patrimônio industrial.' },
               { img: 'praca-carmo.webp', label: 'Praças & gastronomia · cidade', title: 'Praça em Movimento', desc: 'Shows, feira criativa, experiências de marca e uma rota gastronômica conectam o festival à vida cotidiana.' },
             ].map((story, i) => (
               <article key={i} className="relative min-h-[72svh] lg:min-h-[82svh] overflow-hidden grid items-end mb-4 group">
-                <img src={`/images/fiti/${story.img}`} alt={story.title} className="absolute inset-0 w-full h-full object-cover opacity-80 scale-[1.01] transition-transform duration-[1.2s] group-hover:scale-[1.06]" />
+                <img src={`/images/fiti/${story.img}`} alt={story.title} className={`absolute inset-0 w-full h-full object-cover opacity-100 scale-[1.01] transition-transform duration-[1.2s] group-hover:scale-[1.06] ${story.className || ''}`} style={{ objectPosition: (story as any).objectPos || 'center' }} />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#11110f]/95 via-[#11110f]/40 to-transparent h-[70%] bottom-0 top-auto"></div>
                 <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 lg:px-[4vw] py-20 grid md:grid-cols-[1fr_1.7fr_1fr] gap-4 lg:gap-[4vw] items-end fade-up">
                   <p className="uppercase tracking-[0.16em] text-[0.68rem] font-extrabold">{story.label}</p>
@@ -281,7 +274,7 @@ export default function FitiPage() {
             </div>
 
             <div className="mt-16 pt-6 border-t-2 border-[#11110f] fade-up">
-              <p className="uppercase tracking-[0.12em] text-[0.65rem] font-extrabold mb-4">Nomes de impacto regional e nacional</p>
+              <p className="uppercase tracking-[0.12em] text-[0.65rem] font-extrabold mb-4">Nomes de impacto regional e nacional convidados</p>
               <ul className="flex flex-wrap gap-3 text-[1rem]">
                 {['Kobra', 'Guilherme Kramer', 'Marco Amaro', 'Gustavo Borges', 'Henry Zilbertein', 'João Olivério', 'Ricardo Bellino', 'Ricardo Amorim', 'Rodrigo Helcer', 'João Tabosa'].map((name, i) => {
                   const colors = ['bg-[#c8d400]', 'bg-[#f59d22]', 'bg-[#3fbdd8]', 'bg-[#e83a79]', 'bg-[#6b4494]'];
