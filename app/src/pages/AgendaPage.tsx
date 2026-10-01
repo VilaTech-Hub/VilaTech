@@ -371,9 +371,16 @@ export default function AgendaPage() {
                         <h3 className="font-syne font-bold text-lg md:text-xl text-white mb-2 group-hover:text-[#9B35AE] transition-colors leading-snug">
                           {ev.titulo}
                         </h3>
-                        <p className="text-xs md:text-[13px] text-gray-400 font-light leading-relaxed mb-6">
-                          {ev.sub}
-                        </p>
+                        {ev.sub && (
+                          <p className="text-xs md:text-[13px] text-gray-300 font-medium leading-relaxed mb-2">
+                            {ev.sub}
+                          </p>
+                        )}
+                        {ev.descritivo && (
+                          <p className="text-xs text-gray-400/80 font-light leading-relaxed mb-6 line-clamp-4">
+                            {ev.descritivo}
+                          </p>
+                        )}
 
                         {/* Speakers if any */}
                         {ev.speakers && ev.speakers.length > 0 && (
