@@ -2,387 +2,479 @@ import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { coursesData } from '../data/coursesData';
 import TopNavigation from '../components/TopNavigation';
 import Footer from '../sections/Footer';
+import WhatsAppButton from '../components/WhatsAppButton';
 import useLenis from '../hooks/useLenis';
-import { BookOpen, Calendar, Clock, MapPin, Award, ArrowRight, Sparkles, User } from 'lucide-react';
 import SEO from '../components/SEO';
+import { ArrowRight, Calendar, Building2, Laptop, Users, ChevronRight, Cpu, BarChart3, Palette } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Helper function to extract numerical value of the first date for sorting (e.g. "25/06 e 02/07" -> month 6, day 25 -> 625)
-const getCourseDateValue = (dateStr: string): number => {
-  const match = dateStr.match(/(\d{2})\/(\d{2})/);
-  if (!match) return 0;
-  const day = parseInt(match[1], 10);
-  const month = parseInt(match[2], 10);
-  return month * 100 + day;
-};
+// ─── DATA ─────────────────────────────────────────────────────────────────────
+
+const PILARES = [
+  { id: 'academia-ia', label: 'AcademIA', accent: '#e83a79', iconSrc: '/images/plataforma_educacional/Icone_AcademIA.png', desc: 'IA aplicada a negócios' },
+  { id: 'escola-gestao', label: 'Escola de Gestão', accent: '#378ADD', iconSrc: '/images/plataforma_educacional/Icone_escola-de-gestao.png', desc: 'Formação executiva' },
+  { id: 'criatividade-games', label: 'Criatividade + Games', accent: '#ef7d00', iconSrc: '/images/plataforma_educacional/icone-criatividade-games-branco-transparente.png', desc: 'Produção criativa' },
+];
+
+const ACADEMIA_MODULOS = [
+  { num: '01', carga: '8H', titulo: 'IA para Iniciantes', cor: '#e83a79' },
+  { num: '02', carga: '8H', titulo: 'IA para Marketing e Vendas', cor: '#378ADD' },
+  { num: '03', carga: '8H', titulo: 'IA para Contabilidade e Finanças', cor: '#ef7d00' },
+  { num: '04', carga: '8H', titulo: 'IA em Processos Industriais', cor: '#639922' },
+  { num: '05', carga: '8H', titulo: 'IA para Advocacia', cor: '#C0392B' },
+  { num: '06', carga: '12H', titulo: 'IA Avançada Agêntica', cor: '#e83a79' },
+];
+
+const GESTAO_TRILHAS = [
+  {
+    label: 'Estratégia & Continuidade',
+    cor: '#e83a79',
+    cursos: ['Planejamento Estratégico', 'Sucessão Empresarial'],
+  },
+  {
+    label: 'Pessoas & Cultura',
+    cor: '#378ADD',
+    cursos: ['Estratégia Centrada no Humano', 'Os Desafios do RH Moderno'],
+  },
+  {
+    label: 'Governança & Ambiente Regulatório',
+    cor: '#e83a79',
+    cursos: ['ESG com Governança', 'Legislação Tributária: o Novo Cenário do Brasil'],
+  },
+  {
+    label: 'Mercado & Crescimento',
+    cor: '#ef7d00',
+    cursos: ['Marketing e Vendas', 'Growth Hacking — Acelerando o Crescimento de Empresas'],
+  },
+];
+
+const GAMES_CURSOS = [
+  { num: '01', titulo: 'Edição de Vídeo com IA', sub: 'DaVinci Resolve', cor: '#e83a79' },
+  { num: '02', titulo: 'Animação Avançada', sub: 'After Effects', cor: '#378ADD' },
+  { num: '03', titulo: 'Games: do Zero à Play Store', sub: 'Criação e desenvolvimento com Unreal', cor: '#639922' },
+  { num: '04', titulo: 'Construção de Projetos Audiovisuais', sub: 'A arquitetura das ideias', cor: '#ef7d00' },
+];
+
+const FORMATOS = [
+  { icon: Users, label: 'Presencial', desc: 'Imersão no Vila Tech Hub, em Itu/SP' },
+  { icon: Laptop, label: 'Online', desc: 'Trilhas síncronas e assíncronas' },
+  { icon: Building2, label: 'In Company', desc: 'Treinamento customizado na sua empresa' },
+];
+
+// ─── COMPONENT ────────────────────────────────────────────────────────────────
 
 const CoursesLandingPage = () => {
   useLenis();
-  const heroRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
-
-  const sortedCourses = [...coursesData].sort((a, b) => {
-    return getCourseDateValue(a.date) - getCourseDateValue(b.date);
-  });
+  const heroRef = useRef<HTMLElement>(null);
+  const pilaresRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
 
     const ctx = gsap.context(() => {
-      // Intro animations
       gsap.fromTo(
-        titleRef.current,
+        heroRef.current?.querySelectorAll('.hero-anim') ?? [],
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, stagger: 0.18, ease: 'power4.out', delay: 0.2 }
+      );
+
+      gsap.fromTo(
+        pilaresRef.current?.querySelectorAll('.pilar-card') ?? [],
         { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, ease: 'power4.out', delay: 0.2 }
+        {
+          y: 0, opacity: 1, duration: 0.8, stagger: 0.15, ease: 'power3.out',
+          scrollTrigger: { trigger: pilaresRef.current, start: 'top 80%' }
+        }
       );
 
-      gsap.fromTo(
-        subtitleRef.current,
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, ease: 'power4.out', delay: 0.4 }
-      );
-
-      // Fade in course cards in sequence
-      const cards = gridRef.current?.querySelectorAll('.course-card');
-      if (cards && cards.length > 0) {
+      gsap.utils.toArray<HTMLElement>('.reveal-section').forEach((el) => {
         gsap.fromTo(
-          cards,
+          el,
           { y: 30, opacity: 0 },
           {
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            stagger: 0.15,
-            ease: 'power3.out',
-            delay: 0.6,
+            y: 0, opacity: 1, duration: 0.9, ease: 'power3.out',
+            scrollTrigger: { trigger: el, start: 'top 82%' }
           }
         );
-      }
-    }, heroRef);
+      });
+    });
 
     return () => ctx.revert();
   }, []);
 
-  const coursesJsonLd = sortedCourses.map(course => ({
-    "@context": "https://schema.org",
-    "@type": "Course",
-    "name": course.title,
-    "description": course.subtitle,
-    "provider": {
-      "@type": "Organization",
-      "name": "Vila Tech Hub - Instituto de Inovação",
-      "sameAs": "https://vilatechub.com.br"
-    },
-    "courseCode": course.id,
-    "hasCourseInstance": {
-      "@type": "CourseInstance",
-      "courseMode": "Onsite",
-      "location": course.location,
-      "startDate": `2026-${course.date.split('/')[1] || '06'}-${course.date.split('/')[0] || '01'}`,
-      "duration": "PT3H"
-    }
-  }));
-
-  const coursesFaqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Quais cursos de Inteligência Artificial e Negócios são oferecidos?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Oferecemos programas executivos presenciais focados em aplicação prática, incluindo: IA Aplicada aos Negócios, IA Aplicada à Advocacia, Inteligência Tributária e Planejamento Estratégico."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Onde ocorrem os cursos e qual o formato?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Todos os cursos são realizados presencialmente na sede do Vila Tech Hub em Itu, SP (Rua Francisco José Ferreira Sampaio, 90), mesclando teoria com aplicação prática imediata e oportunidades de networking."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Quem são os professores dos cursos de IA e Estratégia?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "O corpo docente conta com profissionais especialistas de mercado: Carlos Tabosa (VP de Tecnologia na OPAH IT e Top Voice em IA), Felipe Scalet (Advogado especialista em IA e LGPD), Carla Bertoncello (Diretora Executiva da Tax Way) e Gilberto de Moura (Diretor de Planejamento da GMG)."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Há desconto para empresas parceiras ou entidades de classe?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sim. Oferecemos cupons de 50% de desconto vinculados a parcerias regionais (ex: OAB, ACI). Você pode validar seu cupom diretamente na página do respectivo curso ou durante a inscrição via Sympla."
-        }
-      }
-    ]
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'EducationalOrganization',
+    name: 'Vila Tech Educação',
+    url: 'https://www.vilatechub.com.br/cursos',
+    description: 'Plataforma de cursos ágeis com formação prática em IA, Gestão Executiva e Criatividade. Presencial, online e In Company.',
+    address: { '@type': 'PostalAddress', addressLocality: 'Itu', addressRegion: 'SP', addressCountry: 'BR' },
   };
 
   return (
-    <div className="bg-[#1d1d1b] text-white min-h-screen font-sans selection:bg-[#e83a79] selection:text-white">
+    <div className="bg-[#0a0a0a] text-[#F5F0FA] min-h-screen font-sans selection:bg-[#e83a79] selection:text-white">
       <SEO
-        title="Cursos de IA & Tecnologia em Itu | Vila Tech Educação"
-        description="Acelere sua carreira com nossos cursos e workshops de Inteligência Artificial aplicada, Gestão de Negócios e Planejamento Estratégico. Aulas presenciais em Itu, SP."
+        title="Cursos de IA, Gestão e Criatividade em Itu | Vila Tech Educação"
+        description="Formação prática em Inteligência Artificial, Gestão Executiva e Criatividade + Games. Presencial, online e In Company. Vila Tech Hub, Itu/SP."
       />
-      <script type="application/ld+json">
-        {JSON.stringify(coursesJsonLd)}
-      </script>
-      <script type="application/ld+json">
-        {JSON.stringify(coursesFaqJsonLd)}
-      </script>
-      {/* Top Navigation */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <TopNavigation variant="home" />
 
-      {/* Hero Section */}
-      <section
-        ref={heroRef}
-        className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-gradient-to-b from-[#e83a79]/10 via-[#1d1d1b] to-[#1d1d1b]"
-      >
-        {/* Glow ambient background */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#e83a79]/5 rounded-full blur-[120px] pointer-events-none" />
+      {/* ── HERO ────────────────────────────────────────────────────────── */}
+      <section ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden">
+        {/* Background image: teclado */}
+        <div className="absolute inset-0">
+          <img
+            src="/images/plataforma_educacional/teclado.webp"
+            alt="Teclado tecnológico com iluminação neon"
+            className="w-full h-full object-cover object-center scale-x-[-1]"
+          />
+          {/* Gradients over image — lighter so the image breathes */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/55 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent" />
+        </div>
 
-        <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#e83a79]/15 border border-[#e83a79]/30 text-[#e83a79] text-xs font-display uppercase tracking-widest mb-6 animate-pulse">
-            <BookOpen className="w-3.5 h-3.5" />
-            Vila Tech Educação
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pt-32 pb-24 md:pt-44 md:pb-32 w-full">
+          <div className="max-w-3xl">
+            <div className="hero-anim flex items-center gap-3 text-xs font-bold tracking-[0.3em] uppercase text-[#e83a79] mb-8 font-syne">
+              <span className="w-8 h-[1px] bg-[#e83a79]" />
+              Vila Tech Educação
+            </div>
+
+            <h1 className="hero-anim text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-white font-syne leading-[0.92] mb-8">
+              Novas metodologias.<br />
+              Novas <span className="text-[#e83a79]">habilidades.</span><br />
+              Novos Futuros.
+            </h1>
+
+            <p className="hero-anim text-base md:text-xl text-gray-300 font-light max-w-xl leading-relaxed mb-10">
+              Impulsionando pessoas e negócios. Formação prática e trilhas de conhecimento
+              para a era da Inteligência Artificial.
+            </p>
+
+            {/* Formatos */}
+            <div className="hero-anim flex flex-wrap gap-3 mb-12">
+              {FORMATOS.map(({ icon: Icon, label, desc }) => (
+                <div
+                  key={label}
+                  className="flex items-center gap-3 bg-black/50 backdrop-blur-sm border border-white/10 px-5 py-3 hover:border-[#e83a79]/50 transition-colors"
+                >
+                  <Icon className="w-4 h-4 text-[#e83a79] shrink-0" />
+                  <div>
+                    <div className="text-xs font-bold text-white font-syne uppercase tracking-wider">{label}</div>
+                    <div className="text-[10px] text-gray-400">{desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* CTAs */}
+            <div className="hero-anim flex flex-wrap gap-4">
+              <Link
+                to="/agenda"
+                className="inline-flex items-center gap-2 bg-[#e83a79] hover:bg-[#c42866] text-white font-bold text-sm uppercase tracking-widest px-8 py-4 font-syne transition-all duration-300 hover:shadow-[0_0_30px_rgba(232,58,121,0.4)] hover:-translate-y-0.5"
+              >
+                Ver Agenda de Eventos
+                <Calendar className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 3 PILARES ───────────────────────────────────────────────────── */}
+      <section className="py-20 px-6 md:px-12 border-t border-white/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="reveal-section mb-14">
+            <p className="text-xs text-[#e83a79] font-bold uppercase tracking-[0.3em] font-syne mb-3">Plataforma de Cursos Ágeis</p>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-white font-syne leading-tight">
+              Formação prática em <br className="hidden md:block" />
+              <span className="text-[#e83a79]">três pilares</span> de atuação.
+            </h2>
+            <p className="text-gray-400 text-base mt-4 max-w-xl leading-relaxed">
+              Trilha de conhecimento e formação personalizada. Programas de treinamento
+              guiados por IA, da captação à qualificação.
+            </p>
           </div>
 
-          <h1
-            ref={titleRef}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display uppercase tracking-tight text-white leading-none max-w-4xl mx-auto mb-6"
-          >
-            Formação Ágil em <span className="text-[#e83a79] block sm:inline">Tecnologia & IA</span>
-          </h1>
+          <div ref={pilaresRef} className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {PILARES.map((p) => {
+              return (
+                <a
+                  key={p.id}
+                  href={`#${p.id}`}
+                  className="pilar-card group block bg-[#111] border border-white/5 p-8 hover:border-[#e83a79]/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/60"
+                >
+                  <img src={p.iconSrc} alt={`Ícone ${p.label}`} className="h-10 w-auto mb-5 transition-transform duration-300 group-hover:scale-110 object-contain" />
+                  <div className="w-8 h-[2px] mb-5 group-hover:w-14 transition-all duration-300" style={{ backgroundColor: p.accent }} />
+                  <p className="text-[10px] uppercase tracking-[0.25em] font-bold font-syne mb-2" style={{ color: p.accent }}>
+                    {p.desc}
+                  </p>
+                  <h3 className="text-xl md:text-2xl font-extrabold text-white font-syne mb-4 group-hover:text-[#e83a79] transition-colors">
+                    {p.label}
+                  </h3>
+                  <div className="flex items-center gap-1 text-xs text-gray-500 group-hover:text-[#e83a79] transition-colors font-syne uppercase tracking-widest">
+                    Ver módulos <ChevronRight className="w-3 h-3" />
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
-          <p
-            ref={subtitleRef}
-            className="text-base sm:text-lg md:text-xl text-white/70 max-w-2xl mx-auto font-medium leading-relaxed"
-          >
-            Cursos presenciais e workshops de alta performance desenhados para acelerar a sua carreira e os resultados da sua empresa na era da Inteligência Artificial.
+      {/* ── ACADEMIA IA ─────────────────────────────────────────────────── */}
+      <section id="academia-ia" className="border-t border-white/5 scroll-mt-24 overflow-hidden">
+        {/* Split layout: image left, text right */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[480px]">
+          {/* Left: image */}
+          <div className="relative h-72 lg:h-auto">
+            <img
+              src="/images/plataforma_educacional/Corporate_1.webp"
+              alt="AcademIA — Formação em IA para negócios"
+              className="w-full h-full object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-l from-[#0a0a0a] via-transparent to-transparent" />
+          </div>
+          {/* Right: text */}
+          <div className="bg-[#0a0a0a] py-20 px-6 md:px-12 lg:px-16 flex flex-col justify-center reveal-section">
+            <div className="flex items-center gap-3 mb-4">
+              <img src="/images/plataforma_educacional/Icone_AcademIA.png" alt="Ícone AcademIA" className="h-8 w-auto object-contain" />
+              <p className="text-xs text-[#e83a79] font-bold uppercase tracking-[0.3em] font-syne">Pilar 01 — Formação em ferramentas de IA para negócios</p>
+            </div>
+            <h2 className="text-5xl md:text-6xl font-extrabold text-white font-syne leading-none mb-4">
+              Academ<span className="text-[#e83a79]">IA</span>
+            </h2>
+            <p className="text-gray-300 text-base leading-relaxed mb-8">
+              Uma plataforma de cursos online e presenciais para formação prática
+              com tecnologia de IA. Do conceito ao uso no dia a dia.
+            </p>
+          </div>
+        </div>
+
+        {/* Módulos grid */}
+        <div className="bg-[#080808] py-16 px-6 md:px-12 border-t border-white/5">
+          <div className="max-w-7xl mx-auto">
+            <div className="reveal-section mb-10 flex flex-wrap items-center justify-between gap-4">
+              <p className="text-xs text-gray-500 uppercase tracking-widest font-bold font-syne">
+                6 módulos de formação em IA aplicada — Do conceito ao uso prático no dia a dia.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {['Presencial', 'Online', 'In Company'].map((f) => (
+                  <span key={f} className="text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 border border-[#e83a79]/40 text-[#e83a79] font-syne rounded-sm">
+                    {f}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="reveal-section grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {ACADEMIA_MODULOS.map((m) => (
+                <div key={m.num} className="bg-[#0f0f0f] border border-white/10 rounded-lg p-6 md:p-8 hover:border-[#e83a79]/50 hover:bg-[#151515] transition-all group">
+                  <div className="flex items-start justify-between mb-4">
+                    <span className="text-3xl font-extrabold font-syne leading-none" style={{ color: m.cor }}>{m.num}</span>
+                    <span className="text-[10px] text-gray-600 font-bold uppercase tracking-widest font-syne">{m.carga}</span>
+                  </div>
+                  <div className="w-5 h-[2px] mb-4 group-hover:w-10 transition-all duration-300" style={{ backgroundColor: m.cor }} />
+                  <p className="text-xs md:text-sm font-bold text-white font-syne uppercase tracking-wide leading-snug">{m.titulo}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Gestão de IA card */}
+            <div className="reveal-section mt-6 bg-[#0f0f0f] border border-[#e83a79]/30 rounded-lg p-8 md:p-10 hover:border-[#e83a79] transition-colors">
+              <p className="text-[10px] text-[#e83a79] uppercase tracking-[0.25em] font-bold font-syne mb-2">Aplicando IA na sua organização</p>
+              <h4 className="text-2xl md:text-3xl font-extrabold text-white font-syne mb-3">Gestão de IA</h4>
+              <p className="text-gray-400 text-sm md:text-base leading-relaxed max-w-2xl">
+                Planejamento estratégico, alinhamento de agentes e otimização de recursos
+                para transformar capacitação em aplicação real no negócio.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── ESCOLA DE GESTÃO ────────────────────────────────────────────── */}
+      <section id="escola-gestao" className="border-t border-white/5 scroll-mt-24 overflow-hidden">
+        {/* Split layout: image right, text left */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[480px]">
+          {/* Left: text */}
+          <div className="bg-[#0a0a0a] py-20 px-6 md:px-12 lg:px-16 flex flex-col justify-center reveal-section order-2 lg:order-1">
+            <div className="flex items-center gap-3 mb-4">
+              <img src="/images/plataforma_educacional/Icone_escola-de-gestao.png" alt="Ícone Escola de Gestão" className="h-8 w-auto object-contain" />
+              <p className="text-xs text-[#378ADD] font-bold uppercase tracking-[0.3em] font-syne">Pilar 02 — Formação Executiva</p>
+            </div>
+            <h2 className="text-5xl md:text-6xl font-extrabold text-white font-syne leading-none mb-4">
+              Escola de <span className="text-[#378ADD]">Gestão</span>
+            </h2>
+            <p className="text-gray-300 text-base leading-relaxed mb-2">
+              Conhecimento para decidir, liderar e acelerar negócios.
+            </p>
+            <p className="text-gray-500 text-sm leading-relaxed mb-8">
+              Cursos orientados aos desafios reais da gestão, das pessoas, da governança e do crescimento empresarial.
+            </p>
+            <p className="text-sm text-gray-400 italic">
+              Formação presencial, online e In Company.
+            </p>
+          </div>
+          {/* Right: image */}
+          <div className="relative h-72 lg:h-auto order-1 lg:order-2">
+            <img
+              src="/images/plataforma_educacional/grisalho2.webp"
+              alt="Escola de Gestão — Formação executiva"
+              className="w-full h-full object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-transparent to-transparent lg:bg-gradient-to-l" />
+          </div>
+        </div>
+
+        {/* 4 trilhas */}
+        <div className="bg-[#080808] py-16 px-6 md:px-12 border-t border-white/5">
+          <div className="max-w-7xl mx-auto">
+            <p className="reveal-section text-sm text-gray-400 font-semibold mb-10">
+              Formação integrada para pessoas e empresas em transformação.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {GESTAO_TRILHAS.map((t) => (
+                <div key={t.label} className="reveal-section bg-[#0f0f0f] border border-white/10 rounded-lg p-8 hover:border-white/20 transition-colors">
+                  <div className="w-8 h-[3px] mb-5" style={{ backgroundColor: t.cor }} />
+                  <p className="text-[10px] font-bold uppercase tracking-[0.25em] font-syne mb-5" style={{ color: t.cor }}>
+                    {t.label}
+                  </p>
+                  <div className="space-y-4">
+                    {t.cursos.map((c, i) => (
+                      <div key={c} className="flex items-start gap-4 border-b border-white/5 pb-4 last:border-0 last:pb-0">
+                        <span className="text-xs font-bold text-gray-600 font-syne shrink-0 pt-0.5">{String(i + 1).padStart(2, '0')}</span>
+                        <p className="text-sm font-bold text-white uppercase tracking-wide font-syne leading-snug">{c}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── CRIATIVIDADE + GAMES ─────────────────────────────────────────── */}
+      <section id="criatividade-games" className="border-t border-white/5 scroll-mt-24 overflow-hidden">
+        {/* Split layout: image left, text right */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[480px]">
+          {/* Left: image */}
+          <div className="relative h-72 lg:h-auto">
+            <img
+              src="/images/plataforma_educacional/Game 1.webp"
+              alt="Criatividade e Games — Formação criativa"
+              className="w-full h-full object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-l from-[#0a0a0a] via-transparent to-transparent" />
+          </div>
+          {/* Right: text */}
+          <div className="bg-[#0a0a0a] py-20 px-6 md:px-12 lg:px-16 flex flex-col justify-center reveal-section">
+            <div className="flex items-center gap-3 mb-4">
+              <img src="/images/plataforma_educacional/icone-criatividade-games-branco-transparente.png" alt="Ícone Criatividade" className="h-8 w-auto object-contain" />
+              <p className="text-xs text-[#ef7d00] font-bold uppercase tracking-[0.3em] font-syne">Pilar 03 — Formação Criativa</p>
+            </div>
+            <h2 className="text-5xl md:text-6xl font-extrabold text-white font-syne leading-none mb-2">
+              Criatividade
+            </h2>
+            <h2 className="text-5xl md:text-6xl font-extrabold font-syne leading-none mb-6" style={{ color: '#ef7d00' }}>
+              + Games
+            </h2>
+            <p className="text-gray-300 text-base leading-relaxed mb-2">
+              Ferramentas, repertório e produção para transformar ideias em experiências.
+            </p>
+            <p className="text-gray-500 text-sm leading-relaxed italic mb-8">
+              Da técnica à criação. Da ideia à entrega.
+            </p>
+            <div className="flex gap-3 text-[10px] uppercase font-bold tracking-[0.3em] text-gray-500 font-syne">
+              <span>Criar</span>
+              <span className="text-[#ef7d00]">•</span>
+              <span>Experimentar</span>
+              <span className="text-[#ef7d00]">•</span>
+              <span>Produzir</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Cursos grid + audiovisual image */}
+        <div className="bg-[#080808] py-16 px-6 md:px-12 border-t border-white/5">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {/* Cursos */}
+              <div className="lg:col-span-2 reveal-section grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {GAMES_CURSOS.map((c) => (
+                  <div key={c.num} className="bg-[#0f0f0f] border border-white/10 rounded-lg p-6 md:p-8 hover:border-[#ef7d00]/50 hover:bg-[#151515] transition-all group">
+                    <div className="flex items-end justify-between mb-6">
+                      <span className="text-4xl font-extrabold font-syne leading-none" style={{ color: c.cor }}>{c.num}</span>
+                      <div className="w-8 h-[2px] group-hover:w-14 transition-all duration-300" style={{ backgroundColor: c.cor }} />
+                    </div>
+                    <h3 className="text-xs md:text-sm font-extrabold text-white uppercase tracking-wider font-syne leading-snug mb-1">{c.titulo}</h3>
+                    <p className="text-xs text-gray-500">{c.sub}</p>
+                  </div>
+                ))}
+              </div>
+              {/* Audiovisual image */}
+              <div className="reveal-section relative overflow-hidden min-h-[260px] rounded-lg border border-white/10">
+                <img
+                  src="/images/plataforma_educacional/AudioVisual 2.webp"
+                  alt="Projetos audiovisuais — Criatividade e Games"
+                  className="w-full h-full object-cover object-center"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <p className="text-[10px] text-[#ef7d00] uppercase tracking-widest font-bold font-syne">Formação presencial, online e In Company</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA FINAL ────────────────────────────────────────────────────── */}
+      <section className="py-24 px-6 md:px-12 border-t border-white/5 bg-gradient-to-b from-[#0a0a0a] via-[#140c10] to-[#0a0a0a]">
+        <div className="max-w-4xl mx-auto text-center reveal-section">
+          <div className="w-12 h-[2px] bg-[#e83a79] mx-auto mb-8" />
+          <h2 className="text-4xl md:text-6xl font-extrabold text-white font-syne mb-6 leading-tight">
+            Pronto para começar<br />
+            <span className="text-[#e83a79]">sua jornada?</span>
+          </h2>
+          <p className="text-gray-400 text-base md:text-lg leading-relaxed max-w-xl mx-auto mb-12">
+            Confira nossa agenda de eventos e cursos ou entre em contato com nossa equipe
+            para uma trilha de conhecimento personalizada para você ou sua empresa.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              to="/agenda"
+              className="inline-flex items-center justify-center gap-2 bg-[#e83a79] hover:bg-[#c42866] text-white font-bold text-sm uppercase tracking-widest px-10 py-5 font-syne transition-all duration-300 hover:shadow-[0_0_40px_rgba(232,58,121,0.4)] hover:-translate-y-0.5"
+            >
+              <Calendar className="w-4 h-4" />
+              Ver Agenda de Eventos
+            </Link>
+            <a
+              href="https://wa.link/2wbzbb"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-[#e83a79] text-white hover:text-[#e83a79] font-bold text-sm uppercase tracking-widest px-10 py-5 font-syne transition-all duration-300"
+            >
+              Falar com a equipe
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+          <p className="text-xs text-gray-600 mt-8 tracking-widest uppercase font-syne">
+            Itu, SP — Presencial · Online · In Company
           </p>
         </div>
       </section>
 
-      {/* Courses Catalog Section */}
-      <section className="py-12 pb-24 relative z-10">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          {/* Section Heading & Category Filter */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-8 mb-16 gap-6">
-            <div>
-              <p className="text-[#e83a79] font-display uppercase tracking-widest text-sm mb-2">Trilhas de Aprendizado</p>
-              <h2 className="text-3xl md:text-4xl font-display uppercase text-white">IA &amp; Gestão de Negócios</h2>
-            </div>
-
-            {/* Future Trails Indicator Tabs */}
-            <div className="flex flex-wrap gap-2">
-              <span className="px-4 py-2 bg-[#e83a79] text-white text-xs uppercase font-display tracking-widest rounded-full">
-                Negócios (Ativo)
-              </span>
-              <span className="px-4 py-2 bg-white/5 text-white/40 text-xs uppercase font-display tracking-widest rounded-full cursor-not-allowed border border-white/5 select-none" title="Em breve">
-                Criatividade (Em Breve)
-              </span>
-              <span className="px-4 py-2 bg-white/5 text-white/40 text-xs uppercase font-display tracking-widest rounded-full cursor-not-allowed border border-white/5 select-none" title="Em breve">
-                Games (Em Breve)
-              </span>
-            </div>
-          </div>
-
-          {/* Grid of Courses */}
-          <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-            {sortedCourses.map((course) => (
-              <div
-                key={course.id}
-                className="course-card group flex flex-col justify-between bg-white/[0.02] border border-white/10 hover:border-[#e83a79]/40 rounded-2xl p-6 lg:p-8 transition-all duration-300 hover:bg-[#e83a79]/[0.02] hover:-translate-y-1"
-              >
-                <div>
-                  {/* Category & Badge */}
-                  <div className="flex items-center justify-between mb-6">
-                    <span className="text-[10px] uppercase font-mono tracking-widest text-white/50 bg-white/5 px-2.5 py-1 rounded">
-                      {course.categoryLabel}
-                    </span>
-                    <div className="flex items-center gap-1 text-[#e83a79] text-xs font-mono">
-                      <Award className="w-3.5 h-3.5" />
-                      <span>{course.discount} OFF</span>
-                    </div>
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="text-2xl lg:text-3xl font-display uppercase text-white mb-2 group-hover:text-[#e83a79] transition-colors leading-tight">
-                    {course.title}
-                  </h3>
-
-                  {/* Subtitle */}
-                  <p className="text-sm lg:text-base text-white/60 mb-6 font-medium leading-snug">
-                    {course.subtitle}
-                  </p>
-
-                  {/* Meta Details */}
-                  <div className="space-y-3 border-t border-b border-white/5 py-4 mb-6">
-                    <div className="flex items-center gap-3 text-white/80 text-xs md:text-sm">
-                      <Calendar className="w-4 h-4 text-[#e83a79] flex-shrink-0" />
-                      <span><strong>Quando:</strong> {course.date}</span>
-                    </div>
-                    <div className="flex items-center gap-3 text-white/80 text-xs md:text-sm">
-                      <Clock className="w-4 h-4 text-[#e83a79] flex-shrink-0" />
-                      <span><strong>Horário:</strong> {course.time}</span>
-                    </div>
-                    <div className="flex items-center gap-3 text-white/80 text-xs md:text-sm">
-                      <MapPin className="w-4 h-4 text-[#e83a79] flex-shrink-0" />
-                      <span><strong>Onde:</strong> {course.location}</span>
-                    </div>
-                  </div>
-
-                  {/* Teacher Summary Info */}
-                  <div className="flex items-center gap-4 mb-8">
-                    <div className="relative w-12 h-12 rounded-full overflow-hidden border border-white/10 bg-white/5 flex-shrink-0">
-                      {course.teacher.image ? (
-                        <img
-                          src={course.teacher.image}
-                          alt={course.teacher.name}
-                          className="w-full h-full object-cover grayscale"
-                        />
-                      ) : (
-                        <User className="w-full h-full p-2 text-white/30" />
-                      )}
-                    </div>
-                    <div>
-                      <p className="text-white font-display uppercase text-xs tracking-wider">{course.teacher.name}</p>
-                      <p className="text-[10px] text-white/50 font-medium max-w-[220px] truncate">{course.teacher.role}</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Actions */}
-                <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                  <Link
-                    to={`/cursos/${course.id}`}
-                    className="flex-1 text-center py-3 border border-white/20 hover:border-[#e83a79] hover:text-[#e83a79] rounded-xl text-xs uppercase font-display tracking-wider transition-all"
-                    aria-label={`Ver detalhes do curso de ${course.title}`}
-                  >
-                    Detalhes do Curso
-                  </Link>
-                  <a
-                    href={course.symplaLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-track={`course-buy-sympla-${course.id}`}
-                    className="flex-1 text-center py-3 bg-[#e83a79] hover:bg-[#d02c68] text-white rounded-xl text-xs uppercase font-display tracking-wider transition-all flex items-center justify-center gap-2 group-hover:shadow-[0_0_20px_rgba(232,58,121,0.3)]"
-                  >
-                    <span>Garantir Vaga</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Corporate CTA Callout */}
-          <div className="mt-20 p-8 md:p-12 bg-gradient-to-r from-white/[0.01] to-white/[0.03] border border-white/10 rounded-2xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#e83a79]/5 rounded-full blur-[80px] pointer-events-none" />
-            <div className="max-w-3xl relative z-10">
-              <span className="text-xs uppercase font-display tracking-widest text-[#e83a79] flex items-center gap-1.5 mb-4">
-                <Sparkles className="w-4 h-4 animate-spin-slow" />
-                Vila Tech In Company
-              </span>
-              <h3 className="text-2xl md:text-3xl font-display uppercase text-white mb-4">
-                Leve estes treinamentos para a sua empresa
-              </h3>
-              <p className="text-white/70 text-sm md:text-base leading-relaxed mb-6">
-                Personalizamos nossos cursos de IA, contabilidade tributária, direito digital e planejamento ágil de acordo com a realidade e objetivos do seu time de negócios.
-              </p>
-              <a
-                href="/#contact"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-white text-[#1d1d1b] hover:bg-[#e83a79] hover:text-white rounded-xl text-xs uppercase font-display tracking-wider transition-all duration-300 font-bold"
-              >
-                Falar com o time corporativo
-                <ArrowRight className="w-3.5 h-3.5" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-24 bg-[#1d1d1b] text-white relative border-t border-white/5">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <p className="text-[#e83a79] font-display uppercase tracking-widest text-sm mb-2">Tire suas dúvidas</p>
-            <h2 className="text-3xl md:text-5xl font-display uppercase text-white mb-6">
-              Perguntas Frequentes
-            </h2>
-            <div className="w-24 h-1 bg-[#e83a79] mx-auto rounded-full"></div>
-          </div>
-
-          <div className="space-y-4">
-            <details className="group border border-white/10 rounded-2xl overflow-hidden bg-white/5 hover:bg-white/10 transition-all duration-300 [&_summary::-webkit-details-marker]:hidden">
-              <summary className="w-full flex items-center justify-between p-6 text-left cursor-pointer focus:outline-none">
-                <span className="font-display font-semibold text-lg pr-8">Quais cursos de Inteligência Artificial e Negócios são oferecidos?</span>
-                <span className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 bg-white/10 text-[#e83a79] group-open:bg-[#e83a79] group-open:text-white transition-all duration-300">
-                  <span className="block group-open:hidden">+</span>
-                  <span className="hidden group-open:block">-</span>
-                </span>
-              </summary>
-              <div className="p-6 pt-0 text-white/70 font-sans leading-relaxed border-t border-white/5">
-                Oferecemos programas executivos presenciais focados em aplicação prática, incluindo: <strong>IA Aplicada aos Negócios</strong>, <strong>IA Aplicada à Advocacia</strong>, <strong>Inteligência Tributária</strong> e <strong>Planejamento Estratégico</strong>.
-              </div>
-            </details>
-
-            <details className="group border border-white/10 rounded-2xl overflow-hidden bg-white/5 hover:bg-white/10 transition-all duration-300 [&_summary::-webkit-details-marker]:hidden">
-              <summary className="w-full flex items-center justify-between p-6 text-left cursor-pointer focus:outline-none">
-                <span className="font-display font-semibold text-lg pr-8">Onde ocorrem os cursos e qual o formato?</span>
-                <span className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 bg-white/10 text-[#e83a79] group-open:bg-[#e83a79] group-open:text-white transition-all duration-300">
-                  <span className="block group-open:hidden">+</span>
-                  <span className="hidden group-open:block">-</span>
-                </span>
-              </summary>
-              <div className="p-6 pt-0 text-white/70 font-sans leading-relaxed border-t border-white/5">
-                Todos os cursos são realizados presencialmente na sede do Vila Tech Hub em Itu, SP (Rua Francisco José Ferreira Sampaio, 90), mesclando teoria com aplicação prática imediata e oportunidades de networking.
-              </div>
-            </details>
-
-            <details className="group border border-white/10 rounded-2xl overflow-hidden bg-white/5 hover:bg-white/10 transition-all duration-300 [&_summary::-webkit-details-marker]:hidden">
-              <summary className="w-full flex items-center justify-between p-6 text-left cursor-pointer focus:outline-none">
-                <span className="font-display font-semibold text-lg pr-8">Quem são os professores dos cursos de IA e Estratégia?</span>
-                <span className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 bg-white/10 text-[#e83a79] group-open:bg-[#e83a79] group-open:text-white transition-all duration-300">
-                  <span className="block group-open:hidden">+</span>
-                  <span className="hidden group-open:block">-</span>
-                </span>
-              </summary>
-              <div className="p-6 pt-0 text-white/70 font-sans leading-relaxed border-t border-white/5">
-                O corpo docente conta com profissionais especialistas de mercado: <strong>Carlos Tabosa</strong> (VP de Tecnologia na OPAH IT e Top Voice em IA), <strong>Felipe Scalet</strong> (Advogado especialista em IA e LGPD), <strong>Carla Bertoncello</strong> (Diretora Executiva da Tax Way) e <strong>Gilberto de Moura</strong> (Diretor de Planejamento da GMG).
-              </div>
-            </details>
-
-            <details className="group border border-white/10 rounded-2xl overflow-hidden bg-white/5 hover:bg-white/10 transition-all duration-300 [&_summary::-webkit-details-marker]:hidden">
-              <summary className="w-full flex items-center justify-between p-6 text-left cursor-pointer focus:outline-none">
-                <span className="font-display font-semibold text-lg pr-8">Há desconto para empresas parceiras ou entidades de classe?</span>
-                <span className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 bg-white/10 text-[#e83a79] group-open:bg-[#e83a79] group-open:text-white transition-all duration-300">
-                  <span className="block group-open:hidden">+</span>
-                  <span className="hidden group-open:block">-</span>
-                </span>
-              </summary>
-              <div className="p-6 pt-0 text-white/70 font-sans leading-relaxed border-t border-white/5">
-                Sim. Oferecemos cupons de 50% de desconto vinculados a parcerias regionais (ex: OAB, ACI). Você pode validar seu cupom diretamente na página do respectivo curso ou durante a inscrição via Sympla.
-              </div>
-            </details>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };
 
 export default CoursesLandingPage;
+

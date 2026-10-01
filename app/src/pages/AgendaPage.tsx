@@ -173,12 +173,51 @@ export default function AgendaPage() {
     return MESES_ORDEM.indexOf(a) - MESES_ORDEM.indexOf(b);
   });
 
+  // Generate JSON-LD for Search Engines
+  const jsonLdData = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": filteredEventos.map((ev, index) => {
+      // Tentar construir data a partir de "DD/MM/YYYY" se dataISO não existir
+      let startDateStr = ev.dataISO;
+      if (!startDateStr && ev.data) {
+        const parts = ev.data.split('/');
+        if (parts.length === 3) {
+          startDateStr = `${parts[2]}-${parts[1].padStart(2, '0')}-${parts[0].padStart(2, '0')}`;
+        }
+      }
+
+      return {
+        "@type": "ListItem",
+        "position": index + 1,
+        "item": {
+          "@type": ev.tipo === 'Curso' ? 'Course' : 'Event',
+          "name": ev.titulo,
+          "description": ev.descritivo || ev.sub || ev.titulo,
+          "startDate": startDateStr || new Date().toISOString(),
+          "location": {
+            "@type": "Place",
+            "name": ev.local || 'Vila Tech Hub',
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Itu",
+              "addressRegion": "SP",
+              "addressCountry": "BR"
+            }
+          },
+          ...(ev.tipo !== 'Curso' ? { "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "eventStatus": "https://schema.org/EventScheduled" } : {})
+        }
+      };
+    })
+  };
+
   return (
     <div className="bg-[#0a0a0a] min-h-screen text-[#F5F0FA] font-sans selection:bg-[#9B35AE] selection:text-white">
       <SEO 
         title="Agenda Vila Tech Hub | Eventos, Cursos de IA & Tecnologia em Itu"
         description="Acompanhe o calendário de atividades do Vila Tech Hub em Itu, SP. Palestras, cursos de Inteligência Artificial, workshops de tecnologia e eventos corporativos gratuitos e pagos."
       />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }} />
       {/* Navigation */}
       <TopNavigation variant="home" />
 
