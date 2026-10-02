@@ -314,11 +314,11 @@ export const footerConfig: FooterConfig = {
   brandDescription: "Hub de inovação que conecta tecnologia, educação e criatividade em Itu, SP. Nosso ecossistema impulsiona projetos, alimenta mentes e cria conexões transformadoras.",
   quickLinksTitle: "Links Rápidos",
   quickLinks: [
-    { label: "Missão e Valores", href: "/#proposito" },
-    { label: "Nossos Projetos", href: "/#atuacao" },
-    { label: "Equipe", href: "/#conselho" },
-    { label: "Parceiros", href: "/#partners" },
-    { label: "Entre em Contato", href: "/#contato" },
+    { label: "Home", href: "/" },
+    { label: "Instituto", href: "/instituto" },
+    { label: "Plataforma Educacional", href: "/cursos" },
+    { label: "Agenda", href: "/agenda" },
+    { label: "Doe Agora", href: "/doar" },
   ],
   contactTitle: "Contato",
   emailLabel: "Email",
@@ -633,10 +633,12 @@ export interface InstituteConfig {
 }
 
 export const globalNavItems: HeroNavItem[] = [
-  { label: "Propósito", sectionId: "proposito" },
-  { label: "Quem Faz", sectionId: "conselho" },
-  { label: "Projeto", sectionId: "projetos" },
-  { label: "Projetos em Captação", sectionId: "projetos-captacao" },
+  { label: "Home", path: "/" },
+  { label: "Coworking", path: "/coworking" },
+  { label: "Instituto", path: "/instituto" },
+  { label: "Plataforma Educacional", path: "/cursos" },
+  { label: "Agenda", path: "/agenda" },
+  { label: "Contato", sectionId: "contact" },
 ];
 
 export const instituteConfig: InstituteConfig = {
