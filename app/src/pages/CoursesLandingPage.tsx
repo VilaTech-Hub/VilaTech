@@ -7,7 +7,7 @@ import Footer from '../sections/Footer';
 import WhatsAppButton from '../components/WhatsAppButton';
 import useLenis from '../hooks/useLenis';
 import SEO from '../components/SEO';
-import { ArrowRight, Calendar, Building2, Laptop, Users, ChevronRight, Cpu, BarChart3, Palette } from 'lucide-react';
+import { ArrowRight, Calendar, Building2, Laptop, Users, ChevronRight } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -128,16 +128,15 @@ const CoursesLandingPage = () => {
         {/* Background image: teclado */}
         <div className="absolute inset-0">
           <img
-            src="/images/plataforma_educacional/teclado.webp"
+            src="/images/plataforma_educacional/ChatGPT Image 2 de out. de 2026, 11_03_03.png"
             alt="Teclado tecnológico com iluminação neon"
-            className="w-full h-full object-cover object-center scale-x-[-1]"
+            className="w-full h-full object-cover object-center"
           />
           {/* Gradients over image — lighter so the image breathes */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/55 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent" />
         </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pt-32 pb-24 md:pt-44 md:pb-32 w-full">
+        <div className="relative z-10 max-w-[85rem] mx-auto px-6 md:px-8 pt-32 pb-24 md:pt-44 md:pb-32 w-full">
           <div className="max-w-3xl">
             <div className="hero-anim flex items-center gap-3 text-xs font-bold tracking-[0.3em] uppercase text-[#e83a79] mb-8 font-syne">
               <span className="w-8 h-[1px] bg-[#e83a79]" />
@@ -145,7 +144,7 @@ const CoursesLandingPage = () => {
             </div>
 
             <h1 className="hero-anim text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-white font-syne leading-[0.92] mb-8">
-              Novas metodologias.<br />
+              Novas <span className="bg-[#e83a79] text-white px-2 inline-block -ml-2 mb-2">metodologias.</span><br />
               Novas <span className="text-[#e83a79]">habilidades.</span><br />
               Novos Futuros.
             </h1>
@@ -156,16 +155,16 @@ const CoursesLandingPage = () => {
             </p>
 
             {/* Formatos */}
-            <div className="hero-anim flex flex-wrap gap-3 mb-12">
+            <div className="hero-anim flex flex-wrap gap-4 mb-12">
               {FORMATOS.map(({ icon: Icon, label, desc }) => (
                 <div
                   key={label}
-                  className="flex items-center gap-3 bg-black/50 backdrop-blur-sm border border-white/10 px-5 py-3 hover:border-[#e83a79]/50 transition-colors"
+                  className="flex items-center gap-4 bg-black/50 backdrop-blur-sm border border-white/10 px-6 py-4 hover:border-[#e83a79]/50 transition-colors"
                 >
-                  <Icon className="w-4 h-4 text-[#e83a79] shrink-0" />
+                  <Icon className="w-5 h-5 text-[#e83a79] shrink-0" />
                   <div>
-                    <div className="text-xs font-bold text-white font-syne uppercase tracking-wider">{label}</div>
-                    <div className="text-[10px] text-gray-400">{desc}</div>
+                    <div className="text-sm font-bold text-white font-syne uppercase tracking-wider">{label}</div>
+                    <div className="text-xs text-gray-400">{desc}</div>
                   </div>
                 </div>
               ))}
@@ -245,8 +244,8 @@ const CoursesLandingPage = () => {
               <img src="/images/plataforma_educacional/Icone_AcademIA.png" alt="Ícone AcademIA" className="h-8 w-auto object-contain" />
               <p className="text-xs text-[#e83a79] font-bold uppercase tracking-[0.3em] font-syne">Pilar 01 — Formação em ferramentas de IA para negócios</p>
             </div>
-            <h2 className="text-5xl md:text-6xl font-extrabold text-white font-syne leading-none mb-4">
-              Academ<span className="text-[#e83a79]">IA</span>
+            <h2 className="text-5xl md:text-6xl font-syne leading-none mb-4">
+              <span style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 200, letterSpacing: '0.08em' }} className="text-white/70">Academ</span><span className="font-extrabold text-[#e83a79]">IA</span>
             </h2>
             <p className="text-gray-300 text-base leading-relaxed mb-8">
               Uma plataforma de cursos online e presenciais para formação prática
@@ -285,13 +284,19 @@ const CoursesLandingPage = () => {
             </div>
 
             {/* Gestão de IA card */}
-            <div className="reveal-section mt-6 bg-[#0f0f0f] border border-[#e83a79]/30 rounded-lg p-8 md:p-10 hover:border-[#e83a79] transition-colors">
-              <p className="text-[10px] text-[#e83a79] uppercase tracking-[0.25em] font-bold font-syne mb-2">Aplicando IA na sua organização</p>
-              <h4 className="text-2xl md:text-3xl font-extrabold text-white font-syne mb-3">Gestão de IA</h4>
-              <p className="text-gray-400 text-sm md:text-base leading-relaxed max-w-2xl">
-                Planejamento estratégico, alinhamento de agentes e otimização de recursos
-                para transformar capacitação em aplicação real no negócio.
-              </p>
+            <div className="reveal-section mt-6 relative overflow-hidden border border-[#e83a79]/30 rounded-lg p-8 md:p-10 hover:border-[#e83a79] transition-colors group">
+              <div className="absolute inset-0">
+                <img src="/images/plataforma_educacional/man-is-working-laptop-cafe.jpg" alt="Gestão de IA Corporativa" className="w-full h-full object-cover object-[center_57%] group-hover:scale-105 transition-transform duration-700 opacity-60" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#0f0f0f] via-[#0f0f0f]/90 to-transparent" />
+              </div>
+              <div className="relative z-10">
+                <p className="text-[10px] text-[#e83a79] uppercase tracking-[0.25em] font-bold font-syne mb-2">Aplicando IA na sua organização</p>
+                <h4 className="text-2xl md:text-3xl font-extrabold text-white font-syne mb-3">Gestão de IA Corporativa</h4>
+                <p className="text-gray-300 text-sm md:text-base leading-relaxed max-w-2xl">
+                  Planejamento estratégico, alinhamento de agentes e otimização de recursos
+                  para transformar capacitação em aplicação real no negócio.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -307,8 +312,8 @@ const CoursesLandingPage = () => {
               <img src="/images/plataforma_educacional/Icone_escola-de-gestao.png" alt="Ícone Escola de Gestão" className="h-8 w-auto object-contain" />
               <p className="text-xs text-[#378ADD] font-bold uppercase tracking-[0.3em] font-syne">Pilar 02 — Formação Executiva</p>
             </div>
-            <h2 className="text-5xl md:text-6xl font-extrabold text-white font-syne leading-none mb-4">
-              Escola de <span className="text-[#378ADD]">Gestão</span>
+            <h2 className="text-5xl md:text-6xl font-syne leading-none mb-4">
+              <span style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 200, letterSpacing: '0.08em' }} className="text-white/70">Escola de </span><span className="font-extrabold text-[#378ADD]">Gestão</span>
             </h2>
             <p className="text-gray-300 text-base leading-relaxed mb-2">
               Conhecimento para decidir, liderar e acelerar negócios.
@@ -378,11 +383,8 @@ const CoursesLandingPage = () => {
               <img src="/images/plataforma_educacional/icone-criatividade-games-branco-transparente.png" alt="Ícone Criatividade" className="h-8 w-auto object-contain" />
               <p className="text-xs text-[#ef7d00] font-bold uppercase tracking-[0.3em] font-syne">Pilar 03 — Formação Criativa</p>
             </div>
-            <h2 className="text-5xl md:text-6xl font-extrabold text-white font-syne leading-none mb-2">
-              Criatividade
-            </h2>
-            <h2 className="text-5xl md:text-6xl font-extrabold font-syne leading-none mb-6" style={{ color: '#ef7d00' }}>
-              + Games
+            <h2 className="text-5xl md:text-6xl font-syne leading-none mb-6">
+              <span style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 200, letterSpacing: '0.08em' }} className="text-white/70">Criatividade </span><span className="font-extrabold" style={{ color: '#ef7d00' }}>+ Games</span>
             </h2>
             <p className="text-gray-300 text-base leading-relaxed mb-2">
               Ferramentas, repertório e produção para transformar ideias em experiências.

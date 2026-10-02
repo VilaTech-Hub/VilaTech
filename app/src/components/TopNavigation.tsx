@@ -118,11 +118,13 @@ const TopNavigation = ({ variant = 'home' }: TopNavigationProps) => {
           </nav>
 
           {/* Desktop DONATE button */}
-          <div className="hidden nav:flex items-center pointer-events-auto">
-            <Link to="/doar" className="flex items-center justify-center px-5 py-2 bg-brand-orange text-[#1d1d1b] text-[10px] font-black uppercase tracking-widest rounded-full hover:bg-white hover:text-brand-orange transition-colors shrink-0 shadow-lg">
-              Doe Agora
-            </Link>
-          </div>
+          {variant === 'institute' && (
+            <div className="hidden nav:flex items-center pointer-events-auto">
+              <Link to="/doar" className="flex items-center justify-center px-5 py-2 bg-brand-orange text-[#1d1d1b] text-[10px] font-black uppercase tracking-widest rounded-full hover:bg-white hover:text-brand-orange transition-colors shrink-0 shadow-lg">
+                Doe Agora
+              </Link>
+            </div>
+          )}
 
           {/* Mobile hamburger button (visible on screen widths below nav size) */}
           <button
@@ -174,15 +176,17 @@ const TopNavigation = ({ variant = 'home' }: TopNavigationProps) => {
             );
           })}
           
-          <Link
-            to="/doar"
-            onClick={() => setMobileMenuOpen(false)}
-            className={`mt-4 w-full flex items-center justify-center px-6 py-4 bg-brand-orange text-[#1d1d1b] text-sm font-black uppercase tracking-widest rounded-xl hover:bg-white transition-colors transform transition-transform duration-500 delay-300 ${
-              mobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-            }`}
-          >
-            Doe Agora
-          </Link>
+          {variant === 'institute' && (
+            <Link
+              to="/doar"
+              onClick={() => setMobileMenuOpen(false)}
+              className={`mt-4 w-full flex items-center justify-center px-6 py-4 bg-brand-orange text-[#1d1d1b] text-sm font-black uppercase tracking-widest rounded-xl hover:bg-white transition-colors transform transition-transform duration-500 delay-300 ${
+                mobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+              }`}
+            >
+              Doe Agora
+            </Link>
+          )}
         </div>
       </div>
     </>

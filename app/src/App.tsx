@@ -13,6 +13,7 @@ const LandingPage = React.lazy(() => import('./pages/LandingPage'));
 const InstitutePage = React.lazy(() => import('./pages/InstitutePage'));
 const AgendaPage = React.lazy(() => import('./pages/AgendaPage'));
 const CoursesLandingPage = React.lazy(() => import('./pages/CoursesLandingPage'));
+const CoworkingPage = React.lazy(() => import('./pages/CoworkingPage'));
 const PlanoAbertoPage = React.lazy(() => import('./pages/PlanoAbertoPage'));
 const FitiPage = React.lazy(() => import('./pages/FitiPage'));
 const DonationPage = React.lazy(() => import('./pages/DonationPage'));
@@ -49,6 +50,7 @@ function App() {
             <Route path="/instituto" element={<InstitutePage />} />
             <Route path="/plano-aberto" element={<PlanoAbertoPage />} />
             <Route path="/cursos" element={<CoursesLandingPage />} />
+            <Route path="/coworking" element={<CoworkingPage />} />
             <Route path="/agenda" element={<AgendaPage />} />
             <Route path="/fiti" element={<FitiPage />} />
             <Route path="/doar" element={<DonationPage />} />

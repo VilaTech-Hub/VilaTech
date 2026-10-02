@@ -634,6 +634,7 @@ export interface InstituteConfig {
 
 export const globalNavItems: HeroNavItem[] = [
   { label: "Home", path: "/" },
+  { label: "Coworking", path: "/coworking" },
   { label: "Instituto", path: "/instituto" },
   { label: "Plataforma Educacional", path: "/cursos" },
   { label: "Agenda", path: "/agenda" },
