@@ -42,10 +42,6 @@ const CoworkingPage = () => {
         <CoworkingFeatures />
         <CoworkingSpaces />
 
-        <div id="gallery" className="pt-24 bg-void-black relative z-10">
-          <ParallaxGallery />
-        </div>
-
         <CoworkingQuoteForm />
       </main>
 

@@ -10,6 +10,7 @@ import eventRoutes from './routes/eventRoutes';
 import resourceRoutes from './routes/resourceRoutes';
 import bookingRoutes from './routes/bookingRoutes';
 import stripeRoutes from './routes/stripeRoutes';
+import coworkingRoutes from './routes/coworkingRoutes';
 
 dotenv.config();
 
@@ -34,6 +35,7 @@ app.use('/api/events', eventRoutes);
 app.use('/api/resources', resourceRoutes);
 app.use('/api/bookings', bookingRoutes);
 app.use('/api/stripe', stripeRoutes);
+app.use('/api/coworking', coworkingRoutes);
 
 if (process.env.NODE_ENV !== 'production') {
   app.listen(port, () => {
