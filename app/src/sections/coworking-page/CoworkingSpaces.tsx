@@ -1,4 +1,5 @@
-import { ArrowRight } from 'lucide-react';
+import { useState } from 'react';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 
 /* ─── SPACES DATA ─────────────────────────────────────────────────────────── */
 
@@ -55,26 +56,77 @@ const spaceSections = [
       { src: '/images/coworking/Honest Mkt.jpg', label: 'Honest Market' },
       { src: '/images/coworking/lounge2.png', label: 'Lounge de Convivência' },
       { src: '/images/imgs_coworking/xicaras.jpg', label: 'Café Especial' },
-    ],
-    cta: 'Conhecer o Espaço',
-  },
-  {
-    id: 'recepcao',
-    tag: 'RECEPÇÃO & ESTRUTURA',
-    tagColor: '#378ADD',
-    title: 'Recepção e Ambientes Comuns',
-    subtitle: 'Design pensado para impressionar desde a entrada.',
-    description: 'Recepção moderna, balcão de atendimento e ambientes comuns que refletem inovação e profissionalismo. Endereço fiscal e comercial disponíveis.',
-    images: [
-      { src: '/images/imgs_coworking/Recepção Vila Tech Hub.png', label: 'Recepção' },
       { src: '/images/imgs_coworking/Balcao.jpg', label: 'Balcão de Atendimento' },
       { src: '/images/coworking/Pickup.jpg', label: 'Área de Convívio' },
     ],
-    cta: 'Agendar Visita',
+    cta: 'Conhecer o Espaço',
+    carousel: true,
   },
 ];
 
-/* ─── COMPONENT ───────────────────────────────────────────────────────────── */
+/* ─── IMAGE CAROUSEL ──────────────────────────────────────────────────────── */
+
+const ImageCarousel = ({ images }: { images: { src: string; label: string }[] }) => {
+  const [current, setCurrent] = useState(0);
+  const visibleCount = 3; // Show 3 at a time
+  const maxStart = Math.max(0, images.length - visibleCount);
+
+  const prev = () => setCurrent(c => Math.max(0, c - 1));
+  const next = () => setCurrent(c => Math.min(maxStart, c + 1));
+
+  const visibleImages = images.slice(current, current + visibleCount);
+
+  return (
+    <div className="relative">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {visibleImages.map((img, idx) => (
+          <div key={current + idx} className="group">
+            <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-white/5">
+              <img
+                src={img.src}
+                alt={img.label}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+              />
+            </div>
+            <p className="mt-3 text-sm text-gray-400 font-sans tracking-wide">{img.label}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* Carousel Controls */}
+      {images.length > visibleCount && (
+        <div className="flex items-center gap-3 mt-6">
+          <button
+            onClick={prev}
+            disabled={current === 0}
+            className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white/10 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+          >
+            <ChevronLeft size={18} />
+          </button>
+          <div className="flex gap-1.5">
+            {Array.from({ length: maxStart + 1 }).map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i)}
+                className={`w-2 h-2 rounded-full transition-colors ${i === current ? 'bg-white' : 'bg-white/20'}`}
+              />
+            ))}
+          </div>
+          <button
+            onClick={next}
+            disabled={current === maxStart}
+            className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white/10 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+          >
+            <ChevronRight size={18} />
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+/* ─── MAIN COMPONENT ──────────────────────────────────────────────────────── */
 
 const CoworkingSpaces = () => {
 
@@ -86,29 +138,73 @@ const CoworkingSpaces = () => {
   return (
     <section id="espacos" className="bg-void-black relative z-10">
 
-      {/* Section Header */}
-      <div className="py-20 border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
-          <p className="text-[#378ADD] text-xs font-syne font-bold uppercase tracking-[0.3em] mb-4">Nossos Espaços</p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-syne font-bold text-white mb-6">
-            Conheça cada ambiente
-          </h2>
-          <p className="text-gray-400 font-sans text-lg max-w-2xl mx-auto">
-            Descubra os espaços que preparamos para você e sua empresa prosperarem.
-          </p>
+      {/* ── Endereço Fiscal — Hero-style split section ─────────────── */}
+      <div className="py-14 border-b border-white/5 bg-[#080808]">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            {/* Image Left */}
+            <div className="rounded-2xl overflow-hidden aspect-[4/3] bg-white/5">
+              <img
+                src="/images/imgs_coworking/Recepção Vila Tech Hub.png"
+                alt="Recepção Vila Tech Hub"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+
+            {/* Text Right */}
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-8 h-1 rounded-full bg-[#378ADD]" />
+                <span className="text-xs font-syne font-bold uppercase tracking-[0.25em] text-[#378ADD]">
+                  ENDEREÇO FISCAL & COMERCIAL
+                </span>
+              </div>
+              <h3 className="text-3xl md:text-4xl font-syne font-bold text-white mb-4 leading-tight">
+                Seu negócio no melhor<br />endereço de Itu
+              </h3>
+              <p className="text-gray-300 text-lg font-light mb-4">
+                Regularize sua empresa com nosso endereço fiscal ou utilize nosso endereço comercial para fortalecer sua marca.
+              </p>
+              <ul className="space-y-3 mb-8 text-gray-400">
+                <li className="flex items-start gap-2">
+                  <span className="text-[#378ADD] mt-1">•</span>
+                  Endereço fiscal para registro de CNPJ
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#378ADD] mt-1">•</span>
+                  Endereço comercial para divulgação
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#378ADD] mt-1">•</span>
+                  Recebimento de correspondências
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#378ADD] mt-1">•</span>
+                  Localização privilegiada no Itu Novo Centro
+                </li>
+              </ul>
+              <button
+                onClick={scrollToCotacao}
+                className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-[#378ADD] text-white font-syne font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-[#378ADD] transition-all duration-300 hover:scale-105"
+              >
+                Solicitar Cotação <ArrowRight size={16} />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Space Sections */}
+      {/* ── Space Sections ────────────────────────────────────────── */}
       {spaceSections.map((space, sectionIndex) => (
         <div
           key={space.id}
-          className={`py-20 border-b border-white/5 ${sectionIndex % 2 === 1 ? 'bg-[#080808]' : 'bg-void-black'}`}
+          className={`py-14 border-b border-white/5 ${sectionIndex % 2 === 0 ? 'bg-void-black' : 'bg-[#080808]'}`}
         >
           <div className="max-w-7xl mx-auto px-6 md:px-12">
 
             {/* Tag + Title + Description */}
-            <div className="mb-12 max-w-3xl">
+            <div className="mb-10 max-w-3xl">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-8 h-1 rounded-full" style={{ backgroundColor: space.tagColor }} />
                 <span
@@ -118,36 +214,39 @@ const CoworkingSpaces = () => {
                   {space.tag}
                 </span>
               </div>
-              <h3 className="text-3xl md:text-4xl font-syne font-bold text-white mb-4">{space.title}</h3>
-              <p className="text-xl text-gray-300 font-light mb-2">{space.subtitle}</p>
-              <p className="text-gray-500 leading-relaxed">{space.description}</p>
+              <h3 className="text-3xl md:text-4xl font-syne font-bold text-white mb-3">{space.title}</h3>
+              <p className="text-lg text-gray-300 font-light mb-2">{space.subtitle}</p>
+              <p className="text-gray-500 leading-relaxed text-sm">{space.description}</p>
             </div>
 
-            {/* Photos Grid — horizontal row */}
-            <div className={`grid gap-4 mb-10 ${space.images.length === 2 ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1 md:grid-cols-3'}`}>
-              {space.images.map((img, idx) => (
-                <div key={idx} className="group">
-                  <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-white/5">
-                    <img
-                      src={img.src}
-                      alt={img.label}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      loading="lazy"
-                    />
+            {/* Photos — Grid or Carousel */}
+            {space.carousel ? (
+              <div className="mb-8">
+                <ImageCarousel images={space.images} />
+              </div>
+            ) : (
+              <div className={`grid gap-4 mb-8 ${space.images.length === 2 ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1 md:grid-cols-3'}`}>
+                {space.images.map((img, idx) => (
+                  <div key={idx} className="group">
+                    <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-white/5">
+                      <img
+                        src={img.src}
+                        alt={img.label}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        loading="lazy"
+                      />
+                    </div>
+                    <p className="mt-3 text-sm text-gray-400 font-sans tracking-wide">{img.label}</p>
                   </div>
-                  <p className="mt-3 text-sm text-gray-400 font-sans tracking-wide">{img.label}</p>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
 
             {/* CTA Button */}
             <button
               onClick={scrollToCotacao}
               className="inline-flex items-center gap-2 px-8 py-3 rounded-full font-syne font-bold text-sm uppercase tracking-widest transition-all duration-300 hover:scale-105"
-              style={{
-                backgroundColor: space.tagColor,
-                color: '#fff',
-              }}
+              style={{ backgroundColor: space.tagColor, color: '#fff' }}
               onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#fff'; e.currentTarget.style.color = space.tagColor; }}
               onMouseLeave={e => { e.currentTarget.style.backgroundColor = space.tagColor; e.currentTarget.style.color = '#fff'; }}
             >

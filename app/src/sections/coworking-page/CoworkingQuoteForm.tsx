@@ -21,18 +21,27 @@ const CoworkingQuoteForm = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('submitting');
     
-    // Simulate API call
-    setTimeout(() => {
-      setStatus('success');
-      setFormData({
-        name: '', email: '', phone: '', spaceType: '', capacity: '', period: '', message: ''
+    try {
+      const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+      const response = await fetch(`${apiBase}/coworking/quote`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       });
-      setTimeout(() => setStatus('idle'), 3000);
-    }, 1500);
+
+      if (!response.ok) throw new Error('Erro ao enviar');
+
+      setStatus('success');
+      setFormData({ name: '', email: '', phone: '', spaceType: '', capacity: '', period: '', message: '' });
+      setTimeout(() => setStatus('idle'), 4000);
+    } catch {
+      setStatus('idle');
+      alert('Erro ao enviar a cotação. Tente novamente ou nos contacte diretamente.');
+    }
   };
 
   return (

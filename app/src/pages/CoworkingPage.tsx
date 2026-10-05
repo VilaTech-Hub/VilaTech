@@ -6,7 +6,6 @@ import CoworkingHero from '../sections/coworking-page/CoworkingHero';
 import CoworkingFeatures from '../sections/coworking-page/CoworkingFeatures';
 import CoworkingSpaces from '../sections/coworking-page/CoworkingSpaces';
 import CoworkingQuoteForm from '../sections/coworking-page/CoworkingQuoteForm';
-import ParallaxGallery from '../sections/ParallaxGallery';
 import Footer from '../sections/Footer';
 import SEO from '../components/SEO';
 
@@ -41,10 +40,6 @@ const CoworkingPage = () => {
         <CoworkingHero />
         <CoworkingFeatures />
         <CoworkingSpaces />
-
-        <div id="gallery" className="pt-24 bg-void-black relative z-10">
-          <ParallaxGallery />
-        </div>
 
         <CoworkingQuoteForm />
       </main>
