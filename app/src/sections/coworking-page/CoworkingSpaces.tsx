@@ -1,139 +1,161 @@
-import { useState } from 'react';
-import { Wifi, Coffee, Users, Key, Monitor, Presentation } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
-const spaces = [
+/* ─── SPACES DATA ─────────────────────────────────────────────────────────── */
+
+const spaceSections = [
   {
-    id: 'postos',
-    title: 'Postos de Trabalho',
-    description: 'Estações de trabalho flexíveis e fixas em um ambiente colaborativo, projetado para produtividade e networking.',
+    id: 'estacoes',
+    tag: 'POSTOS DE TRABALHO',
+    tagColor: '#378ADD',
+    title: 'Estações de Trabalho',
+    subtitle: 'Flexíveis e fixas, para profissionais e equipes de todos os tamanhos.',
+    description: 'Ambientes projetados para produtividade máxima, com internet de alta velocidade, armários individuais e acesso às áreas comuns.',
     images: [
-      '/images/imgs_coworking/Estações de trabalho.png',
-      '/images/imgs_coworking/Estações de trabalho 1.png',
+      { src: '/images/imgs_coworking/Estações de trabalho.png', label: 'Estações Individuais' },
+      { src: '/images/imgs_coworking/Estações de trabalho 1.png', label: 'Área Colaborativa' },
+      { src: '/images/imgs_coworking/Estações de trabalho 2.png', label: 'Postos Fixos' },
     ],
-    features: [
-      { icon: <Wifi size={18} />, text: 'Internet de alta velocidade' },
-      { icon: <Coffee size={18} />, text: 'Acesso ao Café e Copa' },
-      { icon: <Key size={18} />, text: 'Armários (Lockers)' },
-    ]
+    cta: 'Solicitar Cotação',
   },
   {
-    id: 'reuniao',
+    id: 'salas',
+    tag: 'SALAS DE REUNIÃO',
+    tagColor: '#ef7d00',
     title: 'Salas de Reunião',
-    description: 'Salas privativas e equipadas para reuniões com clientes, sessões de brainstorming e videoconferências.',
+    subtitle: 'Privativas e equipadas para reuniões, brainstorms e videoconferências.',
+    description: 'Salas com TV, projeção, internet dedicada e isolamento acústico. Disponíveis por hora ou pacotes mensais, para até 8 pessoas.',
     images: [
-      '/images/coworking/sala1_Vista2.jpg',
-      '/images/coworking/Sala2.jpg',
+      { src: '/images/coworking/sala1_Vista2.jpg', label: 'Sala 01 — Até 4 pessoas' },
+      { src: '/images/coworking/Sala2.jpg', label: 'Sala 02 — Até 8 pessoas' },
+      { src: '/images/coworking/Mesa_grande.jpg', label: 'Mesa de Reunião Executiva' },
     ],
-    features: [
-      { icon: <Monitor size={18} />, text: 'TV e Projeção' },
-      { icon: <Users size={18} />, text: 'Para 4 a 8 pessoas' },
-      { icon: <Wifi size={18} />, text: 'Internet dedicada' },
-    ]
+    cta: 'Reservar Sala',
   },
   {
     id: 'auditorio',
-    title: 'Auditório',
-    description: 'Espaço amplo e modular para palestras, workshops e eventos corporativos, com capacidade para até 70 pessoas.',
+    tag: 'AUDITÓRIO',
+    tagColor: '#e83a79',
+    title: 'Auditório para até 70 pessoas',
+    subtitle: 'Para palestras, workshops, eventos corporativos e lançamentos.',
+    description: 'Espaço amplo e modular com projetor profissional, sistema de som, iluminação cênica e área para coffee break. Configuração com mesas ou plateia.',
     images: [
-      '/images/coworking/Auditório 1_trat.png',
-      '/images/coworking/Auditório 2_trat.png',
+      { src: '/images/imgs_coworking/Auditório com mesas.png', label: 'Configuração Mesas' },
+      { src: '/images/imgs_coworking/Auditório com cadeiras.png', label: 'Configuração Plateia' },
     ],
-    features: [
-      { icon: <Presentation size={18} />, text: 'Projetor e Som Profissional' },
-      { icon: <Users size={18} />, text: 'Até 70 pessoas' },
-      { icon: <Coffee size={18} />, text: 'Espaço para Coffee Break' },
-    ]
+    cta: 'Agendar Evento',
   },
   {
-    id: 'convivencia',
-    title: 'Café & Convivência',
-    description: 'Área de descompressão com Honest Market, ideal para relaxar, tomar um café especial e fazer networking.',
+    id: 'cafe',
+    tag: 'CAFÉ & CONVIVÊNCIA',
+    tagColor: '#9B35AE',
+    title: 'Café, Lounge & Honest Market',
+    subtitle: 'Área de descompressão, networking e alimentação.',
+    description: 'Espaço com café especial, Honest Market (mercadinho inteligente PL Market), lounge para relaxar e vinil para inspirar. Ideal para conexões que fazem a diferença.',
     images: [
-      '/images/coworking/Honest Mkt.jpg',
-      '/images/coworking/lounge2.png',
+      { src: '/images/coworking/Honest Mkt.jpg', label: 'Honest Market' },
+      { src: '/images/coworking/lounge2.png', label: 'Lounge de Convivência' },
+      { src: '/images/imgs_coworking/xicaras.jpg', label: 'Café Especial' },
     ],
-    features: [
-      { icon: <Coffee size={18} />, text: 'Clube do Vinil Café' },
-      { icon: <Users size={18} />, text: 'Área de Descompressão' },
-      { icon: <Wifi size={18} />, text: 'Honest Market' },
-    ]
-  }
+    cta: 'Conhecer o Espaço',
+  },
+  {
+    id: 'recepcao',
+    tag: 'RECEPÇÃO & ESTRUTURA',
+    tagColor: '#378ADD',
+    title: 'Recepção e Ambientes Comuns',
+    subtitle: 'Design pensado para impressionar desde a entrada.',
+    description: 'Recepção moderna, balcão de atendimento e ambientes comuns que refletem inovação e profissionalismo. Endereço fiscal e comercial disponíveis.',
+    images: [
+      { src: '/images/imgs_coworking/Recepção Vila Tech Hub.png', label: 'Recepção' },
+      { src: '/images/imgs_coworking/Balcao.jpg', label: 'Balcão de Atendimento' },
+      { src: '/images/coworking/Pickup.jpg', label: 'Área de Convívio' },
+    ],
+    cta: 'Agendar Visita',
+  },
 ];
 
-const CoworkingSpaces = () => {
-  const [activeTab, setActiveTab] = useState(spaces[0].id);
+/* ─── COMPONENT ───────────────────────────────────────────────────────────── */
 
-  const activeSpace = spaces.find(s => s.id === activeTab) || spaces[0];
+const CoworkingSpaces = () => {
+
+  const scrollToCotacao = () => {
+    const el = document.getElementById('cotacao');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
-    <section id="espacos" className="py-24 bg-void-black border-t border-white/10 relative z-10">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
-        
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-syne font-bold text-white mb-4">Nossos Espaços</h2>
+    <section id="espacos" className="bg-void-black relative z-10">
+
+      {/* Section Header */}
+      <div className="py-20 border-b border-white/5">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
+          <p className="text-[#378ADD] text-xs font-syne font-bold uppercase tracking-[0.3em] mb-4">Nossos Espaços</p>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-syne font-bold text-white mb-6">
+            Conheça cada ambiente
+          </h2>
           <p className="text-gray-400 font-sans text-lg max-w-2xl mx-auto">
-            Descubra os ambientes que preparamos para você e sua empresa prosperarem.
+            Descubra os espaços que preparamos para você e sua empresa prosperarem.
           </p>
         </div>
+      </div>
 
-        {/* Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
-          {spaces.map((space) => (
-            <button
-              key={space.id}
-              onClick={() => setActiveTab(space.id)}
-              className={`px-6 py-3 rounded-full font-syne font-semibold text-sm transition-all duration-300 ${
-                activeTab === space.id
-                  ? 'bg-[#378ADD] text-white shadow-lg'
-                  : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
-              }`}
-            >
-              {space.title}
-            </button>
-          ))}
-        </div>
+      {/* Space Sections */}
+      {spaceSections.map((space, sectionIndex) => (
+        <div
+          key={space.id}
+          className={`py-20 border-b border-white/5 ${sectionIndex % 2 === 1 ? 'bg-[#080808]' : 'bg-void-black'}`}
+        >
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
 
-        {/* Content */}
-        <div className="bg-[#0a0a0a] rounded-3xl border border-white/5 overflow-hidden">
-            <div
-              key={activeTab}
-              className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8 md:p-12 animate-fade-in"
-            >
-              {/* Text side */}
-              <div className="flex flex-col justify-center">
-                <h3 className="text-3xl font-syne font-bold text-white mb-6">{activeSpace.title}</h3>
-                <p className="text-gray-300 text-lg leading-relaxed mb-8">
-                  {activeSpace.description}
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {activeSpace.features.map((feat, idx) => (
-                    <div key={idx} className="flex items-center gap-3 text-gray-300">
-                      <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-[#378ADD]">
-                        {feat.icon}
-                      </div>
-                      <span className="font-sans text-sm">{feat.text}</span>
-                    </div>
-                  ))}
-                </div>
+            {/* Tag + Title + Description */}
+            <div className="mb-12 max-w-3xl">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-8 h-1 rounded-full" style={{ backgroundColor: space.tagColor }} />
+                <span
+                  className="text-xs font-syne font-bold uppercase tracking-[0.25em]"
+                  style={{ color: space.tagColor }}
+                >
+                  {space.tag}
+                </span>
               </div>
+              <h3 className="text-3xl md:text-4xl font-syne font-bold text-white mb-4">{space.title}</h3>
+              <p className="text-xl text-gray-300 font-light mb-2">{space.subtitle}</p>
+              <p className="text-gray-500 leading-relaxed">{space.description}</p>
+            </div>
 
-              {/* Image side */}
-              <div className="grid grid-cols-2 gap-4">
-                {activeSpace.images.map((img, idx) => (
-                  <div key={idx} className={`rounded-2xl overflow-hidden bg-white/5 ${idx === 0 ? 'col-span-2 aspect-video' : 'col-span-1 aspect-square'}`}>
-                    <img 
-                      src={img} 
-                      alt={`${activeSpace.title} - ${idx + 1}`} 
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+            {/* Photos Grid — horizontal row */}
+            <div className={`grid gap-4 mb-10 ${space.images.length === 2 ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1 md:grid-cols-3'}`}>
+              {space.images.map((img, idx) => (
+                <div key={idx} className="group">
+                  <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-white/5">
+                    <img
+                      src={img.src}
+                      alt={img.label}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      loading="lazy"
                     />
                   </div>
-                ))}
-              </div>
+                  <p className="mt-3 text-sm text-gray-400 font-sans tracking-wide">{img.label}</p>
+                </div>
+              ))}
             </div>
-        </div>
 
-      </div>
+            {/* CTA Button */}
+            <button
+              onClick={scrollToCotacao}
+              className="inline-flex items-center gap-2 px-8 py-3 rounded-full font-syne font-bold text-sm uppercase tracking-widest transition-all duration-300 hover:scale-105"
+              style={{
+                backgroundColor: space.tagColor,
+                color: '#fff',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#fff'; e.currentTarget.style.color = space.tagColor; }}
+              onMouseLeave={e => { e.currentTarget.style.backgroundColor = space.tagColor; e.currentTarget.style.color = '#fff'; }}
+            >
+              {space.cta} <ArrowRight size={16} />
+            </button>
+          </div>
+        </div>
+      ))}
     </section>
   );
 };
