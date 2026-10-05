@@ -6,7 +6,6 @@ import CoworkingHero from '../sections/coworking-page/CoworkingHero';
 import CoworkingFeatures from '../sections/coworking-page/CoworkingFeatures';
 import CoworkingSpaces from '../sections/coworking-page/CoworkingSpaces';
 import CoworkingQuoteForm from '../sections/coworking-page/CoworkingQuoteForm';
-import ParallaxGallery from '../sections/ParallaxGallery';
 import Footer from '../sections/Footer';
 import SEO from '../components/SEO';
 
