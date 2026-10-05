@@ -39,6 +39,9 @@ Thumbs.db
 .venv/
 .gemini/
 *.zip
+*.mp4
+*.mov
+*.avi
 ts_errors.txt
 tsc_errors.txt
 out.txt
