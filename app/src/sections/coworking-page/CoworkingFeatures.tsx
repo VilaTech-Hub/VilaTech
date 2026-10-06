@@ -54,18 +54,18 @@ const CoworkingFeatures = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="text-center mb-16 max-w-3xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-syne font-bold text-white mb-6">
-            Tudo o que você precisa em um só lugar
+            Tudo o que você busca em um Coworking
           </h2>
           <p className="text-gray-400 font-sans text-lg">
-            Oferecemos uma infraestrutura completa e moderna, pensada nos mínimos detalhes 
+            Oferecemos uma infraestrutura completa e moderna, pensada nos mínimos detalhes
             para o crescimento do seu negócio.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {featuresList.map((item, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className="bg-void-black border border-white/10 rounded-2xl p-8 hover:border-[#378ADD]/50 transition-colors duration-300 group"
             >
               <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center text-[#378ADD] mb-6 group-hover:bg-[#378ADD] group-hover:text-white transition-colors duration-300">

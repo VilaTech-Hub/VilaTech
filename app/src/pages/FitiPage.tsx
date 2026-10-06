@@ -57,6 +57,9 @@ export default function FitiPage() {
           <div className="absolute bottom-0 left-0 right-0 h-[10px] bg-gradient-to-r from-[#3fbdd8] via-[#c8d400] via-40% to-[#e83a79] via-60% to-[#f59d22]"></div>
 
           <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 lg:px-[4vw] pb-[118px] flex flex-col items-center text-center">
+            {/* SEO H1 Hidden visually but available for screen readers and search engines */}
+            <h1 className="sr-only">FITI — Festival de Inovação e Tecnologia em Itu, SP</h1>
+
             <img src="/images/fiti/Fiti_Vazado_branco.png" alt="FITI" className="w-[800px] max-w-full fade-up object-contain opacity-90 hover:opacity-100 transition-opacity" />
             <img src="/images/fiti/texto_O-futuro.png" alt="O futuro encontra lugar em Itu" className="w-[800px] max-w-full fade-up object-contain opacity-90 hover:opacity-100 transition-opacity mt-4 mb-8" />
 

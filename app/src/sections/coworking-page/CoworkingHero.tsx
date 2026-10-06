@@ -50,6 +50,9 @@ const CoworkingHero = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-void-black/80 via-transparent to-void-black/40" />
       </div>
 
+      {/* SEO H1 Hidden visually but available for screen readers and search engines */}
+      <h1 className="sr-only">Coworking em Itu, SP — Vila Tech Hub</h1>
+
       {/* Decorative bottom line */}
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#378ADD]/30 to-transparent z-10" />
       

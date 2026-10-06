@@ -1,16 +1,18 @@
 import * as admin from 'firebase-admin';
+import * as dotenv from 'dotenv';
 import * as path from 'path';
-import * as fs from 'fs';
 
-// Look for service account in the parent directory of src
-const serviceAccountPath = path.join(__dirname, '../../serviceAccount.json');
+// Load .env
+dotenv.config({ path: path.join(__dirname, '../../.env') });
 
-if (!fs.existsSync(serviceAccountPath)) {
-    console.error('Service account file not found at:', serviceAccountPath);
+let serviceAccount;
+
+if (process.env.FIREBASE_SERVICE_ACCOUNT) {
+    serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+} else {
+    console.error('FIREBASE_SERVICE_ACCOUNT not found in .env');
     process.exit(1);
 }
-
-const serviceAccount = JSON.parse(fs.readFileSync(serviceAccountPath, 'utf8'));
 
 if (!admin.apps.length) {
     admin.initializeApp({
