@@ -99,8 +99,8 @@ export default function DonationPage() {
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-brand-orange text-xs font-bold uppercase tracking-widest mb-8 fade-up">
               <Heart className="w-4 h-4" /> Transforme Vidas
             </div>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter leading-none mb-6 fade-up" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-              Ajude a construir <span className="text-brand-orange">o amanhã</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter leading-none mb-6 fade-up" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+              Doe para o <span className="text-brand-orange">Instituto Vila Tech</span>
             </h1>
             <p className="text-lg md:text-xl text-white/80 font-light max-w-2xl mx-auto leading-relaxed fade-up">
               O Instituto Cultural e Educacional Vila Tech é uma associação sem fins lucrativos. Sua doação viabiliza bolsas de estudo, infraestrutura e inclusão digital de jovens talentos em vulnerabilidade social na cidade de Itu, SP.

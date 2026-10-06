@@ -143,15 +143,16 @@ const CoursesLandingPage = () => {
               Vila Tech Educação
             </div>
 
-            <h1 className="hero-anim text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-white font-syne leading-[0.92] mb-8">
-              Novas <span className="bg-[#e83a79] text-white px-2 inline-block -ml-2 mb-2">metodologias.</span><br />
-              Novas <span className="text-[#e83a79]">habilidades.</span><br />
-              Novos Futuros.
+            <h1 className="hero-anim text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white font-syne leading-[1.1] mb-8">
+              Cursos de aplicação prática de <br className="hidden md:block" />
+              <span className="bg-[#e83a79] text-white px-2 inline-block -ml-2 mb-2 mt-2">Inteligência Artificial</span><br />
+              conduzidos com inteligência humana
             </h1>
 
             <p className="hero-anim text-base md:text-xl text-gray-300 font-light max-w-xl leading-relaxed mb-10">
-              Impulsionando pessoas e negócios. Formação prática e trilhas de conhecimento
-              para a era da Inteligência Artificial.
+              <strong className="text-white font-bold">AcademIA:</strong> Metodologias inovadoras no ensino de IA<br />
+              <strong className="text-white font-bold">Gestão Estratégica</strong><br />
+              <strong className="text-white font-bold">Games e Audiovisual</strong>
             </p>
 
             {/* Formatos */}

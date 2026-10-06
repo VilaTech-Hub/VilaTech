@@ -379,21 +379,21 @@ export default function InstitutePage() {
             <h1
               className="text-white mb-8"
               style={{
-                letterSpacing: '-.075em',
-                maxWidth: '780px',
+                letterSpacing: '-.05em',
+                maxWidth: '850px',
                 fontFamily: 'Montserrat, sans-serif',
-                fontSize: 'clamp(42px, 7vw, 88px)',
+                fontSize: 'clamp(32px, 4.5vw, 56px)',
                 fontWeight: 800,
-                lineHeight: 0.96
+                lineHeight: 1.1
               }}
             >
-              Novas metodologias.<br />
-              <span className="text-brand-teal">Novas habilidades.</span><br />
-              Novos futuros.
+              Educação em tecnologia, arte e Inovação <span className="text-brand-teal">transformando vidas.</span><br />
+              Novos conhecimentos, novas descobertas.<br />
+              Abrindo caminhos rumo ao futuro.
             </h1>
 
             <p className="text-lg md:text-xl text-white/90 font-inter max-w-2xl mb-12 leading-relaxed font-light">
-              Educação em tecnologia, criatividade e cultura.<br />Transformando vidas através do acesso ao conhecimento.
+              Projetos sociais, bolsas de estudo e capacitação profissional em IA, criatividade e cultura.<br />Conectando talentos em vulnerabilidade ao futuro.
             </p>
           </div>
         </div>

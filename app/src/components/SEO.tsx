@@ -44,6 +44,19 @@ export const SEO = ({
     updateMeta('twitter:title', title);
     updateMeta('twitter:description', description);
     updateMeta('twitter:image', image);
+
+    // Canonical Tag
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
+    }
+    
+    // Assegurar que a URL canônica use sempre o domínio principal para evitar duplicidade
+    const cleanUrl = url.split('?')[0].replace('http://localhost:5173', 'https://www.vilatechub.com.br');
+    canonical.setAttribute('href', cleanUrl);
+
   }, [title, description, url, image, type]);
 
   return null;
