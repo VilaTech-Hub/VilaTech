@@ -119,6 +119,7 @@ const CoursesLandingPage = () => {
       <SEO
         title="Cursos de IA, Gestão e Criatividade em Itu | Vila Tech Educação"
         description="Formação prática em Inteligência Artificial, Gestão Executiva e Criatividade + Games. Presencial, online e In Company. Vila Tech Hub, Itu/SP."
+        image="https://www.vilatechub.com.br/images/plataforma_educacional/ChatGPT%20Image%202%20de%20out.%20de%202026,%2011_03_03.png"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <TopNavigation variant="home" />

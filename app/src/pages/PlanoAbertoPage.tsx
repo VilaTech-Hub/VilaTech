@@ -61,6 +61,7 @@ export default function PlanoAbertoPage() {
       <SEO
         title="Plano Sequência | Academia de Cinema Popular Comunitário"
         description="Quando a cidade se conta, ela se enxerga. Formação audiovisual para jovens: aprendizado, criação, produção e exibição."
+        image="https://www.vilatechub.com.br/images/projeto_captacao/cinema.webp"
       />
 
       <style>{`

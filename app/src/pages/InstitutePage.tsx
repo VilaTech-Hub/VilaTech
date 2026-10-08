@@ -329,6 +329,7 @@ export default function InstitutePage() {
       <SEO
         title="Instituto Vila Tech | Inovação, Tecnologia & Educação em Itu, SP"
         description="O Instituto Cultural e Educacional Vila Tech une inovação tecnológica, arte e desenvolvimento social em Itu, SP. Conheça nossos projetos sociais e de profissionalização."
+        image="https://www.vilatechub.com.br/images/instituto/ecossistema.webp"
       />
       <style>{`
         @keyframes marquee {

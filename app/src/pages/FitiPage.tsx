@@ -31,6 +31,7 @@ export default function FitiPage() {
       <SEO
         title="FITI — O futuro encontra lugar em Itu"
         description="FITI — Festival de Inovação, Criatividade e Tecnologia de Itu. Uma cidade-campus para ideias, negócios e cultura."
+        image="https://www.vilatechub.com.br/images/fiti/bom-jesus-mapping.webp"
       />
 
       {/* Header */}
