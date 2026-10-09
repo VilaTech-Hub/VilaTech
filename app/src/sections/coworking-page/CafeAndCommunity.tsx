@@ -107,7 +107,7 @@ const CafeAndCommunity = () => {
           <div ref={imagesRef} className="grid grid-cols-2 gap-4">
             <div className="space-y-4 pt-12">
               <img 
-                src="/images/imgs_coworking/Recepção Vila Tech Hub.png" 
+                src="/images/imgs_coworking/recepcao.png" 
                 alt="Recepção do Vila Tech Hub" 
                 className="w-full h-64 object-cover rounded-2xl border border-white/10"
               />

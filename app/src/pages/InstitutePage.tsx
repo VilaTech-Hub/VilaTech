@@ -93,7 +93,7 @@ export default function InstitutePage() {
   const [comIsHovered, setComIsHovered] = useState(false);
   const comImages = [
     { src: '/images/imgs_coworking/Estações de trabalho 2.png', alt: 'Coworking' },
-    { src: '/images/imgs_coworking/Recepção Vila Tech Hub.png', alt: 'Recepção Vila Tech Hub' },
+    { src: '/images/imgs_coworking/recepcao.png', alt: 'Recepção Vila Tech Hub' },
     { src: '/images/educacao/Carla_taxway.webp', alt: '' },
     { src: '/images/educacao/educacao1.webp', alt: 'Aulas e Oficinas' },
     { src: '/images/educacao/IMG_6097.webp', alt: 'Mentorias' },

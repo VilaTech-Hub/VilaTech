@@ -146,7 +146,7 @@ export const parallaxGalleryConfig: ParallaxGalleryConfig = {
   ],
   endCtaText: "Agende uma visita",
   parallaxImagesTop: [
-    { id: 1, src: "/images/imgs_coworking/Recepção Vila Tech Hub.png", alt: "Recepção Vila Tech Hub" },
+    { id: 1, src: "/images/imgs_coworking/recepcao.png", alt: "Recepção Vila Tech Hub" },
     { id: 2, src: "/images/imgs_coworking/Estações de trabalho.png", alt: "Estações de trabalho" },
     { id: 3, src: "/images/imgs_coworking/Estações de trabalho 1.png", alt: "Estações de trabalho 1" },
     { id: 4, src: "/images/imgs_coworking/Estações de trabalho 2.png", alt: "Estações de trabalho 2" },

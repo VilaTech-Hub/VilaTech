@@ -145,7 +145,7 @@ const CoworkingSpaces = () => {
             {/* Image Left */}
             <div className="rounded-2xl overflow-hidden aspect-[4/3] bg-white/5">
               <img
-                src="/images/imgs_coworking/Recepção Vila Tech Hub.png"
+                src="/images/imgs_coworking/recepcao.png"
                 alt="Recepção Vila Tech Hub"
                 className="w-full h-full object-cover"
                 loading="lazy"
