@@ -21,7 +21,7 @@ const routes = [
     path: '/cursos',
     title: 'Cursos de IA, Gestão e Criatividade em Itu | Vila Tech Educação',
     description: 'Formação prática em Inteligência Artificial, Gestão Executiva e Criatividade + Games. Presencial, online e In Company. Vila Tech Hub, Itu/SP.',
-    image: 'https://www.vilatechub.com.br/images/plataforma_educacional/teclado-neon.png'
+    image: 'https://www.vilatechub.com.br/images/plataforma_educacional/teclado-neon-og.jpg'
   },
   {
     path: '/plano-aberto',
@@ -69,7 +69,7 @@ async function generateStaticSEO() {
 
     // Substitui as imagens (og:image e twitter:image)
     newHtml = newHtml.replace(
-      /https:\/\/www\.vilatechub\.com\.br\/images\/imgs_coworking\/recepcao\.png/g,
+      /https:\/\/www\.vilatechub\.com\.br\/images\/imgs_coworking\/recepcao-og\.jpg/g,
       route.image
     );
 
