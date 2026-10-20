@@ -38,7 +38,7 @@ const CoworkingHero = () => {
         <div className="absolute inset-0 w-full h-full pointer-events-none">
           <video
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[115vw] h-[115vh] min-w-[177.77vh] min-h-[56.25vw] object-cover scale-110 opacity-100"
-            src="https://4ljrmv3n2znlokpa.public.blob.vercel-storage.com/FILME_APRE_V06.mp4" 
+            src="https://res.cloudinary.com/u8yzzqzn/video/upload/v1792507947/FILME_APRE_V06_1.mp4" 
             autoPlay
             muted
             loop
