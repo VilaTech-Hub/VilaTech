@@ -1,4 +1,5 @@
 import { Users, Monitor, Coffee, Presentation, Mic, MapPin, Wifi, Sofa, ShoppingCart } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const featuresList = [
   {
@@ -78,6 +79,12 @@ const CoworkingFeatures = () => {
             </div>
           ))}
         </div>
+        <p className="text-gray-400 font-sans text-sm leading-relaxed mt-8 border-t border-white/10 pt-5">
+          * O Vila Tech Hub é um projeto do Instituto Cultural e Educacional Vila Tech. A receita dos espaços contribui para manter os projetos de inclusão digital, as atividades educacionais, a estrutura e as equipes.{' '}
+          <Link to="/instituto#sustentabilidade" className="underline underline-offset-4 hover:text-white transition-colors">
+            Conheça o Instituto.
+          </Link>
+        </p>
       </div>
     </section>
   );
