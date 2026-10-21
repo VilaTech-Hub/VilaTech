@@ -31,7 +31,7 @@ const CoworkingPage = () => {
     <div className="bg-void-black min-h-screen">
       <SEO
         title="Coworking em Itu | Vila Tech Hub"
-        description="Espaço de coworking de alto padrão em Itu, SP. Aluguel de salas de reunião, postos individuais de trabalho, escritório virtual e endereço fiscal."
+        description="Coworking, salas de reunião e auditório em Itu. Planos flexíveis cuja receita ajuda a sustentar a estrutura e a educação do Instituto Vila Tech."
       />
       
       <TopNavigation variant="coworking" />

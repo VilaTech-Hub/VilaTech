@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Send } from 'lucide-react';
+import { isQuoteConfirmation, trackQuoteConfirmation } from '../../lib/quoteAnalytics';
 
 const CoworkingQuoteForm = () => {
   const [formData, setFormData] = useState({
@@ -13,8 +14,11 @@ const CoworkingQuoteForm = () => {
   });
 
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const inFlight = useRef(false);
+  const submissionId = useRef<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    submissionId.current = null;
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
@@ -23,24 +27,37 @@ const CoworkingQuoteForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (inFlight.current) return;
+    inFlight.current = true;
     setStatus('submitting');
     
     try {
       const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+      submissionId.current ??= crypto.randomUUID();
       const response = await fetch(`${apiBase}/coworking/quote`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          submission_id: submissionId.current,
+          is_test: new URLSearchParams(window.location.search).get('vth_test') === '1',
+        }),
       });
 
       if (!response.ok) throw new Error('Erro ao enviar');
 
+      // Legacy backend success remains usable; only explicit persistence confirmation is measured.
+      const confirmation: unknown = await response.json().catch(() => null);
+      if (isQuoteConfirmation(confirmation)) trackQuoteConfirmation(confirmation);
+      submissionId.current = null;
       setStatus('success');
       setFormData({ name: '', email: '', phone: '', spaceType: '', capacity: '', period: '', message: '' });
       setTimeout(() => setStatus('idle'), 4000);
     } catch {
       setStatus('idle');
       alert('Erro ao enviar a cotação. Tente novamente ou nos contacte diretamente.');
+    } finally {
+      inFlight.current = false;
     }
   };
 
@@ -55,6 +72,9 @@ const CoworkingQuoteForm = () => {
           <h2 className="text-4xl md:text-5xl font-syne font-bold text-white mb-4">Fazer Cotação</h2>
           <p className="text-gray-400 font-sans text-lg">
             Conte-nos um pouco sobre a sua necessidade e nossa equipe entrará em contato com a melhor solução.
+          </p>
+          <p className="text-gray-300 font-sans text-sm leading-relaxed mt-4 max-w-2xl mx-auto">
+            A receita dos espaços ajuda a manter a estrutura, a equipe e as atividades educacionais do Instituto Cultural e Educacional Vila Tech.
           </p>
         </div>
 
@@ -108,6 +128,7 @@ const CoworkingQuoteForm = () => {
                 <label className="block text-sm font-sans text-gray-400 mb-2">Tipo de Espaço</label>
                 <select
                   name="spaceType"
+                  required
                   value={formData.spaceType}
                   onChange={handleChange}
                   className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#378ADD] transition-colors appearance-none"
@@ -124,6 +145,7 @@ const CoworkingQuoteForm = () => {
                 <label className="block text-sm font-sans text-gray-400 mb-2">Capacidade (Pessoas)</label>
                 <select
                   name="capacity"
+                  required
                   value={formData.capacity}
                   onChange={handleChange}
                   className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#378ADD] transition-colors appearance-none"
@@ -142,15 +164,19 @@ const CoworkingQuoteForm = () => {
                 <label className="block text-sm font-sans text-gray-400 mb-2">Período de Uso</label>
                 <select
                   name="period"
+                  required
                   value={formData.period}
                   onChange={handleChange}
                   className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#378ADD] transition-colors appearance-none"
                 >
                   <option value="" className="bg-void-black">Selecione...</option>
                   <option value="Horas Avulsas" className="bg-void-black">Horas Avulsas</option>
+                  <option value="Por Período" className="bg-void-black">Por Período</option>
                   <option value="Diária (Day Pass)" className="bg-void-black">Diária (Day Pass)</option>
+                  <option value="Pacote de Horas" className="bg-void-black">Pacote de Horas</option>
                   <option value="Mensal" className="bg-void-black">Mensal</option>
-                  <option value="Semestral/Anual" className="bg-void-black">Semestral/Anual</option>
+                  <option value="Semestral" className="bg-void-black">Semestral</option>
+                  <option value="Anual" className="bg-void-black">Anual</option>
                 </select>
               </div>
             </div>

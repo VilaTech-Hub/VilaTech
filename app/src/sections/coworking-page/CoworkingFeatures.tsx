@@ -1,4 +1,5 @@
 import { Users, Monitor, Coffee, Presentation, Mic, MapPin, Wifi, Sofa, ShoppingCart } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const featuresList = [
   {
@@ -60,6 +61,15 @@ const CoworkingFeatures = () => {
             Oferecemos uma infraestrutura completa e moderna, pensada nos mínimos detalhes
             para o crescimento do seu negócio.
           </p>
+          <p className="text-white font-sans text-lg mt-6">
+            Seu trabalho movimenta mais do que negócios.
+          </p>
+          <p className="text-gray-300 font-sans leading-relaxed mt-3">
+            Ao contratar uma estação, sala de reunião ou auditório, você contribui para a sustentabilidade do Instituto Cultural e Educacional Vila Tech. A receita desses espaços ajuda a manter sua estrutura, equipe e atividades educacionais.
+          </p>
+          <Link to="/instituto#sustentabilidade" className="inline-block text-[#68b5ff] underline underline-offset-4 mt-4">
+            Conheça o Instituto e seus projetos
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

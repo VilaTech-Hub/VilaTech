@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import { MapPin, Target, Zap, Send, Check, User, Mail, Phone, MessageSquare, ChevronLeft, ChevronRight, ChevronUp, Palette, BookOpen, Leaf, Building2, Heart } from 'lucide-react';
 import { contactFormConfig } from '../config';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import api from '../services/api';
 import Footer from '../sections/Footer';
 import Partners from '../sections/Partners';
@@ -18,11 +18,14 @@ import SEO from '../components/SEO';
 export default function InstitutePage() {
 
   const heroBgRef = useRef<HTMLDivElement>(null);
+  const { hash } = useLocation();
 
-  // Force scroll to top on mount
+  // Preserve links to the explanation of how workspace revenue supports the mission.
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    const target = hash ? document.getElementById(hash.slice(1)) : null;
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+    else window.scrollTo(0, 0);
+  }, [hash]);
 
 
 
@@ -908,6 +911,12 @@ export default function InstitutePage() {
               <p className="text-lg text-white/90 font-inter font-light leading-relaxed mb-6">
                 Um espaço no coração de Itu para fomentar o ecossistema de inovação e aprendizado, que atende a todas as cidades do entorno, das regiões administrativas de Sorocaba e Campinas. É o ponto de encontro das ações presenciais do Instituto, como sessões de cinema, exposições de arte, espaço de coworking e as aulas presenciais e onde artistas, criativos professores e estudantes se encontram.
               </p>
+              <div id="sustentabilidade" className="scroll-mt-28 border-t border-white/30 pt-6">
+                <h4 className="text-xl font-bold mb-3">Como os espaços sustentam a missão</h4>
+                <p className="text-white/90 font-inter font-light leading-relaxed">
+                  O coworking, as salas de reunião e o auditório do Vila Tech Hub são fontes de receita para o Instituto Cultural e Educacional Vila Tech. Esses recursos contribuem para custear a estrutura, a equipe e as atividades educacionais da associação, apoiando a continuidade de seus projetos. A contratação dos espaços é uma prestação de serviço remunerada.
+                </p>
+              </div>
             </div>
           </div>
           {/* Big Numbers Comunidade */}

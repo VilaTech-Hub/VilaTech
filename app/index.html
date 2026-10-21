@@ -23,18 +23,19 @@
 
   <!-- Tracking Scripts (Deferred) -->
   <script>
+    // Queue commands immediately, before the deferred Google script loads.
+    // This is the existing Google tag, not an additional tag/page_view.
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', 'G-0EJEFT2244');
+
     function initTracking() {
       // Google Analytics
       var gtagScript = document.createElement('script');
       gtagScript.async = true;
       gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-0EJEFT2244";
       document.head.appendChild(gtagScript);
-
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      window.gtag = gtag;
-      gtag('js', new Date());
-      gtag('config', 'G-0EJEFT2244');
 
       // Meta Pixel
       !function (f, b, e, v, n, t, s) {
