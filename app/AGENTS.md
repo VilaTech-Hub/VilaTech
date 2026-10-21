@@ -22,3 +22,11 @@ These defaults are optimized for AI coding agents (and humans) working on apps t
   needed. Always curl https://ai-gateway.vercel.sh/v1/models first; never trust model IDs from memory
 - For durable agent loops or untrusted code: use Workflow (pause/resume/state) + Sandbox; use Vercel MCP for secure infra access
 <!-- VERCEL BEST PRACTICES END -->
+
+## Comunicação do Vila Tech Hub
+
+- O Vila Tech Hub é o projeto comunitário do Instituto Cultural e Educacional Vila Tech, composto principalmente por Coworking e Escola de Tecnologia, Inovação e Criatividade, com propósito de inclusão digital.
+- Nas páginas e anúncios comerciais, priorize oferta, benefício, modalidades e CTA para conversão em vendas, com awareness institucional complementar.
+- Explique a destinação da receita apenas de forma acessória: nota com asterisco, corpo menor legível e bom contraste. Não use essa explicação como slogan, headline ou argumento comercial principal.
+- A nota pode informar que as atividades remuneradas mantêm projetos, atividades educacionais, estrutura e equipes. Preserve a clareza da informação e o vínculo real com a missão, sem ocultação, percentuais ou benefícios inventados.
+- Não transforme razões circunstanciais de financiamento em copy pública; explique apenas a destinação das receitas e a natureza real dos projetos.

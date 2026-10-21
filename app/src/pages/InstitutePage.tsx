@@ -909,12 +909,11 @@ export default function InstitutePage() {
                 Vila Tech Hub
               </h3>
               <p className="text-lg text-white/90 font-inter font-light leading-relaxed mb-6">
-                Um espaço no coração de Itu para fomentar o ecossistema de inovação e aprendizado, que atende a todas as cidades do entorno, das regiões administrativas de Sorocaba e Campinas. É o ponto de encontro das ações presenciais do Instituto, como sessões de cinema, exposições de arte, espaço de coworking e as aulas presenciais e onde artistas, criativos professores e estudantes se encontram.
+                O Vila Tech Hub é o projeto comunitário do Instituto Cultural e Educacional Vila Tech. Reúne coworking e Escola de Tecnologia, Inovação e Criatividade, com o propósito de promover a inclusão digital. Em Itu, conecta profissionais, empreendedores, professores e estudantes e recebe atividades educacionais e culturais para a cidade e as regiões de Sorocaba e Campinas.
               </p>
-              <div id="sustentabilidade" className="scroll-mt-28 border-t border-white/30 pt-6">
-                <h4 className="text-xl font-bold mb-3">Como os espaços sustentam a missão</h4>
-                <p className="text-white/90 font-inter font-light leading-relaxed">
-                  O coworking, as salas de reunião e o auditório do Vila Tech Hub são fontes de receita para o Instituto Cultural e Educacional Vila Tech. Esses recursos contribuem para custear a estrutura, a equipe e as atividades educacionais da associação, apoiando a continuidade de seus projetos. A contratação dos espaços é uma prestação de serviço remunerada.
+              <div id="sustentabilidade" className="scroll-mt-28 border-t border-white/30 pt-4">
+                <p className="text-white/80 text-sm font-inter font-light leading-relaxed">
+                  * As atividades remuneradas do Vila Tech Hub, incluindo coworking, salas de reunião, auditório e formação, geram recursos para manter os projetos de inclusão digital, as atividades educacionais, a estrutura e as equipes do Instituto. A contratação dos espaços é uma prestação de serviço remunerada.
                 </p>
               </div>
             </div>

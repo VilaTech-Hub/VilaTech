@@ -73,9 +73,6 @@ const CoworkingQuoteForm = () => {
           <p className="text-gray-400 font-sans text-lg">
             Conte-nos um pouco sobre a sua necessidade e nossa equipe entrará em contato com a melhor solução.
           </p>
-          <p className="text-gray-300 font-sans text-sm leading-relaxed mt-4 max-w-2xl mx-auto">
-            A receita dos espaços ajuda a manter a estrutura, a equipe e as atividades educacionais do Instituto Cultural e Educacional Vila Tech.
-          </p>
         </div>
 
         <div className="bg-void-black border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl">
@@ -212,6 +209,9 @@ const CoworkingQuoteForm = () => {
             </div>
             
           </form>
+          <p className="text-gray-400 font-sans text-sm leading-relaxed mt-5">
+            * As atividades remuneradas do Vila Tech Hub contribuem para manter os projetos, a estrutura e as equipes do Instituto Cultural e Educacional Vila Tech.
+          </p>
         </div>
       </div>
     </section>

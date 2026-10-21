@@ -1,6 +1,6 @@
 # Vila Tech: receita dos espaços, missão e Google Ad Grants
 Verificação: 21/10/2026. Repositório-base: VilaTech-Hub/VilaTech, commit 37d34a8d7d575e35c183746ee8c1d6d8b8521479.
-Ramo de trabalho local: codex/adgrants-mission-tracking-20261021.
+Ramo: codex/adgrants-mission-tracking-20261021. PR: https://github.com/VilaTech-Hub/VilaTech/pull/16.
 
 ## Decisão e limites
 A captura apresentada pelo Instituto mostra Google Ad Grants com status aprovada e cliente 192-557-7139. A identidade/adesão inicial deixa de ser pendência. A captura não substitui a conferência do estado atual das campanhas, metas e entrega.
@@ -11,25 +11,28 @@ A recomendação é uma apresentação discreta no layout, explícita no conteú
 
 As políticas consultadas não definem percentual universal que transforme uma atividade em “limitada”. Não inventar limite de receita, proporção de páginas ou percentual de reinvestimento como garantia de conformidade.
 
-## Apresentação recomendada
-1. **Página de espaços:** benefício funcional claro, identificação do Instituto e um parágrafo de destinação da receita, visível no fluxo principal.
-2. **Próximo da cotação:** uma frase curta reforça a destinação, mantendo o CTA de contratação.
-3. **Página Instituto:** explicação mais completa de estrutura, equipe e educação; projetos vigentes apresentados com seu estágio real.
-4. **Transparência:** publicar síntese financeira por período com receitas dos espaços, custos operacionais e recursos aplicados em educação, acompanhada do critério de rateio quando houver. É uma recomendação de sustentação da declaração; não é uma alegação de que Google exige um formato contábil específico.
-5. **Anúncios:** comunicar o espaço realmente oferecido e acrescentar a contribuição à educação quando pertinente. Não chamar a contratação de doação, nem renomear uma locação comum como projeto social sem operação correspondente.
+## Diretriz editorial incorporada
+O Vila Tech Hub é o projeto comunitário do Instituto Cultural e Educacional Vila Tech e reúne principalmente Coworking e Escola de Tecnologia, Inovação e Criatividade, com propósito de inclusão digital. Atividades geradoras de receita mantêm projetos, atividades, estrutura e equipes.
 
-### Texto central preparado
-**Seu trabalho movimenta mais do que negócios.**
+Prioridade imediata: conversão em vendas, apoiada por awareness institucional. Apresentar oferta, benefício, modalidades e CTA como mensagens principais. A explicação sobre sustentabilidade financeira é sempre acessória: nota com asterisco, corpo menor legível, contraste adequado e sem slogan próprio. Não usar impacto social como título comercial nem substituir a oferta por apelo de doação.
 
-Ao contratar uma estação, sala de reunião ou auditório, você contribui para a sustentabilidade do Instituto Cultural e Educacional Vila Tech. A receita desses espaços ajuda a manter sua estrutura, equipe e atividades educacionais.
+A comunicação pública não enumera razões circunstanciais de financiamento; apresenta o que o cliente contrata e a destinação dos recursos de forma objetiva.
 
-**Conheça o Instituto e seus projetos.**
+### Aplicação
+1. **Página de espaços:** benefícios primeiro; nota institucional de 14 px após a grade, com link discreto.
+2. **Cotação:** CTA e formulário primeiro; nota complementar ao final do cartão.
+3. **Instituto:** apresentação do projeto comunitário e seus pilares; a explicação financeira permanece em corpo menor, sem título de campanha.
+4. **SEO e anúncios:** benefício, local, modalidade e CTA. Awareness por identificação da marca e links pertinentes ao Instituto e à educação, sem transformar a destinação da receita no argumento principal.
+5. **Transparência:** manter informação financeira verificável sobre o uso dos recursos. Hierarquia secundária não significa ocultação, texto ilegível ou conteúdo diferente para revisores.
 
-### Texto junto ao formulário
-A receita dos espaços ajuda a manter a estrutura, a equipe e as atividades educacionais do Instituto Cultural e Educacional Vila Tech.
+### Nota complementar na página de espaços
+* O Vila Tech Hub é um projeto do Instituto Cultural e Educacional Vila Tech. A receita dos espaços contribui para manter os projetos de inclusão digital, as atividades educacionais, a estrutura e as equipes. Conheça o Instituto.
 
-### Explicação institucional preparada
-O coworking, as salas de reunião e o auditório do Vila Tech Hub são fontes de receita para o Instituto Cultural e Educacional Vila Tech. Esses recursos contribuem para custear a estrutura, a equipe e as atividades educacionais da associação, apoiando a continuidade de seus projetos. A contratação dos espaços é uma prestação de serviço remunerada.
+### Nota complementar ao formulário
+* As atividades remuneradas do Vila Tech Hub contribuem para manter os projetos, a estrutura e as equipes do Instituto Cultural e Educacional Vila Tech.
+
+### Explicação institucional em corpo menor
+* As atividades remuneradas do Vila Tech Hub, incluindo coworking, salas de reunião, auditório e formação, geram recursos para manter os projetos de inclusão digital, as atividades educacionais, a estrutura e as equipes do Instituto. A contratação dos espaços é uma prestação de serviço remunerada.
 
 Os textos não afirmam gratuidade, bolsas, benefício fiscal, 100% de reinvestimento, percentual por reserva ou financiamento de projeto específico ainda não comprovado.
 
@@ -48,28 +51,28 @@ Antes de ampliar para locação comercial genérica, apresentar ao suporte do Ad
 
 ## Rascunhos Search (não cadastrados)
 ### Estações
-Títulos: Coworking em Itu | Trabalhe no Vila Tech Hub | Seu Trabalho Apoia a Educação
+Títulos: Coworking em Itu | Planos Flexíveis de Trabalho | Por Hora, Dia ou Mês
 Descrições:
-- Estações e planos flexíveis. A receita apoia a educação do Instituto Vila Tech.
-- Escolha seu período de uso e solicite uma cotação. Conheça os projetos do Instituto.
+- Estações para profissionais e equipes em Itu. Escolha seu período e solicite uma cotação.
+- Opções por hora, diária, pacote de horas ou mês. Conheça o coworking do Vila Tech Hub.
 
 ### Salas
-Títulos: Sala de Reunião em Itu | Reúna Sua Equipe no Vila Tech | Espaços Que Apoiam a Educação
+Títulos: Sala de Reunião em Itu | Reúna Sua Equipe no Vila Tech | Solicite Sua Cotação
 Descrições:
-- Reúna sua equipe em Itu. A receita dos espaços contribui para a educação do Instituto.
-- Consulte capacidade, disponibilidade e condições. Solicite uma cotação no Vila Tech.
+- Reúna sua equipe em Itu. Consulte capacidade, disponibilidade e condições dos espaços.
+- Encontre o espaço para sua próxima reunião. Solicite uma cotação no Vila Tech Hub.
 
 ### Auditório
-Títulos: Auditório para Eventos em Itu | Treinamentos no Vila Tech | Seu Evento Apoia a Educação
+Títulos: Auditório para Eventos em Itu | Treinamentos no Vila Tech | Solicite Cotação do Auditório
 Descrições:
 - Espaço para encontros e treinamentos em Itu. Consulte condições para o seu evento.
-- A receita dos espaços ajuda a manter a estrutura e a educação do Instituto Vila Tech.
+- Conheça o auditório do Vila Tech Hub e solicite uma cotação para sua equipe.
 
-Os três rascunhos dependem da análise da oferta, dos destinos e da configuração de conversões. Não há volumes de busca, CPCs ou previsão de retorno inventados.
+Awareness complementar: sitelinks pertinentes para Instituto, Cursos e Agenda, preservando o destino de conversão principal. Os três rascunhos dependem da análise da oferta, dos destinos e da configuração de conversões. Não há volumes de busca, CPCs ou previsão de retorno inventados.
 
 ## Alterações locais preparadas
 - Comunicação em CoworkingFeatures e junto à cotação; explicação em InstitutePage com destino /instituto#sustentabilidade.
-- Descrição SEO renderizada da página de coworking alinhada à oferta e à missão.
+- Descrição SEO renderizada da página de coworking orientada à oferta, modalidades e cotação; explicação financeira apenas na nota acessória da página.
 - Períodos do formulário passam a contemplar horas, período, diária, pacote de horas, mensal, semestral e anual; sem preços novos.
 - Backend retorna confirmação com lead_id opaco, form_id, service_type e is_test somente após persistência.
 - ID por operação e criação atômica no Firestore evitam criar vários leads para reenvios da mesma operação; reutilização com dados diferentes retorna conflito.
@@ -111,7 +114,9 @@ O Windsor atual permite várias ações de campanha, mas não esta administraç�
 - 5 testes de emissão/deduplicação, dados pessoais, bloqueio de Analytics e fila antecipada: passaram.
 - ESLint dos módulos novos/alterados de cotação, analytics e página Coworking: passou. Não se afirma lint global limpo.
 - Build local utilizou checkout reduzido sem os arquivos grandes de imagens/fontes; houve avisos de recursos estáticos não presentes nessa cópia. Isso não altera os arquivos remotos nem prova que faltem no site publicado.
-- A validação visual e o teste de formulário por navegador ficaram pendentes: o ambiente não dispõe de Chromium e o download retornou arquivo inválido. O script local não foi executado além dessa inicialização.
+- Validação local em Chromium concluída com API simulada e requests de analytics externos bloqueados: um POST, um evento lead_submission_test, sem nome/e-mail/telefone/ID do CRM nos parâmetros; formulário limpo após sucesso.
+- Hierarquia visual conferida em desktop (1440 px) e mobile (390 px): slogan removido, explicação em 14 px após benefícios, sem rolagem horizontal no mobile e link institucional funcional. As imagens grandes não estão no checkout reduzido usado para essa inspeção.
+- Os builds Vercel do commit anterior passaram para frontend e backend. As duas URLs de preview redirecionam ao login Vercel; não foi contornada a proteção nem executado POST no backend hospedado. A validação hospedada da revisão atual depende de acesso autorizado ao preview.
 - Ainda não houve teste no CRM real, Firestore real, DebugView ou importação Ads. Nenhum teste enviou pedido comercial real ou dados ao GA4 de produção.
 
 ## Fontes oficiais reconsultadas em 21/10/2026
