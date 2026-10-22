@@ -73,7 +73,19 @@ const TourSchedule = () => {
     }
   };
 
-  const TOUR_DATES = tourScheduleConfig.tourDates;
+  // Filtrar apenas datas futuras (formato YYYY.MM.DD)
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const TOUR_DATES = tourScheduleConfig.tourDates.filter(tour => {
+    if (!tour.date) return true;
+    const parts = tour.date.split('.');
+    if (parts.length === 3) {
+      const tourDate = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+      return tourDate >= today;
+    }
+    return true;
+  });
 
   return (
     <section

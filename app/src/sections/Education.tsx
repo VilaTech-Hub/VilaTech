@@ -88,7 +88,7 @@ const Education = ({ zIndex = 40 }: EducationProps) => {
       const cards = cardsRef.current?.querySelectorAll('.trail-card');
       if (cards && cards.length > 0) {
         gsap.set(cards, { y: 30, opacity: 0 });
-        
+
         ScrollTrigger.batch(cards, {
           start: 'top 85%',
           onEnter: (batch) =>
@@ -129,7 +129,7 @@ const Education = ({ zIndex = 40 }: EducationProps) => {
                 to="/cursos"
                 className="px-8 py-3 bg-brand-pink text-void-black font-display text-sm uppercase tracking-wider rounded-full hover:bg-brand-pink/85 transition-all duration-300 text-center font-bold"
               >
-                Conheça os cursos
+                Conheça nossa plataforma
               </Link>
               <Link
                 to="/agenda"

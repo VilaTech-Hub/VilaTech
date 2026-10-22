@@ -92,7 +92,7 @@ const Coworking = ({ zIndex = 40 }: CoworkingProps) => {
       const features = featuresRef.current?.querySelectorAll('.feature-item');
       if (features && features.length > 0) {
         gsap.set(features, { y: 30, opacity: 0 });
-        
+
         ScrollTrigger.batch(features, {
           start: 'top 85%',
           onEnter: (batch) =>
@@ -161,7 +161,7 @@ const Coworking = ({ zIndex = 40 }: CoworkingProps) => {
                 onClick={handleCtaClick}
                 className="px-8 py-3 bg-brand-cyan text-void-black font-display text-sm uppercase tracking-wider rounded-full hover:bg-brand-cyan/80 transition-colors duration-300"
               >
-                Preços e planos
+                Saiba mais
               </button>
             </div>
           </div>
