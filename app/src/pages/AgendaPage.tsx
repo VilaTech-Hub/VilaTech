@@ -7,6 +7,7 @@ import { ExternalLink, Calendar } from 'lucide-react';
 import useLenis from '../hooks/useLenis';
 import api from '../services/api';
 import SEO from '../components/SEO';
+import { trackAgendaAction } from '../lib/agendaAnalytics';
 
 // Helper para verificar se a data do evento é futura (hoje ou posterior)
 const isEventUpcoming = (ev: AgendaEvent): boolean => {
@@ -509,6 +510,7 @@ export default function AgendaPage() {
 
                           <a
                             href={ev.linkInscricao || "https://wa.link/2wbzbb"}
+                            onClick={() => trackAgendaAction(ev)}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="font-syne font-bold text-[10px] tracking-wider uppercase border border-[#7B2D8B]/50 hover:bg-[#7B2D8B] hover:border-[#7B2D8B] px-3.5 py-2 text-[#9B35AE] hover:text-white transition-all duration-300 flex items-center gap-1 hover:scale-105 shrink-0"
