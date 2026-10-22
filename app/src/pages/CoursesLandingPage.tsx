@@ -178,7 +178,7 @@ const CoursesLandingPage = () => {
                 to="/agenda"
                 className="inline-flex items-center gap-2 bg-[#e83a79] hover:bg-[#c42866] text-white font-bold text-sm uppercase tracking-widest px-8 py-4 font-syne transition-all duration-300 hover:shadow-[0_0_30px_rgba(232,58,121,0.4)] hover:-translate-y-0.5"
               >
-                Ver Agenda de Eventos
+                Ver Agenda de Cursos
                 <Calendar className="w-4 h-4" />
               </Link>
             </div>
@@ -253,6 +253,15 @@ const CoursesLandingPage = () => {
               Uma plataforma de cursos online e presenciais para formação prática
               com tecnologia de IA. Do conceito ao uso no dia a dia.
             </p>
+            <div>
+              <Link
+                to="/agenda"
+                className="inline-flex items-center gap-2 bg-[#e83a79] hover:bg-[#c42866] text-white font-bold text-xs uppercase tracking-widest px-6 py-3.5 font-syne transition-all duration-300 hover:shadow-[0_0_25px_rgba(232,58,121,0.4)] hover:-translate-y-0.5"
+              >
+                <Calendar className="w-4 h-4" />
+                Veja nossa agenda e inscreva-se
+              </Link>
+            </div>
           </div>
         </div>
 
@@ -323,9 +332,18 @@ const CoursesLandingPage = () => {
             <p className="text-gray-500 text-sm leading-relaxed mb-8">
               Cursos orientados aos desafios reais da gestão, das pessoas, da governança e do crescimento empresarial.
             </p>
-            <p className="text-sm text-gray-400 italic">
+            <p className="text-sm text-gray-400 italic mb-8">
               Formação presencial, online e In Company.
             </p>
+            <div>
+              <Link
+                to="/agenda"
+                className="inline-flex items-center gap-2 bg-[#378ADD] hover:bg-[#286eb8] text-white font-bold text-xs uppercase tracking-widest px-6 py-3.5 font-syne transition-all duration-300 hover:shadow-[0_0_25px_rgba(55,138,221,0.4)] hover:-translate-y-0.5"
+              >
+                <Calendar className="w-4 h-4" />
+                Veja nossa agenda e inscreva-se
+              </Link>
+            </div>
           </div>
           {/* Right: image */}
           <div className="relative h-72 lg:h-auto order-1 lg:order-2">
@@ -394,12 +412,21 @@ const CoursesLandingPage = () => {
             <p className="text-gray-500 text-sm leading-relaxed italic mb-8">
               Da técnica à criação. Da ideia à entrega.
             </p>
-            <div className="flex gap-3 text-[10px] uppercase font-bold tracking-[0.3em] text-gray-500 font-syne">
+            <div className="flex gap-3 text-[10px] uppercase font-bold tracking-[0.3em] text-gray-500 font-syne mb-8">
               <span>Criar</span>
               <span className="text-[#ef7d00]">•</span>
               <span>Experimentar</span>
               <span className="text-[#ef7d00]">•</span>
               <span>Produzir</span>
+            </div>
+            <div>
+              <Link
+                to="/agenda"
+                className="inline-flex items-center gap-2 bg-[#ef7d00] hover:bg-[#cf6b00] text-white font-bold text-xs uppercase tracking-widest px-6 py-3.5 font-syne transition-all duration-300 hover:shadow-[0_0_25px_rgba(239,125,0,0.4)] hover:-translate-y-0.5"
+              >
+                <Calendar className="w-4 h-4" />
+                Veja nossa agenda e inscreva-se
+              </Link>
             </div>
           </div>
         </div>
