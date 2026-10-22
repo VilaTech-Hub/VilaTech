@@ -1,13 +1,49 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { EVENTOS, MESES_ORDEM, MESES_LABEL, type AgendaEvent } from '../data/agendaData';
 import TopNavigation from '../components/TopNavigation';
 import Footer from '../sections/Footer';
 import WhatsAppButton from '../components/WhatsAppButton';
-import { ExternalLink, SlidersHorizontal, Calendar } from 'lucide-react';
+import { ExternalLink, Calendar } from 'lucide-react';
 import useLenis from '../hooks/useLenis';
 import api from '../services/api';
 import SEO from '../components/SEO';
 import { trackAgendaAction } from '../lib/agendaAnalytics';
+
+// Helper para verificar se a data do evento é futura (hoje ou posterior)
+const isEventUpcoming = (ev: AgendaEvent): boolean => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  // 1. Tentar por dataISO (formato "YYYY-MM-DD")
+  if (ev.dataISO) {
+    const parts = ev.dataISO.split('-');
+    if (parts.length === 3) {
+      const evDate = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+      return evDate >= today;
+    }
+  }
+
+  // 2. Tentar por data formatada brasileira ("DD/MM/YYYY")
+  if (ev.data) {
+    const parts = ev.data.split('/');
+    if (parts.length === 3) {
+      const evDate = new Date(parseInt(parts[2], 10), parseInt(parts[1], 10) - 1, parseInt(parts[0], 10));
+      return evDate >= today;
+    }
+  }
+
+  // 3. Fallback para campos mes e dia
+  if (ev.mes && ev.dia) {
+    const monthIndex = MESES_ORDEM.indexOf(ev.mes.toLowerCase());
+    if (monthIndex !== -1) {
+      const currentYear = today.getFullYear();
+      let evDate = new Date(currentYear, monthIndex, ev.dia);
+      return evDate >= today;
+    }
+  }
+
+  return true;
+};
 
 export default function AgendaPage() {
   // Smooth scroll
@@ -15,6 +51,9 @@ export default function AgendaPage() {
 
   // State for events loaded dynamically from backend
   const [eventos, setEventos] = useState<AgendaEvent[]>(EVENTOS);
+
+  // Filtrar apenas eventos presentes ou futuros
+  const upcomingEventos = useMemo(() => eventos.filter(isEventUpcoming), [eventos]);
 
   // State for filters
   const [activeCategory, setActiveCategory] = useState<'todos' | 'Palestra' | 'Curso' | 'Evento'>('todos');
@@ -49,10 +88,10 @@ export default function AgendaPage() {
     window.scrollTo({ top: 0, behavior: 'instant' });
 
     const targetStats = {
-      total: eventos.length,
-      palestras: eventos.filter(e => e.tipo === 'Palestra').length,
-      cursos: eventos.filter(e => e.tipo === 'Curso').length,
-      eventos: eventos.filter(e => e.tipo === 'Evento').length,
+      total: upcomingEventos.length,
+      palestras: upcomingEventos.filter(e => e.tipo === 'Palestra').length,
+      cursos: upcomingEventos.filter(e => e.tipo === 'Curso').length,
+      eventos: upcomingEventos.filter(e => e.tipo === 'Evento').length,
     };
 
     const duration = 800;
@@ -76,7 +115,7 @@ export default function AgendaPage() {
     }
 
     requestAnimationFrame(tick);
-  }, [eventos]);
+  }, [upcomingEventos]);
 
   // Calendar Helper: Google Calendar Link
   const getGoogleCalendarUrl = (ev: AgendaEvent): string => {
@@ -148,8 +187,9 @@ export default function AgendaPage() {
     }
   };
 
-  // Filter logic
-  const filteredEventos = eventos.filter(ev => {
+
+  // Filter logic com base nos filtros da tela
+  const filteredEventos = upcomingEventos.filter(ev => {
     const matchesCategory = activeCategory === 'todos' || ev.tipo === activeCategory;
     const matchesMonth = !activeMonth || ev.mes === activeMonth;
     return matchesCategory && matchesMonth;
@@ -169,8 +209,8 @@ export default function AgendaPage() {
     return MESES_ORDEM.indexOf(a) - MESES_ORDEM.indexOf(b);
   });
 
-  // Distinct months present in data
-  const monthsInData = Array.from(new Set(eventos.map(e => e.mes))).sort((a, b) => {
+  // Distinct months present in future data
+  const monthsInData = Array.from(new Set(upcomingEventos.map(e => e.mes))).sort((a, b) => {
     return MESES_ORDEM.indexOf(a) - MESES_ORDEM.indexOf(b);
   });
 
@@ -487,10 +527,35 @@ export default function AgendaPage() {
             );
           })
         ) : (
-          <div className="text-center py-20 text-gray-500">
-            <SlidersHorizontal className="w-12 h-12 mx-auto mb-4 opacity-20" />
-            <h3 className="text-lg font-bold font-syne text-white mb-2">Nenhuma atividade encontrada</h3>
-            <p className="text-sm font-light">Tente alterar os filtros de categoria ou mês.</p>
+          <div className="text-center py-20 px-6 max-w-lg mx-auto text-gray-400">
+            <div className="w-16 h-16 rounded-full bg-[#9B35AE]/10 border border-[#9B35AE]/20 flex items-center justify-center mx-auto mb-6">
+              <Calendar className="w-8 h-8 text-[#9B35AE]" />
+            </div>
+            <h3 className="text-xl font-bold font-syne text-white mb-3">
+              {upcomingEventos.length === 0 ? "Novos eventos em breve!" : "Nenhuma atividade encontrada"}
+            </h3>
+            <p className="text-sm font-light leading-relaxed mb-8">
+              {upcomingEventos.length === 0
+                ? "Estamos fechando o calendário dos próximos encontros, palestras e cursos. Acompanhe nossas redes ou fale conosco para saber das novidades em primeira mão!"
+                : "Não há atividades para os filtros selecionados. Tente selecionar outra categoria ou mês."}
+            </p>
+            {upcomingEventos.length === 0 ? (
+              <a
+                href="https://wa.me/5511999999999?text=Ol%C3%A1%2C+gostaria+de+saber+sobre+os+pr%C3%B3ximos+eventos+da+Vila+Tech"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#9B35AE] hover:bg-[#832c94] text-white text-xs font-bold uppercase tracking-wider font-syne transition-colors rounded-sm"
+              >
+                Falar com a equipe
+              </a>
+            ) : (
+              <button
+                onClick={() => { setActiveCategory('todos'); setActiveMonth(null); }}
+                className="inline-flex items-center gap-2 px-6 py-2.5 border border-white/20 hover:border-white/40 text-white text-xs font-bold uppercase tracking-wider font-syne transition-colors"
+              >
+                Limpar filtros
+              </button>
+            )}
           </div>
         )}
       </main>
