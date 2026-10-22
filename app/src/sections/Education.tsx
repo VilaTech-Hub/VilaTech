@@ -129,7 +129,7 @@ const Education = ({ zIndex = 40 }: EducationProps) => {
                 to="/cursos"
                 className="px-8 py-3 bg-brand-pink text-void-black font-display text-sm uppercase tracking-wider rounded-full hover:bg-brand-pink/85 transition-all duration-300 text-center font-bold"
               >
-                Conheça nossa plataforma
+                Conheça os cursos
               </Link>
               <Link
                 to="/agenda"
