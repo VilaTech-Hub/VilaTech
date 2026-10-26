@@ -35,7 +35,7 @@ const LandingPage = () => {
     <main className="relative w-full min-h-screen bg-void-black">
       <SEO 
         title="Vila Tech Hub | Ecossistema de Inovação, Coworking & Cursos em Itu"
-        description="Conectamos tecnologia, educação e negócios em Itu, SP. Explore nosso coworking de alto padrão, cursos práticos de Inteligência Artificial e clube de benefícios exclusivos."
+        description="O coworking que conecta a comunidade da inovação, tecnologia e educação, com formações práticas em Inteligência Artificial, Gestão de Negócios, Audiovisual e Games."
       />
       <Preloader />
       <TopNavigation />
