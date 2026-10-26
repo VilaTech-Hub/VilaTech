@@ -34,6 +34,12 @@ const routes = [
     title: 'FITI — O futuro encontra lugar em Itu',
     description: 'FITI — Festival de Inovação, Criatividade e Tecnologia de Itu. Uma cidade-campus para ideias, negócios e cultura.',
     image: 'https://www.vilatechub.com.br/images/fiti/bom-jesus-mapping.webp'
+  },
+  {
+    path: '/calendario',
+    title: 'Agenda Vila Tech Hub | Outubro e Novembro 2026',
+    description: 'Ideias que movem. Encontros que transformam. Cursos e encontros presenciais no Vila Tech Hub para ampliar repertórios e impulsionar negócios.',
+    image: 'https://www.vilatechub.com.br/images/agenda/evento-1.jpg'
   }
 ];
 

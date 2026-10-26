@@ -12,6 +12,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 const LandingPage = React.lazy(() => import('./pages/LandingPage'));
 const InstitutePage = React.lazy(() => import('./pages/InstitutePage'));
 const AgendaPage = React.lazy(() => import('./pages/AgendaPage'));
+const CalendarPage = React.lazy(() => import('./pages/CalendarPage'));
 const CoursesLandingPage = React.lazy(() => import('./pages/CoursesLandingPage'));
 const CoworkingPage = React.lazy(() => import('./pages/CoworkingPage'));
 const PlanoAbertoPage = React.lazy(() => import('./pages/PlanoAbertoPage'));
@@ -52,6 +53,7 @@ function App() {
             <Route path="/cursos" element={<CoursesLandingPage />} />
             <Route path="/coworking" element={<CoworkingPage />} />
             <Route path="/agenda" element={<AgendaPage />} />
+            <Route path="/calendario" element={<CalendarPage />} />
             <Route path="/fiti" element={<FitiPage />} />
             <Route path="/doar" element={<DonationPage />} />
             <Route path="/doacao-sucesso" element={<DonationSuccessPage />} />
