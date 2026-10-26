@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import WhatsAppButton from '../components/WhatsAppButton';
 import SEO from '../components/SEO';
+import { trackAgendaAction } from '../lib/agendaAnalytics';
 
 interface AgendaItem {
   id: string;
@@ -83,6 +84,11 @@ export default function CalendarPage() {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, []);
 
+  const trackRegistration = (event: AgendaItem) => trackAgendaAction({
+    tipo: event.id === 'evento-3' ? 'Evento' : 'Curso',
+    linkInscricao: event.link,
+  });
+
   const outubroEvents = EVENTS.filter((e) => e.month === 'outubro');
   const novembroEvents = EVENTS.filter((e) => e.month === 'novembro');
 
@@ -134,6 +140,7 @@ export default function CalendarPage() {
             <article key={ev.id} id={ev.id} className="mb-8 last:mb-0">
               <a
                 href={ev.link}
+                onClick={() => trackRegistration(ev)}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Inscreva-se: ${ev.title}`}
@@ -154,6 +161,7 @@ export default function CalendarPage() {
                 </div>
                 <a
                   href={ev.link}
+                onClick={() => trackRegistration(ev)}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`Inscreva-se: ${ev.title}`}
@@ -176,6 +184,7 @@ export default function CalendarPage() {
             <article key={ev.id} id={ev.id} className="mb-8 last:mb-0">
               <a
                 href={ev.link}
+                onClick={() => trackRegistration(ev)}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Inscreva-se: ${ev.title}`}
@@ -196,6 +205,7 @@ export default function CalendarPage() {
                 </div>
                 <a
                   href={ev.link}
+                onClick={() => trackRegistration(ev)}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`Inscreva-se: ${ev.title}`}
