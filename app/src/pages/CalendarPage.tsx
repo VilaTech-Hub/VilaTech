@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import WhatsAppButton from '../components/WhatsAppButton';
 import SEO from '../components/SEO';
 import { trackAgendaAction } from '../lib/agendaAnalytics';
@@ -103,8 +104,16 @@ export default function CalendarPage() {
       <main className="max-w-[1080px] mx-auto bg-white shadow-sm">
         {/* Header com borda turquesa / ciano */}
         <header className="pt-[52px] pb-[32px] px-6 sm:px-10 border-t-[10px] border-[#00d1d1]">
-          <div className="text-[13px] tracking-[3px] font-[800] text-[#141414] uppercase">
-            VILA TECH HUB · AGENDA 2026
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="text-[13px] tracking-[3px] font-[800] text-[#141414] uppercase">
+              VILA TECH HUB · AGENDA 2026
+            </div>
+            <Link
+              to="/agenda"
+              className="text-xs font-bold uppercase tracking-wider text-[#141414]/70 hover:text-[#00d1d1] transition-colors inline-flex items-center gap-1.5"
+            >
+              ← Voltar para a Agenda Geral
+            </Link>
           </div>
           <h1 className="text-[clamp(34px,7vw,76px)] font-bold leading-[1.02] tracking-[-2px] sm:tracking-[-3px] my-6 text-[#141414]">
             Ideias que movem.
@@ -224,12 +233,21 @@ export default function CalendarPage() {
           <br />
           Rua Francisco José Ferreira Sampaio, 90 · Novo Centro · Itu/SP
           <br />
-          <a
-            href="/"
-            className="text-[#65e1e1] font-semibold hover:underline mt-2 inline-block"
-          >
-            Conheça o Vila Tech Hub ↗
-          </a>
+          <div className="flex flex-wrap gap-4 mt-2">
+            <Link
+              to="/"
+              className="text-[#65e1e1] font-semibold hover:underline inline-block"
+            >
+              Conheça o Vila Tech Hub ↗
+            </Link>
+            <span className="text-white/30">·</span>
+            <Link
+              to="/agenda"
+              className="text-[#65e1e1] font-semibold hover:underline inline-block"
+            >
+              Agenda Geral Completa ↗
+            </Link>
+          </div>
         </footer>
       </main>
 

@@ -3,7 +3,8 @@ import { EVENTOS, MESES_ORDEM, MESES_LABEL, type AgendaEvent } from '../data/age
 import TopNavigation from '../components/TopNavigation';
 import Footer from '../sections/Footer';
 import WhatsAppButton from '../components/WhatsAppButton';
-import { ExternalLink, Calendar } from 'lucide-react';
+import { ExternalLink, Calendar, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import useLenis from '../hooks/useLenis';
 import api from '../services/api';
 import SEO from '../components/SEO';
@@ -281,9 +282,24 @@ export default function AgendaPage() {
           </h1>
 
           {/* Subtitle */}
-          <p className="text-sm md:text-base text-gray-400 font-light max-w-2xl leading-relaxed mb-10">
+          <p className="text-sm md:text-base text-gray-400 font-light max-w-2xl leading-relaxed mb-8">
             Inovação, tecnologia e criatividade em Itu — SP. Conecte-se ao ecossistema Vila Tech Hub e acelere seu aprendizado.
           </p>
+
+          {/* Destaque / CTA para /calendario */}
+          <div className="mb-10">
+            <Link
+              to="/calendario"
+              className="group inline-flex items-center gap-3 px-6 py-3.5 bg-gradient-to-r from-[#9B35AE] to-[#7B2D8B] hover:from-[#af3dc7] hover:to-[#8c339f] text-white text-xs md:text-sm font-bold uppercase tracking-wider font-syne transition-all duration-300 shadow-lg shadow-[#9B35AE]/25 hover:shadow-[#9B35AE]/40 hover:-translate-y-0.5 rounded-sm"
+            >
+              <Calendar className="w-4 h-4 text-white" />
+              <span>Ver Programação Detalhada</span>
+              <span className="text-[10px] bg-white/20 px-2 py-0.5 rounded text-white font-normal lowercase tracking-normal">
+                out / nov
+              </span>
+              <ArrowRight className="w-4 h-4 ml-0.5 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </div>
 
           {/* Stats Grid */}
           <div className="flex flex-wrap gap-8 md:gap-12 mt-12 border-t border-white/5 pt-8">
@@ -385,6 +401,16 @@ export default function AgendaPage() {
               {MESES_LABEL[m] || m}
             </button>
           ))}
+
+          {/* Link para a Programação Especial /calendario */}
+          <Link
+            to="/calendario"
+            className="ml-auto hidden md:inline-flex items-center gap-2 text-xs font-syne font-bold uppercase tracking-wider text-[#9B35AE] hover:text-white px-3.5 py-2 border border-[#9B35AE]/40 hover:border-[#9B35AE] bg-[#9B35AE]/10 hover:bg-[#9B35AE]/20 transition-all rounded-sm"
+          >
+            <Calendar className="w-3.5 h-3.5" />
+            <span>Programação Especial (Out/Nov)</span>
+            <ArrowRight className="w-3.5 h-3.5 ml-0.5" />
+          </Link>
         </div>
       </nav>
 
