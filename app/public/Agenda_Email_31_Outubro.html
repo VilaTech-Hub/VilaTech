@@ -10,12 +10,9 @@
   table { border-collapse:collapse; }
   img { border:0; display:block; }
   a { color:#ff8300; }
+  /* Responsivo apenas para wrapper e padding de conteúdo – NÃO empilha os cards de apresentadores */
   @media only screen and (max-width:620px) {
     .email-wrapper { width:100% !important; }
-    .speaker-row { display:block !important; }
-    .speaker-photo { width:100% !important; text-align:center !important; padding:20px 0 0 !important; }
-    .speaker-photo img { margin:0 auto !important; }
-    .speaker-bio { display:block !important; width:100% !important; padding:16px 20px !important; }
     .content { padding:16px 20px !important; }
   }
 </style>
@@ -63,18 +60,20 @@
   <tr>
     <td style="padding:0 40px 20px;background:#fff">
       <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#fafafa;border:1px solid #eee">
-        <tr class="speaker-row">
-          <td class="speaker-photo" valign="top" style="padding:20px 0 20px 20px;width:146px">
+        <tr>
+          <!-- Coluna da foto: largura fixa 146px, não empilha -->
+          <td valign="top" width="146" style="padding:20px 0 20px 20px;width:146px">
             <img src="https://www.vilatechub.com.br/images/agenda/andre-marquardt.jpg"
                  width="146" height="146" alt="André Marquardt"
                  style="display:block;border:0;width:146px;height:146px;object-fit:cover">
           </td>
-          <td class="speaker-bio" valign="top" style="padding:20px 22px 20px 20px">
+          <!-- Coluna do bio -->
+          <td valign="top" style="padding:20px 22px 20px 20px">
             <h3 style="margin:0 0 8px;font-size:23px;line-height:28px;color:#111">André Marquardt</h3>
             <table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 0 12px">
               <tr>
                 <td valign="middle" style="font-size:14px;line-height:21px;font-weight:bold;padding-right:12px;text-align:left;color:#333">
-                  Diretor Executivo Vivo
+                  Head de Tecnologia da VIVO
                 </td>
                 <td valign="middle">
                   <img src="https://www.vilatechub.com.br/images/agenda/vivo-logo.png"
@@ -84,13 +83,13 @@
               </tr>
             </table>
             <p style="margin:0 0 10px;font-size:16px;line-height:23px;font-weight:bold;color:#9c4800">
-              20 anos de tecnologia e inovação
+              Mais de 30 anos em tecnologia
             </p>
             <p style="margin:0 0 10px;font-size:15px;line-height:23px;color:#333">
-              Especialista em transformação digital e inteligência artificial aplicada ao setor de telecomunicações.
+              Executivo com trajetória em engenharia, produtos digitais, arquitetura de software e transformação tecnológica em ambientes de missão crítica.
             </p>
             <p style="margin:0;font-size:15px;line-height:23px;color:#333">
-              Liderança em projetos de inovação com foco em resultados e impacto real nos negócios.
+              Liderança de equipes de alta performance e adoção estratégica de IA para transformar modelos de trabalho, produtos e serviços.
             </p>
           </td>
         </tr>
@@ -102,13 +101,15 @@
   <tr>
     <td style="padding:0 40px 20px;background:#fff">
       <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#fafafa;border:1px solid #eee">
-        <tr class="speaker-row">
-          <td class="speaker-photo" valign="top" style="padding:20px 0 20px 20px;width:146px">
+        <tr>
+          <!-- Coluna da foto: largura fixa 146px, não empilha -->
+          <td valign="top" width="146" style="padding:20px 0 20px 20px;width:146px">
             <img src="https://www.vilatechub.com.br/images/agenda/carlos-tabosa.jpg"
                  width="146" height="146" alt="Carlos Tabosa"
                  style="display:block;border:0;width:146px;height:146px;object-fit:cover">
           </td>
-          <td class="speaker-bio" valign="top" style="padding:20px 22px 20px 20px">
+          <!-- Coluna do bio -->
+          <td valign="top" style="padding:20px 22px 20px 20px">
             <h3 style="margin:0 0 8px;font-size:23px;line-height:28px;color:#111">Carlos Tabosa</h3>
             <table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 0 12px">
               <tr>
