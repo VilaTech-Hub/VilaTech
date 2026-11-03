@@ -7,7 +7,7 @@ import { trackAgendaAction } from '../lib/agendaAnalytics';
 interface AgendaItem {
   id: string;
   month: 'outubro' | 'novembro';
-  date: string;
+  startsAt: string;
   title: string;
   speakers: string;
   link: string;
@@ -18,7 +18,7 @@ const EVENTS: AgendaItem[] = [
   {
     id: 'evento-1',
     month: 'outubro',
-    date: '28/10 · 19h00',
+    startsAt: '2026-10-28T19:00:00-03:00',
     title: 'O Futuro do RH Começou Ontem',
     speakers: 'Cristiane Mainardes & Tu Evangelista',
     link: 'https://www.sympla.com.br/evento/o-futuro-do-rh-comecou-ontem-o-novo-papel-do-rh-nas-organizacoes/3623318',
@@ -27,7 +27,7 @@ const EVENTS: AgendaItem[] = [
   {
     id: 'evento-2',
     month: 'outubro',
-    date: '29/10 · 19h00',
+    startsAt: '2026-10-29T19:00:00-03:00',
     title: 'Reforma Tributária:',
     speakers: 'Carla Bertoncello',
     link: 'https://www.sympla.com.br/evento/reforma-tributaria-os-impactos-diretos-no-seu-negocio/3626284',
@@ -36,7 +36,7 @@ const EVENTS: AgendaItem[] = [
   {
     id: 'evento-3',
     month: 'outubro',
-    date: '31/10 · 09h00',
+    startsAt: '2026-10-31T09:00:00-03:00',
     title: 'Tudo que você deveria saber sobre IA',
     speakers: 'Achilles, Carlos Tabosa & Convidados',
     link: 'https://www.sympla.com.br/evento/tudo-que-voce-deveria-saber-sobre-ia-mas-ainda-nao-te-contaram/3629324',
@@ -45,7 +45,7 @@ const EVENTS: AgendaItem[] = [
   {
     id: 'evento-4',
     month: 'novembro',
-    date: '04/11 · 18h30',
+    startsAt: '2026-11-04T18:30:00-03:00',
     title: 'ESG para empresas',
     speakers: 'Gilberto de Moura',
     link: 'https://www.sympla.com.br/evento/esg-para-empresas---o-resultado-voce-percebe-no-valor-da-sua-empresa/3619054',
@@ -54,7 +54,7 @@ const EVENTS: AgendaItem[] = [
   {
     id: 'evento-5',
     month: 'novembro',
-    date: '05/11 · 19h00',
+    startsAt: '2026-11-05T19:00:00-03:00',
     title: 'Growth Machine',
     speakers: 'Tiago Lara',
     link: 'https://www.sympla.com.br/evento/growth-machine--o-curso-pratico-para-fazer-sua-empresa-crescer/3614438',
@@ -63,7 +63,7 @@ const EVENTS: AgendaItem[] = [
   {
     id: 'evento-6',
     month: 'novembro',
-    date: '11/11 · 19h00',
+    startsAt: '2026-11-11T19:00:00-03:00',
     title: 'Ferramentas Ágeis em Planejamento Estratégico',
     speakers: 'Gilberto de Moura',
     link: 'https://www.sympla.com.br/evento/ferramentas-Ageis-em-planejamento-estratEgico/3630862',
@@ -72,7 +72,7 @@ const EVENTS: AgendaItem[] = [
   {
     id: 'evento-7',
     month: 'novembro',
-    date: '18/11 · 19h00',
+    startsAt: '2026-11-18T19:00:00-03:00',
     title: 'IA Aplicada à Advocacia',
     speakers: 'Felipe Scalet',
     link: 'https://www.sympla.com.br/evento/ia-aplicada-a-advocacia/3630824',
@@ -90,8 +90,17 @@ export default function CalendarPage() {
     linkInscricao: event.link,
   });
 
-  const outubroEvents = EVENTS.filter((e) => e.month === 'outubro');
-  const novembroEvents = EVENTS.filter((e) => e.month === 'novembro');
+  const now = Date.now();
+  const eventDate = new Intl.DateTimeFormat('pt-BR', {
+    timeZone: 'America/Sao_Paulo',
+    day: '2-digit',
+    month: '2-digit',
+  });
+  const eventTime = new Intl.DateTimeFormat('pt-BR', {
+    timeZone: 'America/Sao_Paulo',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
 
   return (
     <div className="min-h-screen bg-[#f3f3f0] text-[#141414] font-['Avenir',_'Helvetica_Neue',_Arial,_sans-serif] selection:bg-[#00d1d1] selection:text-[#111]">
@@ -139,93 +148,65 @@ export default function CalendarPage() {
           </nav>
         </header>
 
-        {/* Mês: Outubro */}
-        <h2 id="outubro" className="m-0 py-7 px-6 sm:px-10 bg-[#101010] text-white text-[26px] sm:text-[30px] font-bold scroll-mt-6">
-          Outubro <span className="text-[14px] font-normal ml-3 text-white/70">2026</span>
-        </h2>
-
-        <div>
-          {outubroEvents.map((ev) => (
-            <article key={ev.id} id={ev.id} className="mb-8 last:mb-0">
-              <a
-                href={ev.link}
-                onClick={() => trackRegistration(ev)}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Inscreva-se: ${ev.title}`}
-                className="block leading-none m-0 p-0 overflow-hidden group"
-              >
+        {(['novembro', 'outubro'] as const).map((month) => (
+          <section key={month} aria-labelledby={month}>
+            <h2 id={month} className="m-0 py-7 px-6 sm:px-10 bg-[#101010] text-white text-[26px] sm:text-[30px] font-bold scroll-mt-6 capitalize">
+              {month} <span className="text-[14px] font-normal ml-3 text-white/70">2026</span>
+            </h2>
+            {EVENTS.filter((event) => event.month === month).map((event) => {
+              const start = new Date(event.startsAt);
+              const registrationClosed = start.getTime() <= now;
+              const campaignImage = (
                 <img
-                  src={ev.image}
-                  alt={`Campanha: ${ev.title}`}
+                  src={event.image}
+                  alt={registrationClosed ? `Registro visual: ${event.title}` : `Campanha: ${event.title}`}
                   className="w-full h-auto block align-top m-0 transition-transform duration-500 group-hover:scale-[1.01]"
                   loading="lazy"
                 />
-              </a>
-              <div className="py-6 px-6 sm:px-10 pb-7 flex flex-col md:flex-row gap-5 md:gap-6 items-start md:items-center justify-between border-b border-black/5">
-                <div>
-                  <p className="text-[16px] font-[800] text-[#1b5555] mb-2">{ev.date}</p>
-                  <h3 className="m-0 text-[22px] sm:text-[25px] font-bold leading-[1.2] text-[#141414]">{ev.title}</h3>
-                  <p className="leading-[1.5] mb-0 text-[#444] text-[15px] sm:text-[16px] mt-1">{ev.speakers}</p>
-                </div>
-                <a
-                  href={ev.link}
-                onClick={() => trackRegistration(ev)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Inscreva-se: ${ev.title}`}
-                  className="inline-block shrink-0 bg-[#ff8300] hover:bg-[#00d1d1] text-[#111] py-4 px-6 no-underline text-[16px] font-[800] whitespace-nowrap transition-all duration-200 text-center w-full md:w-auto shadow-sm"
-                >
-                  Inscreva-se ↗
-                </a>
-              </div>
-            </article>
-          ))}
-        </div>
+              );
 
-        {/* Mês: Novembro */}
-        <h2 id="novembro" className="m-0 py-7 px-6 sm:px-10 bg-[#101010] text-white text-[26px] sm:text-[30px] font-bold scroll-mt-6 mt-6">
-          Novembro <span className="text-[14px] font-normal ml-3 text-white/70">2026</span>
-        </h2>
-
-        <div>
-          {novembroEvents.map((ev) => (
-            <article key={ev.id} id={ev.id} className="mb-8 last:mb-0">
-              <a
-                href={ev.link}
-                onClick={() => trackRegistration(ev)}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Inscreva-se: ${ev.title}`}
-                className="block leading-none m-0 p-0 overflow-hidden group"
-              >
-                <img
-                  src={ev.image}
-                  alt={`Campanha: ${ev.title}`}
-                  className="w-full h-auto block align-top m-0 transition-transform duration-500 group-hover:scale-[1.01]"
-                  loading="lazy"
-                />
-              </a>
-              <div className="py-6 px-6 sm:px-10 pb-7 flex flex-col md:flex-row gap-5 md:gap-6 items-start md:items-center justify-between border-b border-black/5">
-                <div>
-                  <p className="text-[16px] font-[800] text-[#1b5555] mb-2">{ev.date}</p>
-                  <h3 className="m-0 text-[22px] sm:text-[25px] font-bold leading-[1.2] text-[#141414]">{ev.title}</h3>
-                  <p className="leading-[1.5] mb-0 text-[#444] text-[15px] sm:text-[16px] mt-1">{ev.speakers}</p>
-                </div>
-                <a
-                  href={ev.link}
-                onClick={() => trackRegistration(ev)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Inscreva-se: ${ev.title}`}
-                  className="inline-block shrink-0 bg-[#ff8300] hover:bg-[#00d1d1] text-[#111] py-4 px-6 no-underline text-[16px] font-[800] whitespace-nowrap transition-all duration-200 text-center w-full md:w-auto shadow-sm"
-                >
-                  Inscreva-se ↗
-                </a>
-              </div>
-            </article>
-          ))}
-        </div>
+              return (
+                <article key={event.id} id={event.id} className="mb-8 last:mb-0">
+                  {registrationClosed ? campaignImage : (
+                    <a
+                      href={event.link}
+                      onClick={() => trackRegistration(event)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Inscreva-se: ${event.title}`}
+                      className="block leading-none m-0 p-0 overflow-hidden group"
+                    >
+                      {campaignImage}
+                    </a>
+                  )}
+                  <div className="py-6 px-6 sm:px-10 pb-7 flex flex-col md:flex-row gap-5 md:gap-6 items-start md:items-center justify-between border-b border-black/5">
+                    <div>
+                      <time dateTime={event.startsAt} className="block text-[16px] font-[800] text-[#1b5555] mb-2">
+                        {eventDate.format(start)} · {eventTime.format(start).replace(':', 'h')}
+                      </time>
+                      <h3 className="m-0 text-[22px] sm:text-[25px] font-bold leading-[1.2] text-[#141414]">{event.title}</h3>
+                      <p className="leading-[1.5] mb-0 text-[#444] text-[15px] sm:text-[16px] mt-1">{event.speakers}</p>
+                    </div>
+                    {registrationClosed ? (
+                      <span className="text-sm font-bold text-[#444]">Inscrições encerradas para esta data</span>
+                    ) : (
+                      <a
+                        href={event.link}
+                        onClick={() => trackRegistration(event)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Inscreva-se: ${event.title}`}
+                        className="inline-block shrink-0 bg-[#ff8300] hover:bg-[#00d1d1] text-[#111] py-4 px-6 no-underline text-[16px] font-[800] whitespace-nowrap transition-all duration-200 text-center w-full md:w-auto shadow-sm"
+                      >
+                        Inscreva-se ↗
+                      </a>
+                    )}
+                  </div>
+                </article>
+              );
+            })}
+          </section>
+        ))}
 
         {/* Footer */}
         <footer className="py-9 px-6 sm:px-10 pb-12 bg-[#101010] text-white text-[14px] leading-[1.7] mt-8">
