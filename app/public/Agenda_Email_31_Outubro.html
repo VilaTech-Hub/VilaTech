@@ -3,119 +3,124 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Café Filosófico – Vila Tech Hub – 31 de outubro</title>
+<title>Fórum — Café Filosófico | Vila Tech Hub</title>
 <style>
-  body { margin:0; padding:0; background:#e8e8e8; font-family:Arial,Helvetica,sans-serif; }
+  body { margin:0; padding:0; background:#f3f3f0; color:#141414; font-family:Avenir,'Helvetica Neue',Arial,sans-serif; }
   table { border-collapse:collapse; }
   img { border:0; display:block; }
   a { color:#ff8300; }
-  /* Responsivo apenas para wrapper e padding de conteúdo – NÃO empilha os cards de apresentadores */
-  @media only screen and (max-width:620px) {
-    .email-wrapper { width:100% !important; }
-    .content { padding:16px 20px !important; }
+  /* Responsivo: breakpoint em 480px para não interferir no preview do Brevo (~530px) */
+  @media only screen and (max-width:600px) {
+    .content { padding:26px 22px !important; }
+    .headline { font-size:27px !important; }
+    .cta { display:block !important; text-align:center !important; }
+  }
+  @media only screen and (max-width:480px) {
+    .speaker-photo, .speaker-bio { display:block !important; width:auto !important; }
+    .speaker-photo { padding:20px 22px 0 !important; }
+    .speaker-bio { padding:16px 22px 22px !important; }
   }
 </style>
 </head>
 <body>
-<table role="presentation" width="100%" cellspacing="0" cellpadding="0" bgcolor="#e8e8e8">
-<tr><td align="center" style="padding:24px 12px">
-<!--[if mso]><table role="presentation" width="600"><tr><td><![endif]-->
-<table role="presentation" class="email-wrapper" width="600" cellspacing="0" cellpadding="0" style="max-width:600px;background:#ffffff">
+<!-- Preheader (oculto) -->
+<div style="display:none;max-height:0;overflow:hidden;mso-hide:all">Evento gratuito e aberto a todos. Dia 31/10, às 9h, no Vila Tech Hub, em Itu. Participe dessa conversa sobre IA.</div>
+
+<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:#f3f3f0">
+<tr><td align="center">
+<!--[if mso]><table role="presentation" width="720"><tr><td><![endif]-->
+<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width:720px;background:#ffffff">
 
   <!-- BANNER -->
   <tr>
-    <td>
-      <img src="https://www.vilatechub.com.br/images/agenda/evento-3.jpg"
-           width="600" alt="Café Filosófico – Vila Tech Hub"
-           style="display:block;width:100%;max-width:600px;height:auto">
+    <td style="padding:0;line-height:0">
+      <a href="https://www.sympla.com.br/evento/tudo-que-voce-deveria-saber-sobre-ia-mas-ainda-nao-te-contaram/3629324" target="_blank">
+        <img src="https://www.vilatechub.com.br/images/agenda/evento-3.jpg"
+             width="720" alt="Fórum — Café Filosófico: Tudo que você deveria saber sobre IA. 31/10, sábado, às 9h. Vila Tech Hub, Itu. Inscrição gratuita."
+             style="width:100%;max-width:720px;height:auto;display:block;border:0">
+      </a>
     </td>
   </tr>
 
-  <!-- TÍTULO -->
+  <!-- BADGE + TÍTULO -->
   <tr>
-    <td class="content" style="padding:28px 40px 10px;background:#fff">
-      <p style="margin:0 0 10px;font-size:14px;line-height:20px;color:#9c4800;font-weight:bold;text-transform:uppercase;letter-spacing:1px">
-        Café Filosófico · 31 de outubro
-      </p>
-      <h1 style="margin:0 0 16px;font-size:30px;line-height:38px;font-weight:900;color:#111">
-        Tudo que você deveria saber sobre IA&nbsp;– mas ainda não te contaram
-      </h1>
-      <p style="margin:0 0 18px;font-size:17px;line-height:26px;color:#333">
-        Um encontro descontraído para pensar juntos sobre inteligência artificial, seus impactos reais e as perguntas que mais importam.
-      </p>
-    </td>
-  </tr>
-
-  <!-- APRESENTADORES TÍTULO -->
-  <tr>
-    <td class="content" style="padding:10px 40px 16px;background:#fff">
-      <h2 style="margin:0 0 18px;font-size:20px;line-height:27px;color:#111;border-bottom:2px solid #ff8300;padding-bottom:8px">
-        Apresentadores
-      </h2>
-    </td>
-  </tr>
-
-  <!-- APRESENTADOR 1: ANDRÉ MARQUARDT -->
-  <tr>
-    <td style="padding:0 40px 20px;background:#fff">
-      <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#fafafa;border:1px solid #eee">
+    <td class="content" style="padding:32px 40px 12px">
+      <table role="presentation" cellspacing="0" cellpadding="0">
         <tr>
-          <!-- Coluna da foto: largura fixa 146px, não empilha -->
-          <td valign="top" width="146" style="padding:20px 0 20px 20px;width:146px">
+          <td bgcolor="#ff8300" style="padding:10px 15px;color:#111;font-size:14px;line-height:20px;font-weight:bold;letter-spacing:1px">EVENTO GRATUITO · ABERTO A TODOS</td>
+        </tr>
+      </table>
+
+      <p style="margin:25px 0 10px;font-size:14px;line-height:22px;letter-spacing:1px;font-weight:bold">FÓRUM — CAFÉ FILOSÓFICO</p>
+
+      <h1 class="headline" style="margin:0 0 22px;font-size:34px;line-height:1.15;font-weight:800">
+        Tudo que você deveria saber sobre IA<br>
+        <span style="font-size:24px;font-weight:400">(mas ninguém teve coragem de te contar — até agora)</span>
+      </h1>
+
+      <p style="font-size:20px;line-height:30px;margin:0 0 22px">
+        <strong>Você está convidado a participar dessa conversa.</strong> Traga suas perguntas, suas inquietações e seu ponto de vista. A participação é gratuita e o convite é para todos.
+      </p>
+
+      <h2 style="font-size:23px;line-height:30px;margin:0 0 12px">A IA em debate:</h2>
+      <p style="font-size:18px;line-height:29px;margin:0 0 22px">
+        Afinal, que bicho é esse?<br>
+        É o fim do mundo? Uma nova era da evolução humana?<br>
+        Aonde vamos parar com isso?
+      </p>
+      <p style="font-size:18px;line-height:29px;margin:0 0 26px">
+        Ética, humanidade e visões de quem está na linha de frente da produção tecnológica e de quem está na linha de frente do pensamento crítico sobre o assunto.
+      </p>
+
+      <p style="font-size:17px;line-height:27px;margin:0 0 28px">
+        <strong>Com Achilles Milan Neto, Carlos Tabosa e convidados.</strong>
+      </p>
+
+      <!-- APRESENTADORES -->
+      <h2 style="font-size:23px;line-height:30px;margin:0 0 18px">Presenças especiais nesta conversa</h2>
+
+      <!-- CARD: ANDRÉ MARQUARDT -->
+      <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:#f3f3f0;border-left:5px solid #ff8300;margin:0 0 18px">
+        <tr>
+          <td class="speaker-photo" width="164" valign="top" style="padding:20px 0 20px 18px;width:164px">
             <img src="https://www.vilatechub.com.br/images/agenda/andre-marquardt.jpg"
                  width="146" height="146" alt="André Marquardt"
-                 style="display:block;border:0;width:146px;height:146px;object-fit:cover">
+                 style="display:block;border:0;width:146px;height:146px">
           </td>
-          <!-- Coluna do bio -->
-          <td valign="top" style="padding:20px 22px 20px 20px">
-            <h3 style="margin:0 0 8px;font-size:23px;line-height:28px;color:#111">André Marquardt</h3>
-            <table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 0 12px">
+          <td class="speaker-bio" valign="top" style="padding:20px 22px 20px 20px">
+            <h3 style="margin:0 0 8px;font-size:23px;line-height:28px">André Marquardt</h3>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin:0 0 12px">
               <tr>
-                <td valign="middle" style="font-size:14px;line-height:21px;font-weight:bold;padding-right:12px;text-align:left;color:#333">
-                  Head de Tecnologia da VIVO
-                </td>
+                <td valign="middle" style="font-size:14px;line-height:21px;font-weight:bold;padding-right:12px;text-align:left">Head de Tecnologia da VIVO</td>
                 <td valign="middle">
                   <img src="https://www.vilatechub.com.br/images/agenda/vivo-logo.png"
-                       width="52" alt="Vivo"
-                       style="display:block;border:0;width:52px;height:auto">
+                       width="64" alt="Vivo"
+                       style="display:block;border:0;width:64px;height:auto">
                 </td>
               </tr>
             </table>
-            <p style="margin:0 0 10px;font-size:16px;line-height:23px;font-weight:bold;color:#9c4800">
-              Mais de 30 anos em tecnologia
-            </p>
-            <p style="margin:0 0 10px;font-size:15px;line-height:23px;color:#333">
-              Executivo com trajetória em engenharia, produtos digitais, arquitetura de software e transformação tecnológica em ambientes de missão crítica.
-            </p>
-            <p style="margin:0;font-size:15px;line-height:23px;color:#333">
-              Liderança de equipes de alta performance e adoção estratégica de IA para transformar modelos de trabalho, produtos e serviços.
-            </p>
+            <p style="margin:0 0 10px;font-size:16px;line-height:23px;font-weight:bold;color:#9c4800">Mais de 30 anos em tecnologia</p>
+            <p style="margin:0 0 10px;font-size:15px;line-height:23px">Executivo com trajetória em engenharia, produtos digitais, arquitetura de software e transformação tecnológica em ambientes de missão crítica.</p>
+            <p style="margin:0;font-size:15px;line-height:23px">Liderança de equipes de alta performance e adoção estratégica de IA para transformar modelos de trabalho, produtos e serviços.</p>
           </td>
         </tr>
       </table>
-    </td>
-  </tr>
 
-  <!-- APRESENTADOR 2: CARLOS TABOSA -->
-  <tr>
-    <td style="padding:0 40px 20px;background:#fff">
-      <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#fafafa;border:1px solid #eee">
+      <!-- CARD: CARLOS TABOSA -->
+      <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:#f3f3f0;border-left:5px solid #ff8300;margin:0 0 18px">
         <tr>
-          <!-- Coluna da foto: largura fixa 146px, não empilha -->
-          <td valign="top" width="146" style="padding:20px 0 20px 20px;width:146px">
+          <td class="speaker-photo" width="164" valign="top" style="padding:20px 0 20px 18px;width:164px">
             <img src="https://www.vilatechub.com.br/images/agenda/carlos-tabosa.jpg"
                  width="146" height="146" alt="Carlos Tabosa"
-                 style="display:block;border:0;width:146px;height:146px;object-fit:cover">
+                 style="display:block;border:0;width:146px;height:146px">
           </td>
-          <!-- Coluna do bio -->
-          <td valign="top" style="padding:20px 22px 20px 20px">
-            <h3 style="margin:0 0 8px;font-size:23px;line-height:28px;color:#111">Carlos Tabosa</h3>
-            <table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 0 12px">
+          <td class="speaker-bio" valign="top" style="padding:20px 22px 20px 20px">
+            <h3 style="margin:0 0 8px;font-size:23px;line-height:28px">Carlos Tabosa</h3>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin:0 0 12px">
               <tr>
-                <td valign="middle" style="font-size:14px;line-height:21px;font-weight:bold;padding-right:12px;text-align:left;color:#333">
-                  CEO OPAH IT
-                </td>
+                <td valign="middle" style="font-size:14px;line-height:21px;font-weight:bold;padding-right:12px;text-align:left">CEO OPAH IT</td>
                 <td valign="middle">
                   <img src="https://www.vilatechub.com.br/images/agenda/opah-logo.png"
                        width="52" alt="OPAH"
@@ -123,28 +128,19 @@
                 </td>
               </tr>
             </table>
-            <p style="margin:0 0 10px;font-size:16px;line-height:23px;font-weight:bold;color:#9c4800">
-              Mais de 20 anos em transformação digital
-            </p>
-            <p style="margin:0 0 10px;font-size:15px;line-height:23px;color:#333">
-              Especialista em IA aplicada a negócios, com experiência em empresas nacionais e multinacionais e em projetos de integração de sistemas.
-            </p>
-            <p style="margin:0;font-size:15px;line-height:23px;color:#333">
-              Atuação em arquitetura, dados, governança, segurança digital e liderança de equipes multidisciplinares.
-            </p>
+            <p style="margin:0 0 10px;font-size:16px;line-height:23px;font-weight:bold;color:#9c4800">Mais de 20 anos em transformação digital</p>
+            <p style="margin:0 0 10px;font-size:15px;line-height:23px">Especialista em IA aplicada a negócios, com experiência em empresas nacionais e multinacionais e em projetos de integração de sistemas.</p>
+            <p style="margin:0;font-size:15px;line-height:23px">Atuação em arquitetura, dados, governança, segurança digital e liderança de equipes multidisciplinares.</p>
           </td>
         </tr>
       </table>
-    </td>
-  </tr>
 
-  <!-- QUANDO E ONDE -->
-  <tr>
-    <td style="padding:0 40px 28px;background:#fff">
-      <div style="height:4px;line-height:4px">&nbsp;</div>
+      <div style="height:12px;line-height:12px">&nbsp;</div>
+
+      <!-- QUANDO E ONDE -->
       <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f3f3f0">
         <tr>
-          <td style="padding:22px 24px;font-size:17px;line-height:28px;color:#111">
+          <td style="padding:22px 24px;font-size:17px;line-height:28px">
             <strong style="font-size:23px">31 de outubro de 2026 · Sábado · 9h</strong><br>
             Presencial · <strong>Vila Tech Hub</strong><br>
             Rua Francisco José Ferreira Sampaio, 90<br>
@@ -158,11 +154,11 @@
 
   <!-- CTA -->
   <tr>
-    <td class="content" style="padding:20px 40px 38px;background:#fff">
+    <td class="content" style="padding:20px 40px 38px">
       <table role="presentation" cellspacing="0" cellpadding="0">
         <tr>
           <td bgcolor="#ff8300" style="padding:17px 24px">
-            <a href="https://www.sympla.com.br/evento/tudo-que-voce-deveria-saber-sobre-ia-mas-ainda-nao-te-contaram/3629324"
+            <a class="cta" href="https://www.sympla.com.br/evento/tudo-que-voce-deveria-saber-sobre-ia-mas-ainda-nao-te-contaram/3629324"
                target="_blank"
                style="font-size:17px;line-height:24px;font-weight:bold;color:#111;text-decoration:none">
               Inscreva-se gratuitamente ↗
@@ -170,9 +166,7 @@
           </td>
         </tr>
       </table>
-      <p style="font-size:16px;line-height:25px;margin:20px 0 0;color:#333">
-        Participe e convide outras pessoas para essa conversa.
-      </p>
+      <p style="font-size:16px;line-height:25px;margin:20px 0 0">Participe e convide outras pessoas para essa conversa.</p>
     </td>
   </tr>
 
