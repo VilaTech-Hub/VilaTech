@@ -13,18 +13,19 @@ test('duplicate confirmations emit one lead event without personal data or CRM I
   trackQuoteConfirmation(data);
   trackQuoteConfirmation(data);
   assert.deepEqual(events, [
-    ['event', 'generate_lead', { form_id: 'coworking_quote', service_type: 'meeting_room', lead_source: 'website' }],
+    ['event', 'generate_lead', { send_to: 'G-0EJEFT2244', form_id: 'coworking_quote', service_type: 'meeting_room', lead_source: 'website' }],
     ['event', 'conversion', { send_to: 'AW-18486231681/uRSyCNn5gKUdEIGF9u5E', value: 0, currency: 'USD' }],
   ]);
   assert.ok(!JSON.stringify(events).includes('PRIVATE'));
   assert.ok(!JSON.stringify(events).includes('opaque-real'));
 });
 
-test('QA emits its separate event, never generate_lead', () => {
+test('QA emits only its separate GA4 event', () => {
   const before = events.length;
   trackQuoteConfirmation({ ...confirmation('opaque-qa'), is_test: true });
-  assert.equal(events.at(-1)[1], 'lead_submission_test');
-  assert.equal(events.length, before + 1);
+  assert.deepEqual(events.slice(before), [
+    ['event', 'lead_submission_test', { send_to: 'G-0EJEFT2244', form_id: 'coworking_quote', service_type: 'meeting_room', lead_source: 'website' }],
+  ]);
 });
 
 test('only explicit persistence responses are accepted', () => {

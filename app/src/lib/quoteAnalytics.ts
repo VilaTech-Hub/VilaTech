@@ -16,7 +16,12 @@ export function isQuoteConfirmation(value: unknown): value is QuoteConfirmation 
 
 export function trackQuoteConfirmation(confirmation: QuoteConfirmation): void {
   if (!isQuoteConfirmation(confirmation)) return;
-  const parameters = { form_id: confirmation.form_id, service_type: confirmation.service_type, lead_source: 'website' };
+  const parameters = {
+    send_to: 'G-0EJEFT2244',
+    form_id: confirmation.form_id,
+    service_type: confirmation.service_type,
+    lead_source: 'website',
+  };
   sendOnce(confirmation.is_test ? 'lead_submission_test' : 'generate_lead', parameters, confirmation.lead_id);
   if (!confirmation.is_test) {
     sendOnce('conversion', { send_to: 'AW-18486231681/uRSyCNn5gKUdEIGF9u5E', value: 0, currency: 'USD' }, confirmation.lead_id);
