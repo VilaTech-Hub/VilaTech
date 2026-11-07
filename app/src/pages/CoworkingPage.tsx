@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useLenis from '../hooks/useLenis';
 import { useLocation } from 'react-router-dom';
 import TopNavigation from '../components/TopNavigation';
@@ -12,6 +12,12 @@ import SEO from '../components/SEO';
 const CoworkingPage = () => {
   useLenis();
   const location = useLocation();
+  const [spaceType, setSpaceType] = useState('');
+
+  const requestQuote = (requestedSpaceType: string) => {
+    setSpaceType(requestedSpaceType);
+    document.getElementById('cotacao')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   useEffect(() => {
     if (location.hash) {
@@ -39,9 +45,9 @@ const CoworkingPage = () => {
       <main>
         <CoworkingHero />
         <CoworkingFeatures />
-        <CoworkingSpaces />
+        <CoworkingSpaces onRequestQuote={requestQuote} />
 
-        <CoworkingQuoteForm />
+        <CoworkingQuoteForm spaceType={spaceType} onSpaceTypeChange={setSpaceType} />
       </main>
 
       <Footer />

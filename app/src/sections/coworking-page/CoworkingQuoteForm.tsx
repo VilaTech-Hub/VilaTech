@@ -2,12 +2,16 @@ import { useRef, useState } from 'react';
 import { Send } from 'lucide-react';
 import { isQuoteConfirmation, trackQuoteConfirmation } from '../../lib/quoteAnalytics';
 
-const CoworkingQuoteForm = () => {
+type CoworkingQuoteFormProps = {
+  spaceType: string;
+  onSpaceTypeChange: (spaceType: string) => void;
+};
+
+const CoworkingQuoteForm = ({ spaceType, onSpaceTypeChange }: CoworkingQuoteFormProps) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    spaceType: '',
     capacity: '',
     period: '',
     message: ''
@@ -16,6 +20,7 @@ const CoworkingQuoteForm = () => {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
   const inFlight = useRef(false);
   const submissionId = useRef<string | null>(null);
+  const submissionPayload = useRef<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     submissionId.current = null;
@@ -33,14 +38,24 @@ const CoworkingQuoteForm = () => {
     
     try {
       const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+      const payload = {
+        ...formData,
+        spaceType,
+        is_test: new URLSearchParams(window.location.search).get('vth_test') === '1',
+      };
+      // Reuse the ID only for an unchanged retry, including a type selected via a space CTA.
+      const payloadKey = JSON.stringify(payload);
+      if (submissionPayload.current !== payloadKey) {
+        submissionId.current = null;
+        submissionPayload.current = payloadKey;
+      }
       submissionId.current ??= crypto.randomUUID();
       const response = await fetch(`${apiBase}/coworking/quote`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          ...formData,
+          ...payload,
           submission_id: submissionId.current,
-          is_test: new URLSearchParams(window.location.search).get('vth_test') === '1',
         }),
       });
 
@@ -51,7 +66,8 @@ const CoworkingQuoteForm = () => {
       if (isQuoteConfirmation(confirmation)) trackQuoteConfirmation(confirmation);
       submissionId.current = null;
       setStatus('success');
-      setFormData({ name: '', email: '', phone: '', spaceType: '', capacity: '', period: '', message: '' });
+      setFormData({ name: '', email: '', phone: '', capacity: '', period: '', message: '' });
+      onSpaceTypeChange('');
       setTimeout(() => setStatus('idle'), 4000);
     } catch {
       setStatus('idle');
@@ -126,8 +142,8 @@ const CoworkingQuoteForm = () => {
                 <select
                   name="spaceType"
                   required
-                  value={formData.spaceType}
-                  onChange={handleChange}
+                  value={spaceType}
+                  onChange={e => onSpaceTypeChange(e.target.value)}
                   className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#378ADD] transition-colors appearance-none"
                 >
                   <option value="" className="bg-void-black">Selecione...</option>
