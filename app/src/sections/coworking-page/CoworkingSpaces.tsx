@@ -6,6 +6,7 @@ import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 const spaceSections = [
   {
     id: 'estacoes',
+    spaceType: 'Estação de Trabalho',
     tag: 'POSTOS DE TRABALHO',
     tagColor: '#378ADD',
     title: 'Estações de Trabalho',
@@ -20,6 +21,7 @@ const spaceSections = [
   },
   {
     id: 'salas',
+    spaceType: 'Sala de Reunião',
     tag: 'SALAS DE REUNIÃO',
     tagColor: '#ef7d00',
     title: 'Salas de Reunião',
@@ -34,6 +36,7 @@ const spaceSections = [
   },
   {
     id: 'auditorio',
+    spaceType: 'Auditório',
     tag: 'AUDITÓRIO',
     tagColor: '#e83a79',
     title: 'Auditório para até 70 pessoas',
@@ -47,6 +50,7 @@ const spaceSections = [
   },
   {
     id: 'cafe',
+    spaceType: '',
     tag: 'CAFÉ & CONVIVÊNCIA',
     tagColor: '#9B35AE',
     title: 'Café, Lounge & Honest Market',
@@ -128,13 +132,7 @@ const ImageCarousel = ({ images }: { images: { src: string; label: string }[] })
 
 /* ─── MAIN COMPONENT ──────────────────────────────────────────────────────── */
 
-const CoworkingSpaces = () => {
-
-  const scrollToCotacao = () => {
-    const el = document.getElementById('cotacao');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
-
+const CoworkingSpaces = ({ onRequestQuote }: { onRequestQuote: (spaceType: string) => void }) => {
   return (
     <section id="espacos" className="bg-void-black relative z-10">
 
@@ -185,7 +183,7 @@ const CoworkingSpaces = () => {
                 </li>
               </ul>
               <button
-                onClick={scrollToCotacao}
+                onClick={() => onRequestQuote('Endereço Fiscal')}
                 className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-[#378ADD] text-white font-syne font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-[#378ADD] transition-all duration-300 hover:scale-105"
               >
                 Solicitar Cotação <ArrowRight size={16} />
@@ -244,7 +242,7 @@ const CoworkingSpaces = () => {
 
             {/* CTA Button */}
             <button
-              onClick={scrollToCotacao}
+              onClick={() => onRequestQuote(space.spaceType)}
               className="inline-flex items-center gap-2 px-8 py-3 rounded-full font-syne font-bold text-sm uppercase tracking-widest transition-all duration-300 hover:scale-105"
               style={{ backgroundColor: space.tagColor, color: '#fff' }}
               onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#fff'; e.currentTarget.style.color = space.tagColor; }}

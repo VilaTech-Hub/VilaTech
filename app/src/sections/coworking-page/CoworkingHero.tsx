@@ -30,7 +30,7 @@ const CoworkingHero = () => {
     <section
       id="hero"
       ref={heroRef}
-      className="sticky top-0 w-full h-screen overflow-hidden bg-void-black z-0"
+      className="sticky top-0 w-full min-h-[640px] h-[100svh] overflow-hidden bg-void-black z-0"
     >
       {/* Background container */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-void-black">
@@ -50,15 +50,33 @@ const CoworkingHero = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-void-black/80 via-transparent to-void-black/40" />
       </div>
 
-      {/* SEO H1 Hidden visually but available for screen readers and search engines */}
-      <h1 className="sr-only">Coworking em Itu, SP — Vila Tech Hub</h1>
+      <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex items-end">
+        <div className="w-full max-w-7xl mx-auto px-6 md:px-12 pb-28 pt-32">
+          <h1 className="max-w-3xl text-3xl md:text-5xl font-syne font-bold text-white leading-tight">
+            Coworking em Itu para você e sua equipe
+          </h1>
+          <p className="max-w-2xl mt-5 text-base md:text-xl font-sans text-white/90 leading-relaxed">
+            Estações de trabalho, salas de reunião e auditório no Itu Novo Centro.
+            Escolha o espaço e solicite uma cotação para o período que precisa.
+          </p>
+          <div className="flex flex-wrap gap-4 mt-8">
+            <a href="#cotacao" className="inline-flex items-center justify-center rounded-full bg-[#378ADD] px-7 py-4 font-syne font-bold text-white hover:bg-white hover:text-[#378ADD] transition-colors">
+              Solicitar cotação
+            </a>
+            <a href="#espacos" className="inline-flex items-center justify-center rounded-full border border-white/50 px-7 py-4 font-syne font-bold text-white hover:bg-white/10 transition-colors">
+              Ver espaços
+            </a>
+          </div>
+        </div>
+      </div>
 
       {/* Decorative bottom line */}
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#378ADD]/30 to-transparent z-10" />
       
       {/* Fallback button to scroll down in case user doesn't know there's more */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-bounce">
-        <button 
+        <button
+          aria-label="Ver espaços de coworking"
           onClick={() => {
             const el = document.getElementById('espacos');
             if(el) el.scrollIntoView({ behavior: 'smooth' });
