@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { canonicalUrl } from '../lib/seo-url';
 
 interface SEOProps {
   title: string;
@@ -35,7 +36,8 @@ export const SEO = ({
     // Open Graph
     updateMeta('og:title', title, true);
     updateMeta('og:description', description, true);
-    updateMeta('og:url', url, true);
+    const cleanUrl = canonicalUrl(url);
+    updateMeta('og:url', cleanUrl, true);
     updateMeta('og:image', image, true);
     updateMeta('og:type', type, true);
     
@@ -54,7 +56,6 @@ export const SEO = ({
     }
     
     // Assegurar que a URL canônica use sempre o domínio principal para evitar duplicidade
-    const cleanUrl = url.split('?')[0].replace('http://localhost:5173', 'https://www.vilatechub.com.br');
     canonical.setAttribute('href', cleanUrl);
 
   }, [title, description, url, image, type]);
