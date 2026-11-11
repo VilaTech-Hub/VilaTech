@@ -7,6 +7,7 @@ import Footer from '../sections/Footer';
 import WhatsAppButton from '../components/WhatsAppButton';
 import useLenis from '../hooks/useLenis';
 import SEO from '../components/SEO';
+import { trackWhatsAppClick } from '../lib/whatsappAnalytics';
 import { ArrowRight, Calendar, Building2, Laptop, Users, ChevronRight } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -489,6 +490,7 @@ const CoursesLandingPage = () => {
               href="https://wa.link/2wbzbb"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackWhatsAppClick({ location: 'courses_page', destinationUrl: 'https://wa.link/2wbzbb' })}
               className="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-[#e83a79] text-white hover:text-[#e83a79] font-bold text-sm uppercase tracking-widest px-10 py-5 font-syne transition-all duration-300"
             >
               Falar com a equipe

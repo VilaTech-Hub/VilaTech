@@ -9,6 +9,8 @@ import useLenis from '../hooks/useLenis';
 import api from '../services/api';
 import SEO from '../components/SEO';
 import { trackAgendaAction } from '../lib/agendaAnalytics';
+import { trackWhatsAppClick } from '../lib/whatsappAnalytics';
+import { siteConfig } from '../config';
 
 // Helper para verificar se a data do evento é futura (hoje ou posterior)
 const isEventUpcoming = (ev: AgendaEvent): boolean => {
@@ -567,9 +569,10 @@ export default function AgendaPage() {
             </p>
             {upcomingEventos.length === 0 ? (
               <a
-                href="https://wa.me/5511999999999?text=Ol%C3%A1%2C+gostaria+de+saber+sobre+os+pr%C3%B3ximos+eventos+da+Vila+Tech"
+                href={`${siteConfig.whatsappLink}?text=Ol%C3%A1%2C+gostaria+de+saber+sobre+os+pr%C3%B3ximos+eventos+da+Vila+Tech`}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackWhatsAppClick({ location: 'agenda_empty_fallback', destinationUrl: siteConfig.whatsappLink })}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-[#9B35AE] hover:bg-[#832c94] text-white text-xs font-bold uppercase tracking-wider font-syne transition-colors rounded-sm"
               >
                 Falar com a equipe

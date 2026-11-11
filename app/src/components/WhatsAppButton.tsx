@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { siteConfig } from '../config';
+import { trackWhatsAppClick } from '../lib/whatsappAnalytics';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -87,6 +88,7 @@ const WhatsAppButton = () => {
       target="_blank"
       rel="noopener noreferrer"
       data-track="cta-whatsapp-floating"
+      onClick={() => trackWhatsAppClick({ location: 'floating', destinationUrl: siteConfig.whatsappLink })}
       className="fixed bottom-8 right-8 z-[9999] flex items-center justify-center w-16 h-16 bg-[#25D366] text-white rounded-full shadow-[0_8px_30px_rgba(37,211,102,0.4)] hover:bg-[#20ba5a] hover:scale-110 transition-all duration-300 group"
       aria-label="Contact us on WhatsApp"
     >
