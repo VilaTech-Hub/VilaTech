@@ -13,9 +13,9 @@ const spaceSections = [
     subtitle: 'Flexíveis e fixas, para profissionais e equipes de todos os tamanhos.',
     description: 'Ambientes projetados para produtividade máxima, com internet de alta velocidade, armários individuais e acesso às áreas comuns.',
     images: [
-      { src: '/images/imgs_coworking/Estações de trabalho.png', label: 'Estações Individuais' },
-      { src: '/images/imgs_coworking/Estações de trabalho 1.png', label: 'Área Colaborativa' },
-      { src: '/images/imgs_coworking/Estações de trabalho 2.png', label: 'Postos Fixos' },
+      { src: '/images/imgs_coworking/Estações de trabalho.webp', label: 'Estações Individuais' },
+      { src: '/images/imgs_coworking/Estações de trabalho 1.webp', label: 'Área Colaborativa' },
+      { src: '/images/imgs_coworking/Estações de trabalho 2.webp', label: 'Postos Fixos' },
     ],
     cta: 'Solicitar Cotação',
   },
@@ -28,9 +28,9 @@ const spaceSections = [
     subtitle: 'Privativas e equipadas para reuniões, brainstorms e videoconferências.',
     description: 'Salas com TV, projeção, internet dedicada e isolamento acústico. Disponíveis por hora ou pacotes mensais, para até 8 pessoas.',
     images: [
-      { src: '/images/coworking/sala1_Vista2.jpg', label: 'Sala 01 — Até 4 pessoas' },
-      { src: '/images/coworking/Sala2.jpg', label: 'Sala 02 — Até 8 pessoas' },
-      { src: '/images/coworking/Mesa_grande.jpg', label: 'Mesa de Reunião Executiva' },
+      { src: '/images/coworking/sala1_Vista2.webp', label: 'Sala 01 — Até 4 pessoas' },
+      { src: '/images/coworking/Sala2.webp', label: 'Sala 02 — Até 8 pessoas' },
+      { src: '/images/coworking/Mesa_grande.webp', label: 'Mesa de Reunião Executiva' },
     ],
     cta: 'Reservar Sala',
   },
@@ -43,8 +43,8 @@ const spaceSections = [
     subtitle: 'Para palestras, workshops, eventos corporativos e lançamentos.',
     description: 'Espaço amplo e modular com projetor profissional, sistema de som, iluminação cênica e área para coffee break. Configuração com mesas ou plateia.',
     images: [
-      { src: '/images/imgs_coworking/Auditório com mesas.png', label: 'Configuração Mesas' },
-      { src: '/images/imgs_coworking/Auditório com cadeiras.png', label: 'Configuração Plateia' },
+      { src: '/images/imgs_coworking/Auditório com mesas.webp', label: 'Configuração Mesas' },
+      { src: '/images/imgs_coworking/Auditório com cadeiras.webp', label: 'Configuração Plateia' },
     ],
     cta: 'Agendar Evento',
   },
@@ -57,11 +57,11 @@ const spaceSections = [
     subtitle: 'Área de descompressão, networking e alimentação.',
     description: 'Espaço com café especial, Honest Market (mercadinho inteligente PL Market), lounge para relaxar e vinil para inspirar. Ideal para conexões que fazem a diferença.',
     images: [
-      { src: '/images/coworking/Honest Mkt.jpg', label: 'Honest Market' },
-      { src: '/images/coworking/lounge2.png', label: 'Lounge de Convivência' },
-      { src: '/images/imgs_coworking/xicaras.jpg', label: 'Café Especial' },
-      { src: '/images/imgs_coworking/Balcao.jpg', label: 'Balcão de Atendimento' },
-      { src: '/images/coworking/Pickup.jpg', label: 'Área de Convívio' },
+      { src: '/images/coworking/Honest Mkt.webp', label: 'Honest Market' },
+      { src: '/images/coworking/lounge2.webp', label: 'Lounge de Convivência' },
+      { src: '/images/imgs_coworking/xicaras.webp', label: 'Café Especial' },
+      { src: '/images/imgs_coworking/Balcao.webp', label: 'Balcão de Atendimento' },
+      { src: '/images/coworking/Pickup.webp', label: 'Área de Convívio' },
     ],
     cta: 'Conhecer o Espaço',
     carousel: true,
@@ -104,22 +104,27 @@ const ImageCarousel = ({ images }: { images: { src: string; label: string }[] })
           <button
             onClick={prev}
             disabled={current === 0}
+            aria-label="Foto anterior"
             className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white/10 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
           >
             <ChevronLeft size={18} />
           </button>
-          <div className="flex gap-1.5">
+          <div className="flex items-center gap-1">
             {Array.from({ length: maxStart + 1 }).map((_, i) => (
               <button
                 key={i}
                 onClick={() => setCurrent(i)}
-                className={`w-2 h-2 rounded-full transition-colors ${i === current ? 'bg-white' : 'bg-white/20'}`}
-              />
+                aria-label={`Ver foto ${i + 1}`}
+                className="w-7 h-7 flex items-center justify-center rounded-full transition-colors"
+              >
+                <span className={`w-2 h-2 rounded-full transition-colors ${i === current ? 'bg-white' : 'bg-white/20'}`} />
+              </button>
             ))}
           </div>
           <button
             onClick={next}
             disabled={current === maxStart}
+            aria-label="Próxima foto"
             className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white/10 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
           >
             <ChevronRight size={18} />
@@ -143,7 +148,7 @@ const CoworkingSpaces = ({ onRequestQuote }: { onRequestQuote: (spaceType: strin
             {/* Image Left */}
             <div className="rounded-2xl overflow-hidden aspect-[4/3] bg-white/5">
               <img
-                src="/images/imgs_coworking/recepcao.png"
+                src="/images/imgs_coworking/recepcao.webp"
                 alt="Recepção Vila Tech Hub"
                 className="w-full h-full object-cover"
                 loading="lazy"

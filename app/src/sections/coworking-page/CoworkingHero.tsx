@@ -39,6 +39,8 @@ const CoworkingHero = () => {
           <video
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[115vw] h-[115vh] min-w-[177.77vh] min-h-[56.25vw] object-cover scale-110 opacity-100"
             src="https://res.cloudinary.com/u8yzzqzn/video/upload/v1792507947/FILME_APRE_V06_1.mp4" 
+            poster="/images/imgs_coworking/hero-poster.webp"
+            preload="metadata"
             autoPlay
             muted
             loop

@@ -97,8 +97,9 @@ const CoworkingQuoteForm = ({ spaceType, onSpaceTypeChange }: CoworkingQuoteForm
             {/* Contato Básico */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-sans text-gray-400 mb-2">Nome Completo *</label>
+                <label htmlFor="quote-name" className="block text-sm font-sans text-gray-400 mb-2">Nome Completo *</label>
                 <input
+                  id="quote-name"
                   type="text"
                   name="name"
                   required
@@ -109,8 +110,9 @@ const CoworkingQuoteForm = ({ spaceType, onSpaceTypeChange }: CoworkingQuoteForm
                 />
               </div>
               <div>
-                <label className="block text-sm font-sans text-gray-400 mb-2">WhatsApp / Telefone *</label>
+                <label htmlFor="quote-phone" className="block text-sm font-sans text-gray-400 mb-2">WhatsApp / Telefone *</label>
                 <input
+                  id="quote-phone"
                   type="tel"
                   name="phone"
                   required
@@ -123,8 +125,9 @@ const CoworkingQuoteForm = ({ spaceType, onSpaceTypeChange }: CoworkingQuoteForm
             </div>
 
             <div>
-              <label className="block text-sm font-sans text-gray-400 mb-2">E-mail *</label>
+              <label htmlFor="quote-email" className="block text-sm font-sans text-gray-400 mb-2">E-mail *</label>
               <input
+                id="quote-email"
                 type="email"
                 name="email"
                 required
@@ -138,8 +141,9 @@ const CoworkingQuoteForm = ({ spaceType, onSpaceTypeChange }: CoworkingQuoteForm
             {/* Necessidades do Espaço */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
-                <label className="block text-sm font-sans text-gray-400 mb-2">Tipo de Espaço</label>
+                <label htmlFor="quote-spaceType" className="block text-sm font-sans text-gray-400 mb-2">Tipo de Espaço</label>
                 <select
+                  id="quote-spaceType"
                   name="spaceType"
                   required
                   value={spaceType}
@@ -155,8 +159,9 @@ const CoworkingQuoteForm = ({ spaceType, onSpaceTypeChange }: CoworkingQuoteForm
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-sans text-gray-400 mb-2">Capacidade (Pessoas)</label>
+                <label htmlFor="quote-capacity" className="block text-sm font-sans text-gray-400 mb-2">Capacidade (Pessoas)</label>
                 <select
+                  id="quote-capacity"
                   name="capacity"
                   required
                   value={formData.capacity}
@@ -174,8 +179,9 @@ const CoworkingQuoteForm = ({ spaceType, onSpaceTypeChange }: CoworkingQuoteForm
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-sans text-gray-400 mb-2">Período de Uso</label>
+                <label htmlFor="quote-period" className="block text-sm font-sans text-gray-400 mb-2">Período de Uso</label>
                 <select
+                  id="quote-period"
                   name="period"
                   required
                   value={formData.period}
@@ -195,8 +201,9 @@ const CoworkingQuoteForm = ({ spaceType, onSpaceTypeChange }: CoworkingQuoteForm
             </div>
 
             <div>
-              <label className="block text-sm font-sans text-gray-400 mb-2">Mensagem ou observação (opcional)</label>
+              <label htmlFor="quote-message" className="block text-sm font-sans text-gray-400 mb-2">Mensagem ou observação (opcional)</label>
               <textarea
+                id="quote-message"
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
