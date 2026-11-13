@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "Vila Tech Hub",
+  "description": "Ecossistema de inovação, coworking, salas de reunião e eventos em Itu, SP.",
+  "url": "https://www.vilatechub.com.br",
+  "contact": {
+    "whatsapp": "https://wa.me/5511997321522",
+    "website": "https://www.vilatechub.com.br"
+  },
+  "catalog": [
+    {
+      "id": "coworking",
+      "name": "Coworking e Estações de Trabalho",
+      "description": "40 postos de trabalho flexíveis e fixos com internet de alta velocidade e armários individuais.",
+      "url": "https://www.vilatechub.com.br/coworking"
+    },
+    {
+      "id": "meeting-rooms",
+      "name": "Salas de Reunião",
+      "description": "Salas privativas equipadas com TV, internet dedicada e isolamento acústico para até 8 pessoas.",
+      "url": "https://www.vilatechub.com.br/coworking#espacos"
+    },
+    {
+      "id": "auditorium",
+      "name": "Auditório",
+      "description": "Auditório modular para palestras e eventos corporativos de até 70 pessoas com som e projeção.",
+      "url": "https://www.vilatechub.com.br/coworking#espacos"
+    },
+    {
+      "id": "fiscal-address",
+      "name": "Endereço Fiscal e Comercial",
+      "description": "Registro de CNPJ e domicílio comercial no Itu Novo Centro.",
+      "url": "https://www.vilatechub.com.br/coworking#espacos"
+    },
+    {
+      "id": "courses",
+      "name": "Cursos Vila Tech Educação",
+      "description": "Formação prática em Inteligência Artificial, Gestão, Games e Audiovisual.",
+      "url": "https://www.vilatechub.com.br/cursos"
+    },
+    {
+      "id": "agenda",
+      "name": "Agenda de Eventos",
+      "description": "Workshops, palestras e encontros comunitários no Vila Tech Hub.",
+      "url": "https://www.vilatechub.com.br/agenda"
+    }
+  ]
+}
+
