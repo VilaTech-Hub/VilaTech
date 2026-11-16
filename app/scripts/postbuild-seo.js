@@ -20,7 +20,8 @@ export const routes = [
     path: '/coworking',
     title: 'Coworking em Itu | Vila Tech Hub',
     description: 'Coworking, salas de reunião e auditório em Itu. Opções por hora, período, diária, pacote de horas, mês, semestre ou ano. Solicite uma cotação.',
-    image: 'https://www.vilatechub.com.br/images/imgs_coworking/recepcao-og.jpg'
+    image: 'https://www.vilatechub.com.br/images/imgs_coworking/recepcao-og.jpg',
+    heroPreload: '/images/imgs_coworking/hero-poster.webp'
   },
   {
     path: '/agenda',
@@ -84,6 +85,12 @@ const escapeHtml = (value) => value.replaceAll('&', '&amp;').replaceAll('"', '&q
 // Match tag attributes, never the previous marketing copy. That copy changes often.
 export function renderSeoHtml(baseHtml, route) {
   let html = baseHtml.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(route.title)}</title>`);
+  if (route.heroPreload) {
+    html = html.replace(
+      'href="/images/instituto/ecossistema.webp"',
+      `href="${escapeHtml(route.heroPreload)}"`
+    );
+  }
   const setMeta = (name, value, attribute = 'name') => {
     const pattern = new RegExp(`<meta\\b[^>]*\\b${attribute}=["']${name}["'][^>]*>`, 'gi');
     html = html.replace(pattern, '');
