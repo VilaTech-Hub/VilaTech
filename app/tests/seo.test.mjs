@@ -40,6 +40,11 @@ test('every public route ships distinct metadata and a matching sitemap without 
       assert.equal(html.match(/<script>[\s\S]*?<\/script>/)[0], base.match(/<script>[\s\S]*?<\/script>/)[0], 'Tracking remains unchanged');
       assert.equal(html.slice(html.indexOf('<body>')), base.slice(base.indexOf('<body>')), 'Visible app remains unchanged');
       assert.ok(!html.includes('noindex'));
+      const imagePreloads = [...html.matchAll(/<link rel="preload" as="image" href="([^"]+)"/g)].map((match) => match[1]);
+      const expectedPreload = route.path === '/coworking'
+        ? '/images/imgs_coworking/hero-poster.webp'
+        : '/images/instituto/ecossistema.webp';
+      assert.deepEqual(imagePreloads, [expectedPreload], route.path);
     }
     assert.ok(!sitemap.includes('/admin'));
     assert.ok(!sitemap.includes('/doacao-sucesso'));

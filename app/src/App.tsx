@@ -5,9 +5,6 @@ import './index.css';
 import WhatsAppButton from './components/WhatsAppButton';
 import EventPopup from './components/EventPopup';
 
-import { AuthProvider } from './context/AuthContext';
-import ProtectedRoute from './components/ProtectedRoute';
-
 // Lazy loaded pages
 const LandingPage = React.lazy(() => import('./pages/LandingPage'));
 const InstitutePage = React.lazy(() => import('./pages/InstitutePage'));
@@ -22,6 +19,8 @@ const DonationSuccessPage = React.lazy(() => import('./pages/DonationSuccessPage
 const DonationCancelPage = React.lazy(() => import('./pages/DonationCancelPage'));
 const PrivacyPolicyPage = React.lazy(() => import('./pages/PrivacyPolicyPage'));
 const TermsOfUsePage = React.lazy(() => import('./pages/TermsOfUsePage'));
+const AdminAuthLayout = React.lazy(() => import('./layouts/AdminAuthLayout'));
+const ProtectedRoute = React.lazy(() => import('./components/ProtectedRoute'));
 const AdminLayout = React.lazy(() => import('./layouts/AdminLayout'));
 const LeadsListPage = React.lazy(() => import('./pages/admin/LeadsListPage'));
 const LeadDetailPage = React.lazy(() => import('./pages/admin/LeadDetailPage'));
@@ -42,29 +41,27 @@ const PageLoader = () => (
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <Suspense fallback={<PageLoader />}>
-          <Routes>
-            {/* Public Website */}
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/instituto" element={<InstitutePage />} />
-            <Route path="/plano-aberto" element={<PlanoAbertoPage />} />
-            <Route path="/cursos" element={<CoursesLandingPage />} />
-            <Route path="/coworking" element={<CoworkingPage />} />
-            <Route path="/agenda" element={<AgendaPage />} />
-            <Route path="/calendario" element={<CalendarPage />} />
-            <Route path="/fiti" element={<FitiPage />} />
-            <Route path="/doar" element={<DonationPage />} />
-            <Route path="/doacao-sucesso" element={<DonationSuccessPage />} />
-            <Route path="/doacao-cancelada" element={<DonationCancelPage />} />
-            <Route path="/politica-de-privacidade" element={<PrivacyPolicyPage />} />
-            <Route path="/termos-de-uso" element={<TermsOfUsePage />} />
+    <Router>
+      <Suspense fallback={<PageLoader />}>
+        <Routes>
+          {/* Public Website */}
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/instituto" element={<InstitutePage />} />
+          <Route path="/plano-aberto" element={<PlanoAbertoPage />} />
+          <Route path="/cursos" element={<CoursesLandingPage />} />
+          <Route path="/coworking" element={<CoworkingPage />} />
+          <Route path="/agenda" element={<AgendaPage />} />
+          <Route path="/calendario" element={<CalendarPage />} />
+          <Route path="/fiti" element={<FitiPage />} />
+          <Route path="/doar" element={<DonationPage />} />
+          <Route path="/doacao-sucesso" element={<DonationSuccessPage />} />
+          <Route path="/doacao-cancelada" element={<DonationCancelPage />} />
+          <Route path="/politica-de-privacidade" element={<PrivacyPolicyPage />} />
+          <Route path="/termos-de-uso" element={<TermsOfUsePage />} />
 
-            {/* Admin Login */}
+          <Route element={<AdminAuthLayout />}>
             <Route path="/admin/login" element={<LoginPage />} />
 
-            {/* Admin CRM (Protected) */}
             <Route path="/admin" element={
               <ProtectedRoute>
                 <AdminLayout />
@@ -79,14 +76,14 @@ function App() {
               <Route path="reports" element={<ReportsPage />} />
               <Route path="settings" element={<SettingsPage />} />
             </Route>
-          </Routes>
-        </Suspense>
+          </Route>
+        </Routes>
+      </Suspense>
 
-        <WhatsAppButton />
-        <EventPopup />
-        <SpeedInsights />
-      </Router>
-    </AuthProvider>
+      <WhatsAppButton />
+      <EventPopup />
+      <SpeedInsights />
+    </Router>
   );
 }
 

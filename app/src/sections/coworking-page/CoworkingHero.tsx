@@ -1,11 +1,41 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const desktopVideoQuery = '(min-width: 768px) and (prefers-reduced-motion: no-preference)';
+
+function subscribeToDesktopVideo(onChange: () => void) {
+  const query = window.matchMedia(desktopVideoQuery);
+  query.addEventListener('change', onChange);
+  return () => query.removeEventListener('change', onChange);
+}
+
+const canAutoplayDesktopVideo = () => window.matchMedia(desktopVideoQuery).matches;
+const disableVideoOnServer = () => false;
+
+function DesktopBackgroundVideo() {
+  const [playing, setPlaying] = useState(false);
+
+  return (
+    <video
+      className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[115vw] h-[115vh] min-w-[177.77vh] min-h-[56.25vw] object-cover scale-110 transition-opacity duration-300 ${playing ? 'opacity-100' : 'opacity-0'}`}
+      src="https://res.cloudinary.com/u8yzzqzn/video/upload/v1792507947/FILME_APRE_V06_1.mp4"
+      autoPlay
+      muted
+      loop
+      playsInline
+      onPlaying={() => setPlaying(true)}
+      onError={() => setPlaying(false)}
+    />
+  );
+}
+
 const CoworkingHero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
+  const [coverReady, setCoverReady] = useState(false);
+  const desktopVideo = useSyncExternalStore(subscribeToDesktopVideo, canAutoplayDesktopVideo, disableVideoOnServer);
 
   // GSAP animations
   useEffect(() => {
@@ -32,21 +62,16 @@ const CoworkingHero = () => {
       ref={heroRef}
       className="sticky top-0 w-full min-h-[640px] h-[100svh] overflow-hidden bg-void-black z-0"
     >
-      {/* Background container */}
-      <div className="absolute inset-0 z-0 overflow-hidden bg-void-black">
-        {/* Local Video Background (Placeholder for external URL) */}
-        <div className="absolute inset-0 w-full h-full pointer-events-none">
-          <video
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[115vw] h-[115vh] min-w-[177.77vh] min-h-[56.25vw] object-cover scale-110 opacity-100"
-            src="https://res.cloudinary.com/u8yzzqzn/video/upload/v1792507947/FILME_APRE_V06_1.mp4" 
-            poster="/images/imgs_coworking/hero-poster.webp"
-            preload="metadata"
-            autoPlay
-            muted
-            loop
-            playsInline
-          />
-        </div>
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 overflow-hidden bg-void-black">
+        <img
+          className="absolute inset-0 h-full w-full object-cover"
+          src="/images/imgs_coworking/hero-poster.webp"
+          alt=""
+          fetchPriority="high"
+          onLoad={() => setCoverReady(true)}
+          onError={() => setCoverReady(true)}
+        />
+        {desktopVideo && coverReady && <DesktopBackgroundVideo />}
 
         {/* Cinematic Gradient Overlays (sutil apenas para o topo e base) */}
         <div className="absolute inset-0 bg-gradient-to-b from-void-black/80 via-transparent to-void-black/40" />
