@@ -383,21 +383,20 @@ export default function InstitutePage() {
             <h1
               className="text-white mb-8"
               style={{
-                letterSpacing: '-.05em',
+                letterSpacing: '-.03em',
                 maxWidth: '850px',
                 fontFamily: 'Montserrat, sans-serif',
                 fontSize: 'clamp(32px, 4.5vw, 56px)',
                 fontWeight: 800,
-                lineHeight: 1.1
+                lineHeight: 1.15
               }}
             >
-              Educação em tecnologia, arte e Inovação <span className="text-brand-teal">transformando vidas.</span><br />
-              Novos conhecimentos, novas descobertas.<br />
-              Abrindo caminhos rumo ao futuro.
+              Educação em tecnologia, arte e Inovação.<br />
+              <span className="text-brand-teal">Transformando vidas através do conhecimento</span>
             </h1>
 
             <p className="text-lg md:text-xl text-white/90 font-inter max-w-2xl mb-12 leading-relaxed font-light">
-              Projetos sociais, bolsas de estudo e capacitação profissional em IA, criatividade e cultura.<br />Conectando talentos em vulnerabilidade ao futuro.
+              Projetos sociais e educacionais promovendo acesso a capacitação profissional em tecnologia com IA, criatividade e cultura.
             </p>
           </div>
         </div>
@@ -421,16 +420,13 @@ export default function InstitutePage() {
         <div className="container mx-auto max-w-7xl relative z-10">
           <div className="flex flex-col lg:flex-row gap-16 items-center">
             <div className="w-full lg:w-1/2 fade-up">
-              <span className="text-brand-purple font-inter font-bold tracking-widest uppercase text-sm mb-4 block">
-                Conhecimento encontra propósito
-              </span>
               <h2
                 className="text-5xl md:text-6xl lg:text-7xl font-black text-[#1d1d1b] mb-6"
                 style={{
-                  letterSpacing: '-.075em',
+                  letterSpacing: '-.02em',
                   fontFamily: 'Montserrat, sans-serif',
                   fontWeight: 800,
-                  lineHeight: 0.96
+                  lineHeight: 1.08
                 }}
               >
                 Tornando possível um <span className="text-brand-teal">futuro melhor</span>
@@ -439,10 +435,10 @@ export default function InstitutePage() {
             <div className="w-full lg:w-1/2 fade-up" style={{ transitionDelay: '100ms' }}>
               <div className="space-y-6 text-lg text-gray-600 font-inter font-light leading-relaxed">
                 <p>
-                  O ICEVT desenvolve e executa projetos que tem o objetivo de ampliar o acesso ao conhecimento inovador, à tecnologia, à arte, à cultura, focando no equilíbrio entre inovação tecnológica e o seu papel na promoção de uma vida melhor para cada individuo e para comunidade.
+                  O ICEVT desenvolve e executa projetos com o objetivo de ampliar o acesso ao conhecimento inovador, à tecnologia, à arte, à cultura, focando no equilíbrio entre inovação tecnológica e o seu papel na promoção de uma vida melhor para cada individuo e para comunidade.
                 </p>
                 <p>
-                  São programas e trilhas de aprendizado, ações efetivas e acessíveis para transformar cidadãos em agentes da inovação criativa, promovendo qualificação, empregabilidade com acesso a novos conhecimentos.
+                  São programas de educação ágil com trilhas de aprendizado práticos e acessíveis para transformar cidadãos em agentes da inovação criativa, promovendo qualificação e empregabilidade.
                 </p>
               </div>
             </div>

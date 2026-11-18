@@ -80,7 +80,7 @@ const CoworkingHero = () => {
       <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex items-end">
         <div className="w-full max-w-7xl mx-auto px-6 md:px-12 pb-28 pt-32">
           <h1 className="max-w-3xl text-3xl md:text-5xl font-syne font-bold text-white leading-tight">
-            Coworking em Itu para você e sua equipe
+            Coworking em Itu<br />para você e sua equipe
           </h1>
           <p className="max-w-2xl mt-5 text-base md:text-xl font-sans text-white/90 leading-relaxed">
             Estações de trabalho, salas de reunião e auditório no Itu Novo Centro.

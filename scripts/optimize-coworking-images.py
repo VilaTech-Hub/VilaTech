@@ -71,3 +71,4 @@ if os.path.exists(hero_src):
         print(f"Created hero poster: {hero_poster} ({os.path.getsize(hero_poster) / 1024:.1f} KB)")
 
 print(f"\nTotal reduction: {total_original_size / 1024 / 1024:.2f} MB -> {total_new_size / 1024 / 1024:.2f} MB (saved {(total_original_size - total_new_size) / 1024 / 1024:.2f} MB!)")
+
