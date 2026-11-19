@@ -13,9 +13,9 @@ const spaceSections = [
     subtitle: 'Flexíveis e fixas, para profissionais e equipes de todos os tamanhos.',
     description: 'Ambientes projetados para produtividade máxima, com internet de alta velocidade, armários individuais e acesso às áreas comuns.',
     images: [
-      { src: '/images/imgs_coworking/Estações de trabalho.webp', label: 'Estações Individuais' },
-      { src: '/images/imgs_coworking/Estações de trabalho 1.webp', label: 'Área Colaborativa' },
-      { src: '/images/imgs_coworking/Estações de trabalho 2.webp', label: 'Postos Fixos' },
+      { src: '/images/coworking/estacoes-geral.webp', label: 'Visão Geral do Salão' },
+      { src: '/images/coworking/estacoes-mesas.webp', label: 'Mesas Colaborativas & Postos Fixos' },
+      { src: '/images/imgs_coworking/Estações de trabalho 2.webp', label: 'Postos de Trabalho Individuais' },
     ],
     cta: 'Solicitar Cotação',
   },
@@ -28,11 +28,13 @@ const spaceSections = [
     subtitle: 'Privativas e equipadas para reuniões, brainstorms e videoconferências.',
     description: 'Salas com TV, projeção, internet dedicada e isolamento acústico. Disponíveis por hora ou pacotes mensais, para até 8 pessoas.',
     images: [
-      { src: '/images/coworking/sala1_Vista2.webp', label: 'Sala 01 — Até 4 pessoas' },
-      { src: '/images/coworking/Sala2.webp', label: 'Sala 02 — Até 8 pessoas' },
-      { src: '/images/coworking/Mesa_grande.webp', label: 'Mesa de Reunião Executiva' },
+      { src: '/images/coworking/reuniao-executiva-1.webp', label: 'Sala de Reunião Executiva com TV' },
+      { src: '/images/coworking/reuniao-executiva-2.webp', label: 'Sala para até 4 Pessoas' },
+      { src: '/images/coworking/reuniao-mesa-grande.webp', label: 'Mesa de Reunião Ampla & Confortável' },
+      { src: '/images/coworking/sala1_Vista2.webp', label: 'Open Space' },
     ],
     cta: 'Reservar Sala',
+    carousel: true,
   },
   {
     id: 'auditorio',
@@ -43,8 +45,9 @@ const spaceSections = [
     subtitle: 'Para palestras, workshops, eventos corporativos e lançamentos.',
     description: 'Espaço amplo e modular com projetor profissional, sistema de som, iluminação cênica e área para coffee break. Configuração com mesas ou plateia.',
     images: [
-      { src: '/images/imgs_coworking/Auditório com mesas.webp', label: 'Configuração Mesas' },
-      { src: '/images/imgs_coworking/Auditório com cadeiras.webp', label: 'Configuração Plateia' },
+      { src: '/images/coworking/auditorio-plateia.webp', label: 'Configuração Plateia & Telão Profissional' },
+      { src: '/images/coworking/auditorio-mesas.webp', label: 'Configuração com Mesas para Workshops' },
+      { src: '/images/imgs_coworking/Auditório com cadeiras.webp', label: 'Capacidade para até 70 Pessoas' },
     ],
     cta: 'Agendar Evento',
   },
@@ -57,11 +60,11 @@ const spaceSections = [
     subtitle: 'Área de descompressão, networking e alimentação.',
     description: 'Espaço com café especial, Honest Market (mercadinho inteligente PL Market), lounge para relaxar e vinil para inspirar. Ideal para conexões que fazem a diferença.',
     images: [
-      { src: '/images/coworking/Honest Mkt.webp', label: 'Honest Market' },
-      { src: '/images/coworking/lounge2.webp', label: 'Lounge de Convivência' },
-      { src: '/images/imgs_coworking/xicaras.webp', label: 'Café Especial' },
-      { src: '/images/imgs_coworking/Balcao.webp', label: 'Balcão de Atendimento' },
-      { src: '/images/coworking/Pickup.webp', label: 'Área de Convívio' },
+      { src: '/images/coworking/cafe-copa.webp', label: 'Café & Copa Integrada' },
+      { src: '/images/coworking/lounge-convivencia.webp', label: 'Lounge de Convivência & Relaxamento' },
+      { src: '/images/coworking/honest-market.webp', label: 'Honest Market — PL Market 24/7' },
+      { src: '/images/coworking/pickup-convivio.webp', label: 'Área de Convívio & Encontros' },
+      { src: '/images/coworking/cafe-xicaras.webp', label: 'Café Especial & Clube do Vinil' },
     ],
     cta: 'Conhecer o Espaço',
     carousel: true,
@@ -135,6 +138,82 @@ const ImageCarousel = ({ images }: { images: { src: string; label: string }[] })
   );
 };
 
+/* ─── FISCAL SECTION CAROUSEL ─────────────────────────────────────────────── */
+
+const FiscalCarousel = () => {
+  const [current, setCurrent] = useState(0);
+  const images = [
+    { src: '/images/coworking/recepcao-principal.webp', label: 'Recepção Vila Tech Hub' },
+    { src: '/images/coworking/fachada-limpa.webp', label: 'Fachada & Acesso — Itu Novo Centro' },
+    { src: '/images/coworking/fachada-angulo.webp', label: 'Edifício Vila Tech Hub' },
+  ];
+
+  const prev = () => setCurrent(c => (c === 0 ? images.length - 1 : c - 1));
+  const next = () => setCurrent(c => (c === images.length - 1 ? 0 : c + 1));
+
+  return (
+    <div className="relative group">
+      <div className="rounded-2xl overflow-hidden aspect-[4/3] bg-white/5 relative">
+        {images.map((img, idx) => (
+          <img
+            key={img.src}
+            src={img.src}
+            alt={img.label}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+              idx === current ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+            }`}
+            loading="lazy"
+          />
+        ))}
+
+        {/* Gradient overlay for bottom badge */}
+        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/80 to-transparent z-20 pointer-events-none" />
+
+        {/* Label badge */}
+        <div className="absolute bottom-3 left-4 z-20">
+          <span className="text-xs font-sans text-white/90 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
+            {images[current].label}
+          </span>
+        </div>
+
+        {/* Navigation Arrows */}
+        <button
+          onClick={prev}
+          aria-label="Foto anterior da recepção e fachada"
+          className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/50 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all opacity-80 group-hover:opacity-100 z-30"
+        >
+          <ChevronLeft size={18} />
+        </button>
+        <button
+          onClick={next}
+          aria-label="Próxima foto da recepção e fachada"
+          className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/50 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all opacity-80 group-hover:opacity-100 z-30"
+        >
+          <ChevronRight size={18} />
+        </button>
+      </div>
+
+      {/* Pagination dots below */}
+      <div className="flex items-center justify-center gap-1.5 mt-3">
+        {images.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrent(i)}
+            aria-label={`Ver foto ${i + 1} de endereço fiscal`}
+            className="w-7 h-7 flex items-center justify-center rounded-full transition-colors"
+          >
+            <span
+              className={`h-2 rounded-full transition-all ${
+                i === current ? 'bg-[#378ADD] w-5' : 'bg-white/20 w-2'
+              }`}
+            />
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 /* ─── MAIN COMPONENT ──────────────────────────────────────────────────────── */
 
 const CoworkingSpaces = ({ onRequestQuote }: { onRequestQuote: (spaceType: string) => void }) => {
@@ -145,15 +224,8 @@ const CoworkingSpaces = ({ onRequestQuote }: { onRequestQuote: (spaceType: strin
       <div className="py-14 border-b border-white/5 bg-[#080808]">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-            {/* Image Left */}
-            <div className="rounded-2xl overflow-hidden aspect-[4/3] bg-white/5">
-              <img
-                src="/images/imgs_coworking/recepcao.webp"
-                alt="Recepção Vila Tech Hub"
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-            </div>
+            {/* Image Left - Interactive Carousel with Reception and Facade */}
+            <FiscalCarousel />
 
             {/* Text Right */}
             <div>

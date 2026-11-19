@@ -35,6 +35,7 @@ vila-tech-hub-*.json
 Thumbs.db
 
 # Project specific
+Arquivos/
 .agent/
 .venv/
 .gemini/
