@@ -12,7 +12,7 @@ const galleryImages = [
   { src: '/images/coworking/reuniao-executiva-1.webp', label: 'Sala de Reunião com TV e Apresentação' },
   { src: '/images/coworking/reuniao-executiva-2.webp', label: 'Sala Privativa para até 4 Pessoas' },
   { src: '/images/coworking/reuniao-mesa-grande.webp', label: 'Mesa de Reunião Executiva Ampla' },
-  { src: '/images/coworking/sala1_Vista2.webp', label: 'Ambiente com Isolamento Acústico' },
+  { src: '/images/coworking/estacoes-geral.webp', label: 'Ambiente com Isolamento Acústico' },
 ];
 
 const features = [
@@ -149,9 +149,9 @@ export default function MeetingRoomsLandingPage() {
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden border-b border-white/5">
         <div className="absolute inset-0 bg-gradient-to-b from-[#ef7d00]/10 via-transparent to-transparent pointer-events-none" />
         <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
+
             {/* Left Content */}
             <div className="lg:col-span-6">
               <div className="flex flex-wrap items-center gap-2 mb-6">
@@ -257,11 +257,10 @@ export default function MeetingRoomsLandingPage() {
                     type="button"
                     onClick={() => setSelectedPhoto(idx)}
                     aria-label={`Ver foto ${idx + 1}`}
-                    className={`rounded-xl overflow-hidden aspect-[16/10] border transition-all ${
-                      selectedPhoto === idx
-                        ? 'border-[#ef7d00] scale-105 shadow-md shadow-[#ef7d00]/30'
-                        : 'border-white/10 opacity-60 hover:opacity-100'
-                    }`}
+                    className={`rounded-xl overflow-hidden aspect-[16/10] border transition-all ${selectedPhoto === idx
+                      ? 'border-[#ef7d00] scale-105 shadow-md shadow-[#ef7d00]/30'
+                      : 'border-white/10 opacity-60 hover:opacity-100'
+                      }`}
                   >
                     <img src={img.src} alt="" className="w-full h-full object-cover" />
                   </button>
@@ -322,11 +321,10 @@ export default function MeetingRoomsLandingPage() {
           {plans.map((plan, idx) => (
             <div
               key={idx}
-              className={`rounded-3xl overflow-hidden flex flex-col justify-between transition-all duration-300 group ${
-                plan.highlight
-                  ? 'bg-gradient-to-b from-[#ef7d00]/15 via-white/[0.04] to-zinc-950/80 border-2 border-[#ef7d00] shadow-2xl shadow-[#ef7d00]/10 relative'
-                  : 'bg-white/[0.03] border border-white/10 hover:border-white/20'
-              }`}
+              className={`rounded-3xl overflow-hidden flex flex-col justify-between transition-all duration-300 group ${plan.highlight
+                ? 'bg-gradient-to-b from-[#ef7d00]/15 via-white/[0.04] to-zinc-950/80 border-2 border-[#ef7d00] shadow-2xl shadow-[#ef7d00]/10 relative'
+                : 'bg-white/[0.03] border border-white/10 hover:border-white/20'
+                }`}
             >
               {plan.highlight && (
                 <div className="absolute top-3 right-3 z-10 px-3.5 py-1 rounded-full bg-[#ef7d00] text-white text-[11px] font-syne font-bold uppercase tracking-wider shadow-lg">
@@ -371,11 +369,10 @@ export default function MeetingRoomsLandingPage() {
                       setSpaceType(`Sala de Reunião (${plan.name})`);
                       scrollToQuote();
                     }}
-                    className={`w-full py-3.5 px-4 rounded-full font-syne font-bold text-xs uppercase tracking-wider text-center transition-all hover:scale-[1.02] flex items-center justify-center gap-2 ${
-                      plan.highlight
-                        ? 'bg-[#ef7d00] text-white hover:bg-[#d87000] shadow-lg shadow-[#ef7d00]/25'
-                        : 'border border-white/20 bg-white/5 hover:bg-white hover:text-black text-white'
-                    }`}
+                    className={`w-full py-3.5 px-4 rounded-full font-syne font-bold text-xs uppercase tracking-wider text-center transition-all hover:scale-[1.02] flex items-center justify-center gap-2 ${plan.highlight
+                      ? 'bg-[#ef7d00] text-white hover:bg-[#d87000] shadow-lg shadow-[#ef7d00]/25'
+                      : 'border border-white/20 bg-white/5 hover:bg-white hover:text-black text-white'
+                      }`}
                   >
                     <FileText size={16} />
                     Solicitar Cotação deste Formato
