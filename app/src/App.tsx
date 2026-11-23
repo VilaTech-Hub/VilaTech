@@ -12,6 +12,10 @@ const AgendaPage = React.lazy(() => import('./pages/AgendaPage'));
 const CalendarPage = React.lazy(() => import('./pages/CalendarPage'));
 const CoursesLandingPage = React.lazy(() => import('./pages/CoursesLandingPage'));
 const CoworkingPage = React.lazy(() => import('./pages/CoworkingPage'));
+const WorkstationsLandingPage = React.lazy(() => import('./pages/coworking/WorkstationsLandingPage'));
+const MeetingRoomsLandingPage = React.lazy(() => import('./pages/coworking/MeetingRoomsLandingPage'));
+const AuditoriumLandingPage = React.lazy(() => import('./pages/coworking/AuditoriumLandingPage'));
+const FiscalAddressLandingPage = React.lazy(() => import('./pages/coworking/FiscalAddressLandingPage'));
 const PlanoAbertoPage = React.lazy(() => import('./pages/PlanoAbertoPage'));
 const FitiPage = React.lazy(() => import('./pages/FitiPage'));
 const DonationPage = React.lazy(() => import('./pages/DonationPage'));
@@ -50,6 +54,10 @@ function App() {
           <Route path="/plano-aberto" element={<PlanoAbertoPage />} />
           <Route path="/cursos" element={<CoursesLandingPage />} />
           <Route path="/coworking" element={<CoworkingPage />} />
+          <Route path="/coworking/estacoes-de-trabalho" element={<WorkstationsLandingPage />} />
+          <Route path="/coworking/salas-de-reuniao" element={<MeetingRoomsLandingPage />} />
+          <Route path="/coworking/auditorio" element={<AuditoriumLandingPage />} />
+          <Route path="/coworking/endereco-fiscal" element={<FiscalAddressLandingPage />} />
           <Route path="/agenda" element={<AgendaPage />} />
           <Route path="/calendario" element={<CalendarPage />} />
           <Route path="/fiti" element={<FitiPage />} />

@@ -24,6 +24,30 @@ export const routes = [
     heroPreload: '/images/imgs_coworking/hero-poster.webp'
   },
   {
+    path: '/coworking/estacoes-de-trabalho',
+    title: 'Estações de Trabalho e Coworking em Itu | Vila Tech Hub',
+    description: 'Estações de trabalho, hot desking e mesas fixas em Itu. Internet veloz e redundante, café especial e ambiente climatizado no Itu Novo Centro.',
+    image: 'https://www.vilatechub.com.br/images/imgs_coworking/recepcao-og.jpg'
+  },
+  {
+    path: '/coworking/salas-de-reuniao',
+    title: 'Salas de Reunião em Itu | Vila Tech Hub',
+    description: 'Salas de reunião executivas em Itu com Smart TV, acústica profissional, Wi-Fi veloz e café cortesia. Locação por hora, meio período ou diária.',
+    image: 'https://www.vilatechub.com.br/images/imgs_coworking/recepcao-og.jpg'
+  },
+  {
+    path: '/coworking/auditorio',
+    title: 'Auditório para Eventos em Itu | Vila Tech Hub',
+    description: 'Auditório moderno em Itu para até 70 pessoas com projetor de alta definição, sonorização, microfones, área de coffee break e climatização.',
+    image: 'https://www.vilatechub.com.br/images/imgs_coworking/recepcao-og.jpg'
+  },
+  {
+    path: '/coworking/endereco-fiscal',
+    title: 'Endereço Fiscal e Comercial em Itu | Vila Tech Hub',
+    description: 'Abra ou transfira seu CNPJ para o melhor endereço comercial de Itu. Gestão de correspondências, redução de custos e conformidade contábil no Vila Tech Hub.',
+    image: 'https://www.vilatechub.com.br/images/imgs_coworking/recepcao-og.jpg'
+  },
+  {
     path: '/agenda',
     title: 'Agenda Vila Tech Hub | Eventos, Cursos de IA & Tecnologia em Itu',
     description: 'Acompanhe o calendário de atividades do Vila Tech Hub em Itu, SP. Palestras, cursos de Inteligência Artificial, workshops de tecnologia e eventos corporativos gratuitos e pagos.',
