@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
+import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -90,9 +91,41 @@ const CoworkingHero = () => {
             <a href="#cotacao" className="inline-flex items-center justify-center rounded-full bg-[#378ADD] px-7 py-4 font-syne font-bold text-white hover:bg-white hover:text-[#378ADD] transition-colors">
               Solicitar cotação
             </a>
-            <a href="#espacos" className="inline-flex items-center justify-center rounded-full border border-white/50 px-7 py-4 font-syne font-bold text-white hover:bg-white/10 transition-colors">
-              Ver espaços
-            </a>
+          </div>
+
+          {/* Dedicated Landing Pages Quick Links */}
+          <div className="flex flex-wrap items-center gap-2.5 mt-6 pt-4 border-t border-white/10 text-xs text-white/70">
+            <span className="font-syne font-semibold text-white/50 uppercase tracking-wider text-[11px] mr-1">
+              Conheça em detalhes:
+            </span>
+            <Link
+              to="/coworking/estacoes-de-trabalho"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-[#378ADD] hover:text-white border border-white/15 text-white text-xs font-syne font-medium transition-all backdrop-blur-sm"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[#378ADD]" />
+              Estações de Trabalho
+            </Link>
+            <Link
+              to="/coworking/salas-de-reuniao"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-[#ef7d00] hover:text-white border border-white/15 text-white text-xs font-syne font-medium transition-all backdrop-blur-sm"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[#ef7d00]" />
+              Salas de Reunião
+            </Link>
+            <Link
+              to="/coworking/auditorio"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-[#e83a79] hover:text-white border border-white/15 text-white text-xs font-syne font-medium transition-all backdrop-blur-sm"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[#e83a79]" />
+              Auditório (70 pessoas)
+            </Link>
+            <Link
+              to="/coworking/endereco-fiscal"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-[#378ADD] hover:text-white border border-white/15 text-white text-xs font-syne font-medium transition-all backdrop-blur-sm"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[#378ADD]" />
+              Endereço Fiscal & Comercial
+            </Link>
           </div>
         </div>
       </div>

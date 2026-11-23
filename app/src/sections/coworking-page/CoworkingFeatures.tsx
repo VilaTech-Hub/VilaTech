@@ -4,17 +4,17 @@ import { Link } from 'react-router-dom';
 const featuresList = [
   {
     icon: <Users size={32} />,
-    title: "40 Postos de Trabalho",
+    title: "Postos de Trabalho",
     description: "Estações flexíveis e fixas preparadas para receber profissionais e equipes de todos os tamanhos."
   },
   {
     icon: <Monitor size={32} />,
-    title: "4 Salas de Reunião",
+    title: "Salas de Reunião",
     description: "Ambientes privativos e totalmente equipados com TV e internet dedicada para suas reuniões."
   },
   {
     icon: <Presentation size={32} />,
-    title: "Auditório (70 pessoas)",
+    title: "Auditório",
     description: "Amplo espaço com projetor e som profissional para eventos, palestras e workshops corporativos."
   },
   {
@@ -55,7 +55,7 @@ const CoworkingFeatures = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="text-center mb-16 max-w-3xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-syne font-bold text-white mb-6">
-            Tudo o que você busca em um Coworking
+            Tudo o que você busca<br />em um Coworking
           </h2>
           <p className="text-gray-400 font-sans text-lg">
             Oferecemos uma infraestrutura completa e moderna, pensada nos mínimos detalhes

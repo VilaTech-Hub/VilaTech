@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 /* ─── SPACES DATA ─────────────────────────────────────────────────────────── */
 
@@ -18,6 +19,8 @@ const spaceSections = [
       { src: '/images/imgs_coworking/Estações de trabalho 2.webp', label: 'Postos de Trabalho Individuais' },
     ],
     cta: 'Solicitar Cotação',
+    dedicatedRoute: '/coworking/estacoes-de-trabalho',
+    dedicatedLabel: 'Ver Detalhes das Estações',
   },
   {
     id: 'salas',
@@ -34,6 +37,8 @@ const spaceSections = [
       { src: '/images/coworking/sala1_Vista2.webp', label: 'Open Space' },
     ],
     cta: 'Reservar Sala',
+    dedicatedRoute: '/coworking/salas-de-reuniao',
+    dedicatedLabel: 'Ver Detalhes da Sala de Reunião',
     carousel: true,
   },
   {
@@ -50,6 +55,8 @@ const spaceSections = [
       { src: '/images/imgs_coworking/Auditório com cadeiras.webp', label: 'Capacidade para até 70 Pessoas' },
     ],
     cta: 'Agendar Evento',
+    dedicatedRoute: '/coworking/auditorio',
+    dedicatedLabel: 'Ver Detalhes do Auditório',
   },
   {
     id: 'cafe',
@@ -259,12 +266,20 @@ const CoworkingSpaces = ({ onRequestQuote }: { onRequestQuote: (spaceType: strin
                   Localização privilegiada no Itu Novo Centro
                 </li>
               </ul>
-              <button
-                onClick={() => onRequestQuote('Endereço Fiscal')}
-                className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-[#378ADD] text-white font-syne font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-[#378ADD] transition-all duration-300 hover:scale-105"
-              >
-                Solicitar Cotação <ArrowRight size={16} />
-              </button>
+              <div className="flex flex-wrap items-center gap-4">
+                <Link
+                  to="/coworking/endereco-fiscal"
+                  className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-[#378ADD] text-white font-syne font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-[#378ADD] transition-all duration-300 hover:scale-105"
+                >
+                  Conhecer Planos de Endereço Fiscal <ArrowRight size={16} />
+                </Link>
+                <button
+                  onClick={() => onRequestQuote('Endereço Fiscal')}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/20 bg-white/5 text-white font-syne font-semibold text-sm uppercase tracking-wider hover:bg-white/10 transition-colors"
+                >
+                  Solicitar Cotação
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -317,16 +332,38 @@ const CoworkingSpaces = ({ onRequestQuote }: { onRequestQuote: (spaceType: strin
               </div>
             )}
 
-            {/* CTA Button */}
-            <button
-              onClick={() => onRequestQuote(space.spaceType)}
-              className="inline-flex items-center gap-2 px-8 py-3 rounded-full font-syne font-bold text-sm uppercase tracking-widest transition-all duration-300 hover:scale-105"
-              style={{ backgroundColor: space.tagColor, color: '#fff' }}
-              onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#fff'; e.currentTarget.style.color = space.tagColor; }}
-              onMouseLeave={e => { e.currentTarget.style.backgroundColor = space.tagColor; e.currentTarget.style.color = '#fff'; }}
-            >
-              {space.cta} <ArrowRight size={16} />
-            </button>
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap items-center gap-4">
+              {space.dedicatedRoute ? (
+                <>
+                  <Link
+                    to={space.dedicatedRoute}
+                    className="inline-flex items-center gap-2 px-8 py-3 rounded-full font-syne font-bold text-sm uppercase tracking-widest transition-all duration-300 hover:scale-105"
+                    style={{ backgroundColor: space.tagColor, color: '#fff' }}
+                    onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#fff'; e.currentTarget.style.color = space.tagColor; }}
+                    onMouseLeave={e => { e.currentTarget.style.backgroundColor = space.tagColor; e.currentTarget.style.color = '#fff'; }}
+                  >
+                    {space.dedicatedLabel} <ArrowRight size={16} />
+                  </Link>
+                  <button
+                    onClick={() => onRequestQuote(space.spaceType)}
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/20 bg-white/5 text-white font-syne font-semibold text-sm uppercase tracking-wider hover:bg-white/10 transition-colors"
+                  >
+                    {space.cta}
+                  </button>
+                </>
+              ) : (
+                <button
+                  onClick={() => onRequestQuote(space.spaceType)}
+                  className="inline-flex items-center gap-2 px-8 py-3 rounded-full font-syne font-bold text-sm uppercase tracking-widest transition-all duration-300 hover:scale-105"
+                  style={{ backgroundColor: space.tagColor, color: '#fff' }}
+                  onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#fff'; e.currentTarget.style.color = space.tagColor; }}
+                  onMouseLeave={e => { e.currentTarget.style.backgroundColor = space.tagColor; e.currentTarget.style.color = '#fff'; }}
+                >
+                  {space.cta} <ArrowRight size={16} />
+                </button>
+              )}
+            </div>
           </div>
         </div>
       ))}
